@@ -6,7 +6,12 @@
 <%
 	memberManager mm = new memberManager();
 	members lmb = mm.getmember("001");
+	
+	//poolreservationsManager pr = new poolreservationsManager();
+	//pool_reservations lpm = pr
 %>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -21,13 +26,19 @@
     
    
     <div class="main-content">
-    
-    	<a href="testVerifyEmail">testVerifyEmail</a>
-    	<a href="loginpage">login</a>
-    	<% for(int i=0;i<1000;i++) {%>
-    	abcdefghijklmnopqrstuvwxyz
-    	<%} %>
+     
+     <% if (lmb == null ){ %>
+    	 
+    <% }else{%>
+    	 <a href="memberprofile">ดูข้อมูลส่วนตัว</a> <br>
+    	 <a href="viewrequesttousepool">ดูผลการทำเรื่องขอเข้าใช้สระว่ายน้ำ</a> <br>
+    	 
+    	 <a href="make_event">สร้างกิจกรรมของสระว่ายน้ำ</a>
+     <%}%>
+    	
+    	
     </div>
+    
     <%@ include file="footer.jsp" %>
 </body>
 </html>

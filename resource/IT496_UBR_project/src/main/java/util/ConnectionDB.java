@@ -8,7 +8,7 @@ public class ConnectionDB {
 
 	String url = "jdbc:mysql://localhost:3306/it496_ubr?characterEncoding=UTF-8";
 	String uname = "root";
-	String pwd = "12345678";
+	String pwd = "1234";
 
 	Connection con;
 

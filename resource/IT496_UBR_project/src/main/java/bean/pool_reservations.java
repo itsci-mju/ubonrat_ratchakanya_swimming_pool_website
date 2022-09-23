@@ -1,7 +1,6 @@
 package bean;
 
 import java.util.Calendar;
-
 import javax.persistence.*;
 
 @Entity

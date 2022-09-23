@@ -71,6 +71,7 @@ public class members {
 	@Column(name="alumni_card",nullable=true,length=45)
 	private String alumni_card;
 
+	
 	public members(bean.logins logins, String firstname, String lastname, String gender, String phone,
 			Calendar birthdate, int member_type, String address, String pid, String emergency_name,
 			String emergency_phone, String image, String stuid, String faculty, String stu_card, String affiliation,
@@ -98,41 +99,9 @@ public class members {
 		this.alumni_card = alumni_card;
 	}
 
-
-
-
-
-
-
-
-	public int getId() {
-		return id;
-	}
-
-
-
-
-
-
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
-
-
-
-
-
-
 	public logins getLogins() {
 		return logins;
 	}
-
-
-
 
 
 
@@ -146,15 +115,9 @@ public class members {
 
 
 
-
-
-
 	public String getFirstname() {
 		return firstname;
 	}
-
-
-
 
 
 
@@ -168,15 +131,9 @@ public class members {
 
 
 
-
-
-
 	public String getLastname() {
 		return lastname;
 	}
-
-
-
 
 
 
@@ -190,15 +147,9 @@ public class members {
 
 
 
-
-
-
 	public String getGender() {
 		return gender;
 	}
-
-
-
 
 
 
@@ -212,15 +163,9 @@ public class members {
 
 
 
-
-
-
 	public String getPhone() {
 		return phone;
 	}
-
-
-
 
 
 
@@ -234,15 +179,9 @@ public class members {
 
 
 
-
-
-
 	public Calendar getBirthdate() {
 		return birthdate;
 	}
-
-
-
 
 
 
@@ -256,15 +195,9 @@ public class members {
 
 
 
-
-
-
 	public int getMember_type() {
 		return member_type;
 	}
-
-
-
 
 
 
@@ -278,15 +211,9 @@ public class members {
 
 
 
-
-
-
 	public String getAddress() {
 		return address;
 	}
-
-
-
 
 
 
@@ -300,15 +227,9 @@ public class members {
 
 
 
-
-
-
 	public String getPid() {
 		return pid;
 	}
-
-
-
 
 
 
@@ -322,15 +243,9 @@ public class members {
 
 
 
-
-
-
 	public String getEmergency_name() {
 		return emergency_name;
 	}
-
-
-
 
 
 
@@ -344,15 +259,9 @@ public class members {
 
 
 
-
-
-
 	public String getEmergency_phone() {
 		return emergency_phone;
 	}
-
-
-
 
 
 
@@ -366,15 +275,9 @@ public class members {
 
 
 
-
-
-
 	public String getImage() {
 		return image;
 	}
-
-
-
 
 
 
@@ -388,15 +291,9 @@ public class members {
 
 
 
-
-
-
 	public String getStuid() {
 		return stuid;
 	}
-
-
-
 
 
 
@@ -410,15 +307,9 @@ public class members {
 
 
 
-
-
-
 	public String getFaculty() {
 		return faculty;
 	}
-
-
-
 
 
 
@@ -432,15 +323,9 @@ public class members {
 
 
 
-
-
-
 	public String getStu_card() {
 		return stu_card;
 	}
-
-
-
 
 
 
@@ -454,15 +339,9 @@ public class members {
 
 
 
-
-
-
 	public String getAffiliation() {
 		return affiliation;
 	}
-
-
-
 
 
 
@@ -476,15 +355,9 @@ public class members {
 
 
 
-
-
-
 	public String getOfficer_card() {
 		return officer_card;
 	}
-
-
-
 
 
 
@@ -498,15 +371,9 @@ public class members {
 
 
 
-
-
-
 	public String getMarriage_cer() {
 		return marriage_cer;
 	}
-
-
-
 
 
 
@@ -520,15 +387,9 @@ public class members {
 
 
 
-
-
-
 	public String getPid_card() {
 		return pid_card;
 	}
-
-
-
 
 
 
@@ -542,9 +403,6 @@ public class members {
 
 
 
-
-
-
 	public String getAlumni_card() {
 		return alumni_card;
 	}
@@ -553,15 +411,9 @@ public class members {
 
 
 
-
-
-
 	public void setAlumni_card(String alumni_card) {
 		this.alumni_card = alumni_card;
 	}
-
-
-
 
 
 

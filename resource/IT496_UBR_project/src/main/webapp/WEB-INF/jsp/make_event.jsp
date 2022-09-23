@@ -73,91 +73,7 @@ function checkEnddate(frm){
     }
 }
 
-// เวลา1 //
-function checkStarthour(frm){
-    const  Starthour = /^[0-9]{1,2}$/;
-    const  labelAlertStarthour  = document.getElementById("alertStarthour");
-    const sh = frm.starthour.value;
-    if(sh==("")){
-        labelAlertStarthour.innerText="กรุณากรอกเวลา";
-        labelAlertStarthour.style.color="#ff5252";
-      }
-    else if(sh<9 || sh >19){
-        labelAlertStarthour.style.color="#ff5252";
-        labelAlertStarthour.innerText="เวลาต้องไม่ต่ำกว่า 9 นาฬิกาและต้องไม่เกิน 19 นาฬิกา";
-  
-        frm.starthour.value = "";
-      }
-      else{
-        labelAlertStarthour.innerText="สามารถใช้เวลานี้ได้";
-        labelAlertStarthour.style.color= "#4CAF50";
-      }
-    } 
 
-// นาที1 //
-function checkStartminute(frm){
-  const  Startminute = /^[0-9]{1,2}$/;
-  const  labelAlertStartminute  = document.getElementById("alertStartminute");
-  const sm = frm.startminute.value;
-    if(sm==("")){
-    labelAlertStartminute.innerText="กรุณากรอกนาที";
-    labelAlertStartminute.style.color="#ff5252";
-    }
-    else if(sm<0 || sm >59){
-      labelAlertStartminute.style.color="#ff5252";
-      labelAlertStartminute.innerText="นาทีต้องไม่ต่ำกว่า 0 นาทีและต้องไม่เกิน 59 นาที";
-
-      frm.startminute.value = "";
-    }
-    else{
-      labelAlertStartminute.innerText="สามารถใช้นาทีนี้ได้";
-      labelAlertStartminute.style.color= "#4CAF50";
-    }
-  }
-
-
-  // เวลา2 //
-function checkEndhour(frm){
-  const  Endhour = /^[0-9]{1,2}$/;
-  const  labelAlertEndhour  = document.getElementById("alertEndhour");
-  const eh = frm.endhour.value;
-    if(eh==("")){
-    labelAlertEndhour.innerText="กรุณากรอกเวลา";
-    labelAlertEndhour.style.color="#ff5252";
-    }
-    else if(eh<9 || eh >19){
-      labelAlertEndhour.style.color="#ff5252";
-      labelAlertEndhour.innerText="เวลาต้องไม่ต่ำกว่า 9 นาฬิกาและต้องไม่เกิน 19 นาฬิกา";
-
-      frm.endhour.value = "";
-    }
-    else{
-      labelAlertEndhour.innerText="สามารถใช้เวลานี้ได้";
-      labelAlertEndhour.style.color= "#4CAF50";
-    }
-  } 
-
-
-// นาที2 //
-function checkEndminute(frm){
-const  Endminute = /^[0-9]{1,2}$/;
-const  labelAlertEndminute  = document.getElementById("alertEndminute");
-const em = frm.endminute.value;
-if(em==("")){
-  labelAlertEndminute.innerText="กรุณากรอกนาที";
-  labelAlertEndminute.style.color="#ff5252";
-  }
-  else if(em<0 || em >59){
-    labelAlertEndminute.style.color="#ff5252";
-    labelAlertEndminute.innerText="นาทีต้องไม่ต่ำกว่า 0 นาทีและต้องไม่เกิน 59 นาที";
-
-    frm.endminute.value = "";
-  }
-  else{
-    labelAlertEndminute.innerText="สามารถใช้นาทีนี้ได้";
-    labelAlertEndminute.style.color= "#4CAF50";
-  }
-}
 
 /* record usage service */
 function checktypeinput(){
@@ -200,18 +116,6 @@ function checkDetail(regis){
     } 
 
 
-    // Script อัพโหลดเอกสาร //
-  function uploadFile(regis) { 
-    const  labelAlertFile  = document.getElementById("alertfile");
-    if(regis.doc.value==("")){
-        labelAlertFile.innerText="กรุณาใส่รูปบัตรประชาชน";
-        labelAlertFile.style.color="#ff5252";
-      }
-      else{
-        labelAlertFile.innerText="สามารถใช้รูปบัตรประชาชน";
-        labelAlertFile.style.color= "#4CAF50";
-      }
-    }   
 </script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="css/original.css">
@@ -219,13 +123,13 @@ function checkDetail(regis){
 <body id="nonselect">
  <%@ include file="header.jsp" %>
     <div class="content-request">
-        <form action="getRequestToUse" method="post" name="frm">
+        <form action="addMakeEvent" method="post" name="frm">
           <table>
             <tr>
               <td colspan="2">
                 <div>
-                  <p style="width: 100%; font-size: 34px; margin: 0;" align="center" class="title"> แบบฟอร์มขอเข้าใช้งาน </p>
-                  <p style="width: 100%; font-size: 26px; margin: 0;" align="center" class="title"> สระว่ายน้ำอุบลรัตน์ราชกัญญา </p>
+                  <p style="width: 100%; font-size: 34px; margin: 0;" align="center" class="title"> สร้างกิจกรรมของสระว่ายน้ำ </p>
+                 
               </div>
               </td>
             </tr>
@@ -250,17 +154,10 @@ function checkDetail(regis){
                   <input type="date" class="form__field" placeholder="วันที่เริ่มใช้" name="startdate" id='startdate' required style="width: 150px;" onblur="checkStartdate(frm)">
                   <label for="startdate" class="form__label">วันที่เริ่มใช้</label>
                   <label class="alert-label" id="alertStartdate"></label>
-              </div>
-              </td>
-              <td>
-                <div class="request_input_time">  
-                  <input type="number" class="req_time" placeholder="เวลา" name="starthour" id='starthour' min="0" max="23" value="09" maxlength="2" required  onblur="checkStarthour(frm)"> <b style="font-size: 20px;">:</b>
-                  <input type="number" class="req_time" placeholder="เวลา" name="startminute" id='startminute' min="0" max="59" value="00" required maxlength="2" onblur="checkStartminute(frm)"> <label style="font-size: 20px;">น. <br></label>    
-                </div>
-                  <label class="alert-label" id="alertStarthour"></label>
-                  <label class="alert-label" id="alertStartminute"></label>
-              </td>
+              	</div>
+              </td> 
             </tr>
+            
             <tr>
               <td>
                 <div class="form__group field" style="float: left;">
@@ -269,15 +166,8 @@ function checkDetail(regis){
                   <label class="alert-label" id="alertEnddate"></label>
               </div>
               </td>
-              <td>    
-                <div class="request_input_time">
-                  <input type="number" class="req_time" placeholder="เวลา" name="endhour" id='endhour' min="0" max="23" value="09" required maxlength="2" onblur="checkEndhour(frm)"> <b style="font-size: 20px;">:</b>
-                  <input type="number" class="req_time" placeholder="เวลา" name="endminute" id='endminute' min="0" max="59" value="00" required maxlength="2" onblur="checkEndminute(frm)"> <label style="font-size: 20px;">น.</label>
-                </div>
-                <label class="alert-label" id="alertEndhour"></label>
-                <label class="alert-label" id="alertEndminute"></label>
-              </td>
             </tr>
+            
             <tr>
               <td colspan="2">
                 <div class="request_input"> 
@@ -287,15 +177,7 @@ function checkDetail(regis){
               </div>
               </td>
             </tr>
-            <tr>
-              <td colspan="2">
-                <div class="request_input">
-                  <label for="doc" style="color: #4CAF50;">อัปโหลดเอกสาร (ถ้ามี)</label> <br>
-                  <input type="file" name="doc" id="doc" class="req_file form-control" onblur="uploadFile(frm)">
-                  <label class="alert-label" id="alertfile"></label>
-                </div>
-              </td>
-            </tr>
+            
             <tr>
               <td colspan="2" align="center">
                 <div class="request_input">
@@ -309,5 +191,4 @@ function checkDetail(regis){
     </div>
     <%@ include file="footer.jsp" %>
 </body>
-<script src="javascript/cs_requestform.js"></script>
 </html>

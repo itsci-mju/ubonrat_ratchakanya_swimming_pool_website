@@ -34,52 +34,32 @@ public class memberManager {
 			e.printStackTrace();
 		}return l;
 	}
-	
-	public logins getStatusfromLogin(String mid){
-		logins l = null;
+
+	//// JAMEEEEEEEEEEEEEEEEEEEEEEEE
+	public logins getLogin(String members_id){
+		logins login = null;
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
 			Statement stmt = con.createStatement();
-			String sql = "select members_id,status from logins where members_id = '" + mid + "';";
+			String sql = "select email,password,status,members_id from logins where members_id = '" + members_id +"' ";
 			ResultSet rs = stmt.executeQuery(sql); 
 			while (rs.next() && rs.getRow()==1) {
-				String member_id = rs.getString(1);
-				int status = Integer.parseInt(rs.getString(2));
+				String email = rs.getString(1);
+				String pwd = rs.getString(2);
+				int status = Integer.parseInt(rs.getString(3));
+				String mid =(rs.getString(4));
 				
-				 l = new logins (null,null,status,member_id);
+				login = new logins (email,pwd,status,mid);
 			}
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}return l;
+		}return login;
 	}
 	
-	public members getmtypefromMember(String mid){
-		logins l = new logins();
-		members m = new members();
-		ConnectionDB condb = new ConnectionDB();
-		Connection con = condb.getConnection();
-		try {
-			Statement stmt = con.createStatement();
-			String sql = "select members_id,member_type from members where members_id = '" + mid + "';";
-			ResultSet rs = stmt.executeQuery(sql); 
-			while (rs.next() && rs.getRow()==1) {
-				String member_id = rs.getString(1);
-				int type = Integer.parseInt(rs.getString(2));
-				
-				 l = new logins (null,null,0,member_id);
-				 m.setLogins(l);
-				 m.setMember_type(type);
-				 System.out.println(m.getMember_type());
-			}
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}return m;
-	}
-	
-	
+	//// JAMEEEEEEEEEEEEEEEEEEEEEEEE 
+
 	public members getmember(String memID) {
 		members mb = new members();
 		logins log = new logins();
@@ -118,8 +98,9 @@ public class memberManager {
 				String date[] = bd.split("-");
 				String date2[] = date[2].split(" ");
 				 		birthdate.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date2[0]));
-				 		
-				log.setMembers_id(member_id);
+				
+				//// JAMEEEEEEEEEEE 	
+				log = getLogin(member_id);
 				 mb = new members(log,firstname,lastname,gender,phone,birthdate,
 							member_type,address,pid,emergency_name,emergency_phone,image,
 							stuid,faculty,stu_card,affliation,officer_card,marriage_cer,

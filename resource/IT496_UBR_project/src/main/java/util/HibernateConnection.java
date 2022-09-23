@@ -16,7 +16,7 @@ public class HibernateConnection {
 		database.setProperty("hibernate.hbm2ddl.auto", "create");
 		database.setProperty("hibernate.connection.driver_class","com.mysql.jdbc.Driver");
 		database.setProperty("hibernate.connection.username","root");
-		database.setProperty("hibernate.connection.password","12345678");
+		database.setProperty("hibernate.connection.password","1234");
 		database.setProperty("hibernate.connection.url","jdbc:mysql://localhost:3306/it496_ubr?characterEncoding=UTF-8");
 		database.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
 		Configuration cfg = new Configuration()
@@ -28,8 +28,7 @@ public class HibernateConnection {
 							.addAnnotatedClass(register_courses.class)
 							.addAnnotatedClass(trainees.class)
 							.addAnnotatedClass(pool_usage.class)
-							.addAnnotatedClass(pool_reservations.class)
-							;
+							.addAnnotatedClass(pool_reservations.class);
 		StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties());
 		sessionFactory = cfg.buildSessionFactory(ssrb.build());
 		return sessionFactory;

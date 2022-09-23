@@ -16,6 +16,7 @@ public class run {
         t.commit();
         session.close();
         sessionFactory.close();
+
     }
 
 }

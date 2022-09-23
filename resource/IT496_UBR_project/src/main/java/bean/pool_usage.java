@@ -21,10 +21,10 @@ public class pool_usage {
 	@Column(name="usage_type",nullable=false)
 	private int usage_type;
 	
-	@Column(name="adult",nullable=true)
+	@Column(name="adult",nullable=false)
 	private int adult;
 	
-	@Column(name="child",nullable=true)
+	@Column(name="child",nullable=false)
 	private int child;
 	
 	@Column(name="amount")
@@ -36,23 +36,16 @@ public class pool_usage {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="members_id",nullable=true,referencedColumnName="members_id")
 	private members members;
+
 	
 	
-
-	public pool_usage() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public pool_usage(int pool_usage_id, String coupon_no, Calendar time, int usage_type, int adult, int child,
-			int amount, int price, bean.members members) {
+	public pool_usage(int pool_usage_id, Calendar time, int usage_type, String coupon_no, int amount, int price,
+			bean.members members) {
 		super();
 		this.pool_usage_id = pool_usage_id;
-		this.coupon_no = coupon_no;
 		this.time = time;
 		this.usage_type = usage_type;
-		this.adult = adult;
-		this.child = child;
+		this.coupon_no = coupon_no;
 		this.amount = amount;
 		this.price = price;
 		this.members = members;
@@ -112,22 +105,6 @@ public class pool_usage {
 
 	public void setMembers(members members) {
 		this.members = members;
-	}
-
-	public int getAdult() {
-		return adult;
-	}
-
-	public void setAdult(int adult) {
-		this.adult = adult;
-	}
-
-	public int getChild() {
-		return child;
-	}
-
-	public void setChild(int child) {
-		this.child = child;
 	}
 
 	

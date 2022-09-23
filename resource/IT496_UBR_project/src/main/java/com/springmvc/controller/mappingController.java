@@ -66,8 +66,4 @@ public class mappingController {
 		return "record_usage";
 	}
 	
-	
-	
-	
-
 }

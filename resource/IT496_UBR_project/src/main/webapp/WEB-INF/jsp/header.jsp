@@ -121,15 +121,6 @@
     	</nav>
     <%} %>
  
-<!-- 
-    name:	<%= mb.getFirstname() %> <br>
-    <%if(log != null){ %>
-    log email : <%= log.getEmail() %> <br>
-    log pass : <%= log.getPassword() %> <br>
-    log status: <%= log.getStatus() %> <br>
-    log mid: <%= log.getMembers_id() %> <br>
-    bdate : <%= sdf.format(mb.getBirthdate().getTime())
-     %>
-    <%} %> -->
+
 </body>
 </html>

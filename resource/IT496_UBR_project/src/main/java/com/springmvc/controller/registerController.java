@@ -130,8 +130,6 @@ public class registerController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
         
-        
-		
 		String fname = request.getParameter("fname");
 		String lname = request.getParameter("lname");
 		
@@ -162,7 +160,7 @@ public class registerController {
 		 String stu_pic = request.getParameter("stu_pic");
 		 String stuid = request.getParameter("stuid");
 		 String faculty = request.getParameter("faculty");
-		 int mType = 0;
+		 int mType = 1;
 		 
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "1"+g+"0"+Long.toString(unix);
@@ -228,7 +226,7 @@ public class registerController {
 		 String marriage = request.getParameter("marriage");
 		 String officer_card = "บัตรข้าราชการ";
 		 String affiliation = request.getParameter("affiliation");
-		 int mType = 1 ;
+		 int mType = 2;
 		 
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "2"+g+"0"+Long.toString(unix);
@@ -291,8 +289,7 @@ public class registerController {
 		 String per_pic = request.getParameter("per_pic");
 		 String pid = "identify";
 		 String alumni_card = request.getParameter("alumni_card");
-		 
-		 int mType = 2;
+		 int mType = 3;
 		 
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "3"+g+"0"+Long.toString(unix);
@@ -341,7 +338,6 @@ public class registerController {
 		 }
 		 
 		 String tel = request.getParameter("tel");
-		 
 		 String bd = request.getParameter("birthdate");
 		 String date[] = bd.split("-");
 		 		birthdate.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date[2]));
@@ -358,13 +354,8 @@ public class registerController {
 		 String id_cards = request.getParameter("id_cards");
 		 String emn = "emn";
 		 String emp = "emp";
-		 int mType = 3;
-		 long b = (long) (birthdate.getTimeInMillis()/(86400000*365.25));
-		 long n = (long) ((Calendar.getInstance().getTimeInMillis()-543)/(86400000*365.25));
-		 long a = n - b;
-		 if(a<13) {
-			  mType = 4 ;
-		 }
+		 int mType = 4;
+		 
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "4"+g+"0"+Long.toString(unix);
 		 
@@ -395,11 +386,8 @@ public class registerController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
         
-        
-		
 		String fname = request.getParameter("fname");
-		String lname = request.getParameter("lname");
-		
+		String lname = request.getParameter("lname");		
 		String gender ="";
 		String g ="";
 		 if(request.getParameter("gender").equalsIgnoreCase("male")) {
@@ -431,15 +419,15 @@ public class registerController {
 		 int sType = Integer.parseInt(request.getParameter("sType"));
 		 
 		 int status = 0;
-		 int mType = 6;
+		 int mType = 0;
 		 if(sType==(0)){
-			 mType = 6;
+			 mType = 5;
 			 status = 4;
 		 }else if(sType==(1)) {
-			 mType = 5;
+			 mType = 6;
 			 status = 3;
 		 }else {
-			 mType= 6;
+			 mType=0;
 		 }
 		  
 		 
