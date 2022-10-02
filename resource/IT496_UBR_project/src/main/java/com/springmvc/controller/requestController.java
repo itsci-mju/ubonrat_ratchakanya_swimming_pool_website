@@ -1,16 +1,32 @@
 package com.springmvc.controller;
 
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.Transparency;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.TimeZone;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import bean.logins;
 import bean.members;
@@ -20,45 +36,141 @@ import util.requestManager;
 @Controller
 public class requestController {
 	
-	@RequestMapping(value="/getRequestToUse", method=RequestMethod.POST)
-	public String getRequestToUse(HttpServletRequest request,HttpSession session) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		Calendar sd = Calendar.getInstance();
-		Calendar ed = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
-        
-        String memberid = request.getParameter("mid");
-        String eventname = request.getParameter("eventname");
-		String startdate = request.getParameter("startdate");
-		int starthour = Integer.parseInt(request.getParameter("starthour"));
-		int startminute = Integer.parseInt(request.getParameter("startminute"));
-		String enddate = request.getParameter("enddate");
-		int endhour = Integer.parseInt(request.getParameter("endhour"));
-		int endminute = Integer.parseInt(request.getParameter("endminute"));
-		String detail = request.getParameter("detail");
-		String filename = request.getParameter("doc");
-
-
-		String sdate[] = startdate.split("-");
-		 		sd.set(Integer.parseInt(sdate[0]), Integer.parseInt(sdate[1])-1, Integer.parseInt(sdate[2]), starthour, startminute);
-		String edate[] = enddate.split("-");
-				ed.set(Integer.parseInt(edate[0]), Integer.parseInt(edate[1])-1, Integer.parseInt(edate[2]), endhour, endminute);
+	@RequestMapping(value="/getRequestToUse", method=RequestMethod.POST ,consumes =  MediaType.MULTIPART_FORM_DATA_VALUE)
+	public String getRequestToUse(@RequestParam("doc") MultipartFile file, ServletRequest request,HttpSession session) {
+		
+			try {
+				request.setCharacterEncoding("UTF-8");
 				
-		logins log = new logins();
-			log.setMembers_id(memberid);
-		members mb = new members();
-			mb.setLogins(log);
-		pool_reservations pr = new pool_reservations(0,eventname,sd,ed,detail,0,filename,0,mb);
-		requestManager rqm = new requestManager();
-		rqm.addRequestToUse(pr);
+				Calendar sd = Calendar.getInstance();
+				Calendar ed = Calendar.getInstance();
+		        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		        sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
+		        
+		        String memberid = request.getParameter("mid");
+		        String eventname = request.getParameter("eventname");
+				String startdate = request.getParameter("startdate");
+				int starthour = Integer.parseInt(request.getParameter("starthour"));
+				int startminute = Integer.parseInt(request.getParameter("startminute"));
+				String enddate = request.getParameter("enddate");
+				int endhour = Integer.parseInt(request.getParameter("endhour"));
+				int endminute = Integer.parseInt(request.getParameter("endminute"));
+				String detail = request.getParameter("detail");
+				String filename = request.getParameter("doc");
+
+
+				String sdate[] = startdate.split("-");
+				 		sd.set(Integer.parseInt(sdate[0]), Integer.parseInt(sdate[1])-1, Integer.parseInt(sdate[2]), starthour, startminute);
+				String edate[] = enddate.split("-");
+						ed.set(Integer.parseInt(edate[0]), Integer.parseInt(edate[1])-1, Integer.parseInt(edate[2]), endhour, endminute);
+						
+				logins log = new logins();
+					log.setMembers_id(memberid);
+				members mb = new members();
+					mb.setLogins(log);
+				pool_reservations pr = new pool_reservations(0,eventname,sd,ed,detail,0,file.getOriginalFilename(),0,mb);
+				requestManager rqm = new requestManager();
+				rqm.addRequestToUse(pr);
+				
+				
+				String Givefile =  file.getOriginalFilename();
+				if (!file.isEmpty()) {
+					String original_file_name = file.getOriginalFilename();
+					String type_image = original_file_name.substring(original_file_name.lastIndexOf("."));				
+					String path =  "C:\\Users\\ACER NITRO 5\\workspac_IT215\\IT496_UBR_project\\src\\main\\webapp\\image";
+					
+					System.out.println(path);
+					System.out.println(original_file_name);	
+					
+					File uploadPic;
+					uploadPic = convert(file, path + "/" + Givefile);
+					
+
+					BufferedImage image = ImageIO.read(uploadPic);
+					int width = 0;
+					int height = 0;
+
+					if (image.getWidth() > image.getHeight()) {
+						width = 400;
+						height = 400;
+					} else {
+						width = 400;
+						height = 400;
+					}
+
+					BufferedImage imageWrite = getScaledInstance(image, width, height,
+							RenderingHints.VALUE_RENDER_QUALITY, true);
+
+					if (type_image.equalsIgnoreCase(".png")) {
+						ImageIO.write(imageWrite, "jpg", new File(path + "/" + Givefile));
+					} else if (type_image.equalsIgnoreCase(".jpeg")) {
+						ImageIO.write(imageWrite, "jpg", new File(path + "/" + Givefile));
+					} else {
+						ImageIO.write(imageWrite, "jpg", new File(path + "/" + Givefile));
+					}
+				} else {
+					
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+			
+			
+			
+	
+		
 		return "index";
 	}
+	
+	
+	public static BufferedImage getScaledInstance(BufferedImage img, int targetWidth, int targetHeight, Object hint,
+			boolean higherQuality) {
+		int type = (img.getTransparency() == Transparency.OPAQUE) ? BufferedImage.TYPE_INT_RGB
+				: BufferedImage.TYPE_INT_ARGB;
+		BufferedImage ret = (BufferedImage) img;
+		int w, h;
+		if (higherQuality) {
+			w = img.getWidth();
+			h = img.getHeight();
+		} else {
+			w = targetWidth;
+			h = targetHeight;
+		}
+		do {
+			if (higherQuality && w > targetWidth) {
+				w /= 2;
+				if (w < targetWidth) {
+					w = targetWidth;
+				}
+			}
+			if (higherQuality && h > targetHeight) {
+				h /= 2;
+				if (h < targetHeight) {
+					h = targetHeight;
+				}
+			}
+			BufferedImage tmp = new BufferedImage(w, h, type);
+			Graphics2D g2 = tmp.createGraphics();
+			g2.setRenderingHint(RenderingHints.KEY_RENDERING, hint);
+			g2.drawImage(ret, 0, 0, w, h, null);
+			g2.dispose();
+			ret = tmp;
+		} while (w != targetWidth || h != targetHeight);
+		return ret;
+	}
+	public static File convert(MultipartFile file, String path) throws IOException {
+		System.out.println(path);
+		File convFile = new File(path);
+		System.out.println(path + file.getOriginalFilename());
+		convFile.createNewFile();
+		FileOutputStream fos = new FileOutputStream(convFile);
+		fos.write(file.getBytes());
+		fos.close();
+		return convFile;
+	}
+	
 	
 	@RequestMapping(value="/doRecordUsage", method=RequestMethod.POST)
 	public String recordUsageService(HttpServletRequest request,HttpSession session) {

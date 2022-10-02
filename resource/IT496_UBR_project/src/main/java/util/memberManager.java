@@ -10,6 +10,7 @@ import java.util.TimeZone;
 
 import bean.*;
 
+
 public class memberManager {
 	
 	public logins verifyLoginWEB(String em,String pw){
@@ -113,6 +114,10 @@ public class memberManager {
 		
 		return mb;
 	}
+    
+  
+
+    
 	/*
 	public members getallmember() {
 		members mb = new members();

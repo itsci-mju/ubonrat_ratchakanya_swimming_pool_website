@@ -126,6 +126,8 @@ public class pool_reservations {
 	public void setMembers(members members) {
 		this.members = members;
 	}
+
+
 	
 	
 }

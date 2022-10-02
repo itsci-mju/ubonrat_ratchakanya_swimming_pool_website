@@ -63,7 +63,7 @@
                         <a href="approve_request?id=<%= p.getPool_reservations_id() %>"> <i class="bi bi-check2-square"></i></a>
                     </td>
                     <td class="decline">
-                        <a href="#"> <i class="bi bi-x-circle"></i></a>
+                        <a href="deleteReservations?id=<%= p.getPool_reservations_id() %>"> <i class="bi bi-x-circle"></i></a>
                     </td>
                 </tr>
               <% } %>

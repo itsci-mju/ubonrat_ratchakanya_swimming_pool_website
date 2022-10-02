@@ -49,6 +49,10 @@ public class requestManager {
 		
 		return -1;
 	}
+	
+	
+	
+	
 	public List<pool_reservations> getListRequestUsePool(){
 		List<pool_reservations> pslist = new ArrayList<>();
 		ConnectionDB condb = new ConnectionDB();
@@ -205,7 +209,7 @@ public class requestManager {
 	
 	
 	
-	
+	/**/
 	public int updateRequestToUse_manager(pool_reservations pool){
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
@@ -252,6 +256,10 @@ public class requestManager {
 		
 		return -1;
 	}
+	
+	
+	
+	
 	public int acceptReservations(String pid) {
         ConnectionDB condb = new ConnectionDB();
         Connection con = condb.getConnection();
@@ -268,5 +276,23 @@ public class requestManager {
             e.printStackTrace();
         }
         return -1; 
+    }
+	
+	
+	
+    public int deleteReservations(String prid) {
+        ConnectionDB condb = new ConnectionDB();
+        Connection con = condb.getConnection();
+        try {
+            Statement stmt = con.createStatement();
+            String sql = "delete from pool_reservations where  pool_reservations_id = '"+prid+"' ";
+            int result = stmt.executeUpdate(sql);
+            con.close();
+            return result; 
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

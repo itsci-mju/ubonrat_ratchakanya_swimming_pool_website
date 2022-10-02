@@ -33,11 +33,16 @@
     	 <a href="memberprofile">ดูข้อมูลส่วนตัว</a> <br>
     	 <a href="viewrequesttousepool">ดูผลการทำเรื่องขอเข้าใช้สระว่ายน้ำ</a> <br>
     	 
-    	 <a href="make_event">สร้างกิจกรรมของสระว่ายน้ำ</a>
-     <%}%>
+    	 <a href="make_event">สร้างกิจกรรมของสระว่ายน้ำ</a> <br>
+    	 <a href="ReportPoolUsageStatistics">สถิติการเข้าใช้งานของผู้ใช้บริการสระว่ายน้ำ</a><br>
+    	 
+     
+    	<a href="barcode">BarCode</a><br>
     	
+    	<a href="qrcode">QrCode</a>
+    	<%}%>
     	
-    </div>
+    	 </div>
     
     <%@ include file="footer.jsp" %>
 </body>

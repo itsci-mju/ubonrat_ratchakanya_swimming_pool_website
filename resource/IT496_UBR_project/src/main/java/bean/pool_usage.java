@@ -39,13 +39,17 @@ public class pool_usage {
 
 	
 	
-	public pool_usage(int pool_usage_id, Calendar time, int usage_type, String coupon_no, int amount, int price,
-			bean.members members) {
+	
+
+	public pool_usage(int pool_usage_id, String coupon_no, Calendar time, int usage_type, int adult, int child,
+			int amount, int price, bean.members members) {
 		super();
 		this.pool_usage_id = pool_usage_id;
+		this.coupon_no = coupon_no;
 		this.time = time;
 		this.usage_type = usage_type;
-		this.coupon_no = coupon_no;
+		this.adult = adult;
+		this.child = child;
 		this.amount = amount;
 		this.price = price;
 		this.members = members;

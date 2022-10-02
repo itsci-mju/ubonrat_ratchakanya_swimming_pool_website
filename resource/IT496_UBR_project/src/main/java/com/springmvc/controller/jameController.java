@@ -3,6 +3,7 @@ package com.springmvc.controller;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import bean.logins;
 import bean.members;
 import bean.pool_reservations;
+import bean.pool_usage;
+import util.jameManager;
 import util.requestManager;
 
 @Controller
@@ -25,6 +28,7 @@ public class jameController {
 	public String memberprofile() {
 		return "memberprofile";
 	}
+	
 	
 	
 	@RequestMapping(value="/viewrequesttousepool", method=RequestMethod.GET)
@@ -97,11 +101,64 @@ public class jameController {
 	
 		String pid =request.getParameter("id");
         requestManager req = new requestManager();
-        r=req.acceptReservations(pid);
+        r = req.acceptReservations(pid);
         
         request.setAttribute("resultApprove", r);
 
 		return "manage_form";
 	}
 	
+	
+    @RequestMapping(value="/deleteReservations",method=RequestMethod.GET)
+    public String deleteReservations (HttpServletRequest request,HttpSession session) {
+        int r = -1;
+        String rpid =request.getParameter("id");
+        requestManager req = new requestManager();
+        r = req.deleteReservations(rpid);
+        request.setAttribute("resultCancel", r);
+
+        return "manage_form";
+    }
+    
+    
+    
+  
+    @RequestMapping(value="/ReportPoolUsageStatistics", method=RequestMethod.GET)
+	public String ReportPoolUsageStatistics(HttpServletRequest request,HttpSession session) {
+    	
+		return "ReportPoolUsageStatistics";
+	}
+    
+    
+    @RequestMapping(value="/getSumPrice", method=RequestMethod.GET)
+	public String getSumPrice() {
+		return "ReportPoolUsageStatistics";
+	}
+    
+    
+    
+    
+    @RequestMapping(value="/getSumAmount", method=RequestMethod.GET)
+   	public String getSumAmount() {
+   		return "ReportPoolUsageStatistics";
+   	}
+    
+    
+    
+    @RequestMapping(value="/barcode", method=RequestMethod.GET)
+   	public String getbarcode() {
+   		return "barcode";
+   	}
+    
+    
+    
+    @RequestMapping(value="/qrcode", method=RequestMethod.GET)
+   	public String getqrcode() {
+   		return "qrcode";
+   	}
+    
+    
+ 
+    
+  
 }
