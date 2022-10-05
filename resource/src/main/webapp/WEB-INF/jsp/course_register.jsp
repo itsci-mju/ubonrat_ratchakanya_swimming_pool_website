@@ -5,8 +5,10 @@
 <%@ page import="bean.*,util.*,java.util.*"  %>
 <%
 	ArrayList<String> datesel = new ArrayList<String>();
-	for(String s:(List<String>)session.getAttribute("datesel")){
-		datesel.add(s);
+	if(session.getAttribute("datesel")!=null){
+		for(String s:(List<String>)session.getAttribute("datesel")){
+			datesel.add(s);
+		}
 	}
 %>
 <html>
@@ -52,7 +54,6 @@
               <option value="" selected disabled hidden required>วันที่ต้องการเริ่มเรียน</option>
               <% if(datesel!=null){
             	  for(String d:datesel){ %>
-              }
               <option value="<%= d %>"><%= d %></option>
               <%}} %>
           </select>
