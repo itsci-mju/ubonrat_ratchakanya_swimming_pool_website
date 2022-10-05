@@ -1,2 +1,5 @@
-
-*.class
+._pom.xml
+.idea/
+.metadata/
+*.iml
+target/
