@@ -96,7 +96,7 @@
         	</div>
         	<div class="profile_name"><%= mb.getFirstname() %></div>
         	<div class="logout">
-            	<a href="dologout">Log out</a>
+            	<a href="dologout" id="logout">Log out</a>
         	</div>
     	</div>
 	<%}else{ %>
@@ -120,16 +120,12 @@
         	<span><a href="#">ติดต่อเรา</a></span>
     	</nav>
     <%} %>
- 
-<!-- 
-    name:	<%= mb.getFirstname() %> <br>
-    <%if(log != null){ %>
-    log email : <%= log.getEmail() %> <br>
-    log pass : <%= log.getPassword() %> <br>
-    log status: <%= log.getStatus() %> <br>
-    log mid: <%= log.getMembers_id() %> <br>
-    bdate : <%= sdf.format(mb.getBirthdate().getTime())
-     %>
-    <%} %> -->
 </body>
+<script>
+    const logout = document.getElementById("logout")
+    const response = "ต้องการออกจากระบบหรือไม่?";
+    logout.addEventListener("click",(click)=>{
+        window.confirm(response)
+    });
+</script>
 </html>
