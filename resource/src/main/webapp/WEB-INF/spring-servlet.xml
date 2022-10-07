@@ -27,6 +27,8 @@
 	<!-- เพิ่ม -->
 	<mvc:resources location="${pageContext.request.contextPath}/image/" mapping="/image/**"></mvc:resources>
 	
+	<mvc:resources location="C:\Users\ACER NITRO 5\workspac_IT215\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\IT496_UBR_project\image/" mapping="/img2/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/images/" mapping="/img/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/image/" mapping="/img3/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/stylesheet/" mapping="/css/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/javascript/" mapping="/js/**"></mvc:resources>

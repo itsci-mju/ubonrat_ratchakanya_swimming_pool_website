@@ -1,23 +1,36 @@
 package com.springmvc.controller;
 
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.Transparency;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import bean.logins;
 import bean.members;
 import bean.pool_reservations;
 import bean.pool_usage;
 import util.jameManager;
+import util.memberManager;
 import util.requestManager;
 
 @Controller
@@ -161,8 +174,8 @@ public class jameController {
 				if (!file.isEmpty()) {
 					String original_file_name = file.getOriginalFilename();
 					String type_image = original_file_name.substring(original_file_name.lastIndexOf("."));				
-					//String path =  "C:\\Users\\ACER NITRO 5\\workspac_IT215\\IT496_UBR_project\\src\\main\\webapp\\image";
-					String path = request.getServletContext().getRealPath("/") + "image";
+					String path =  "D:\\project\\resource\\src\\main\\webapp\\WEB-INF\\image";
+					//String path = request.getServletContext().getRealPath("/") + "image";
 					System.out.println(path);
 					System.out.println(original_file_name);	
 					
@@ -250,7 +263,7 @@ public class jameController {
 	}
 	
 	
-	@RequestMapping(value="/doRecordUsage", method=RequestMethod.POST)
+	@RequestMapping(value="/doRecordUsage55", method=RequestMethod.POST)
 	public String recordUsageService(HttpServletRequest request,HttpSession session) {
 		try {
 			request.setCharacterEncoding("UTF-8");

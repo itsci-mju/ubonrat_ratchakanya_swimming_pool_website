@@ -14,7 +14,7 @@
         <form action="" method="post" name="regis">
             <input type="text" id="amount" placeholder="amount"  onblur="checkAmount(regis)" maxlength="5"> <br>
             <label for="amount" class="form__label"></label>
-            <label class="alert-label" id="alertAmount">alertPrice</label><br><br>
+            <label class="alert-label" id="alertAmount"></label><br><br>
         </form>
         
 
@@ -100,7 +100,7 @@
           }
           else if(!regis.amount.value.match(Amount)){
             labelAlertamount.style.color="#ff5252";
-            labelAlertamount.innerText="กรุณากรอกราคาเป็นตัวเลขเท่านั้น";
+            labelAlertamount.innerText="กรุณากรอกราคาเป็นตัวเลข 2 ตัวขึ้นไปและไม่เกิน 5 ตัวเท่านั้น";
       
             regis.amount.value = "";
           }

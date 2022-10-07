@@ -42,7 +42,7 @@
             <tr>
               <td colspan="3">
                 <div>
-                  <p style="width: 100%; font-size: 34px; margin: 0;" align="center" class="title"> ดูผลการทำเรื่องขอเข้าใช้สระว่ายน้ำ </p>  <br>
+                  <p style="width: 100%; font-size: 34px; margin: 0;" align="center" class="title"> ดูกิจกรรมสระว่ายน้ำ </p>  <br>
               </div>
               </td>
             </tr>

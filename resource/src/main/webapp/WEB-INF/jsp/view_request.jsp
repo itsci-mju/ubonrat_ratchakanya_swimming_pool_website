@@ -38,9 +38,9 @@
             <div align="center" style="padding-top:25px;" >
             <p style="font-size: 26px; padding-left: 20px; color:#353b48;">ดูข้อมูลเอกสาร
    				<table>
-   				<!-- <img src ="${pageContext.request.contextPath}/image/<%= pr.getDocument() %>">-->
+   				      <img src ="img3/<%=pr.getDocument()%>">
    				
-					 <img src="image2/<%= pr.getDocument() %>" > 
+					<!-- <img src="image/<%=pr.getDocument() %>" >-->
  				</table>
  			</div>
  		</form>

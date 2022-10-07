@@ -80,58 +80,7 @@ public class memberManager {
 	}
 	
 	
-	public members getmember(String memID) {
-		members mb = new members();
-		logins log = new logins();
-		ConnectionDB condb = new ConnectionDB();
-		Connection con = condb.getConnection();
-		try {
-			Statement stmt = con.createStatement();
-			String select = "members_id,firstname,lastname,gender,phone,birthdate,member_type,address,pid,emergency_name,emergency_phone,image,stuid,faculty,stu_card,affiliation,officer_card,marriage_cer,pid_card,alumni_card";
-			String from = "members";
-			String where = "members_id"+" = '"+ memID + "'";
-			String sql = "select "+select+" from "+from+" where "+where;
-			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				String member_id = rs.getString(1);
-				String firstname = rs.getString(2);
-				String lastname = rs.getString(3);
-				String gender = rs.getString(4);
-				String phone = rs.getString(5);
-				String bd = rs.getString(6);
-				int member_type = rs.getInt(7);
-				String address = rs.getString(8);
-				String pid = rs.getString(9);
-				String emergency_name = rs.getString(10);
-				String emergency_phone = rs.getString(11);
-				String image = rs.getString(12);
-				String stuid = rs.getString(13);
-				String faculty = rs.getString(14);
-				String stu_card = rs.getString(15);
-				String affliation = rs.getString(16);
-				String officer_card = rs.getString(17);
-				String marriage_cer = rs.getString(18);
-				String pid_card = rs.getString(19);
-				String alumni_card = rs.getString(20);
-				
-				Calendar birthdate = Calendar.getInstance(); 
-				String date[] = bd.split("-");
-				String date2[] = date[2].split(" ");
-				 		birthdate.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date2[0]));
-				 		
-				log.setMembers_id(member_id);
-				 mb = new members(log,firstname,lastname,gender,phone,birthdate,
-							member_type,address,pid,emergency_name,emergency_phone,image,
-							stuid,faculty,stu_card,affliation,officer_card,marriage_cer,
-							pid_card,alumni_card);
-			}
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return mb;
-	}
+	
 
 
 public logins getLogin(String members_id){
