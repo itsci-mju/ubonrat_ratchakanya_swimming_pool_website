@@ -250,3 +250,91 @@ function checkStuid(regis){
         labelAlertadd12.style.color= "#4CAF50";
       }
     } 
+    
+    
+    // select option คณะ/วิทยาลัยที่สังกัด//
+function checkFac(regis){
+  var labelAlertFac  = document.getElementById("alertFac");
+  if(regis.faculty.value==("")){
+    labelAlertFac.innerText="กรุณาเลือกคณะ/วิทยาลัยที่สังกัด";
+    labelAlertFac.style.color="#ff5252";
+  }
+  else{
+    labelAlertFac.innerText="";
+    labelAlertFac.style.color= "#4CAF50";
+    }
+} 
+
+
+
+//Script รูปหน้าตรง //
+function uploadPer_pic(regis) { 
+  const  labelAlertper_pic = document.getElementById("alertperpic");
+  if(regis.per_pic.value==("")){
+	  labelAlertper_pic.innerText="กรุณาใส่รูปหน้าตรง";
+	  labelAlertper_pic.style.color="#ff5252";
+    }
+    else{
+    	labelAlertper_pic.innerText="สามารถใช้รูปหน้าตรงนี้ได้";
+    	labelAlertper_pic.style.color= "#4CAF50";
+    }
+  }   
+  
+  
+  
+//Script รูปบัตรนักศึกษา //
+function uploadStu_pic(regis) { 
+  const  labelAlertStu_pic = document.getElementById("alertstupic");
+  if(regis.stu_pic.value==("")){
+	  labelAlertStu_pic.innerText="กรุณาใส่รูปบัตรนักศึกษา";
+	  labelAlertStu_pic.style.color="#ff5252";
+    }
+    else{
+    	labelAlertStu_pic.innerText="สามารถใช้รูปบัตรนักศึกษานี้ได้";
+    	labelAlertStu_pic.style.color= "#4CAF50";
+    }
+  }  
+  
+  
+  
+ //Script รูปบัตรประชาชน/ข้าราชการ//
+function uploadId_cards(regis) { 
+  const  labelAlertId_cards = document.getElementById("alertid_cards");
+  if(regis.id_cards.value==("")){
+	  labelAlertId_cards.innerText="กรุณาใส่รูปบัตรนักศึกษา";
+	  labelAlertId_cards.style.color="#ff5252";
+    }
+    else{
+    	labelAlertId_cards.innerText="สามารถใช้รูปบัตรนักศึกษานี้ได้";
+    	labelAlertId_cards.style.color= "#4CAF50";
+    }
+  }
+  
+  
+  //Script ทะเบียนสมรส //
+function uploadMarriage(regis) { 
+const  labelAlertMarriage = document.getElementById("alertmarriage");
+if(regis.marriage.value==("")){
+	  labelAlertMarriage.innerText="กรุณาใส่รูปบัตรนักศึกษา";
+	  labelAlertMarriage.style.color="#ff5252";
+  }
+  else{
+  	labelAlertMarriage.innerText="สามารถใช้รูปบัตรนักศึกษานี้ได้";
+  	labelAlertMarriage.style.color= "#4CAF50";
+  }
+} 
+
+
+
+//Script หน่วยงาน/องค์กรที่สังกัด //
+function checkAffiliation(regis){
+	  var labelAlertAffiliation  = document.getElementById("alertFac");
+	  if(regis.affiliation.value==("")){
+	    labelAlertAffiliation.innerText="กรุณาเลือกหน่วยงาน/องค์กรที่สังกัด";
+	    labelAlertAffiliation.style.color="#ff5252";
+	  }
+	  else{
+	    labelAlertAffiliation.innerText="";
+	    }
+	}
+    

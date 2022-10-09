@@ -174,11 +174,11 @@ function checkDetail(regis){
   function uploadFile(regis) { 
     const  labelAlertFile  = document.getElementById("alertfile");
     if(regis.doc.value==("")){
-        labelAlertFile.innerText="กรุณาใส่รูปบัตรประชาชน";
+        labelAlertFile.innerText="กรุณาใส่รูปอัพโหลดเอกสาร";
         labelAlertFile.style.color="#ff5252";
       }
       else{
-        labelAlertFile.innerText="สามารถใช้รูปบัตรประชาชน";
+        labelAlertFile.innerText="สามารถใช้รูปอัพโหลดเอกสารนี้ได้";
         labelAlertFile.style.color= "#4CAF50";
       }
     }   
