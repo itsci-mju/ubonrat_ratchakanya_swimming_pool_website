@@ -3,25 +3,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="index.css">
     <title>Generate QRCode</title>
 </head>
 <body align="center">
 <%@ include file="header.jsp" %>
-    <div>
+    <div align="center">
         
-        <form action="" method="post" name="regis">
-            <input type="text" id="amount" placeholder="amount"  onblur="checkAmount(regis)" maxlength="5"> <br>
+        <form action="" method="post" name="regis"><br>
+            <input class="form-control" type="text" id="amount" placeholder="Amount"  onblur="checkAmount(regis)" maxlength="5"> 
             <label for="amount" class="form__label"></label>
-            <label class="alert-label" id="alertAmount"></label><br><br>
+            <label class="alert-label" id="alertAmount"></label><br>
         </form>
         
 
-        <button onclick="genQR()" class="rainbow-button">Generate</button>
+        <button onclick="genQR()" class="button" >Generate</button>
     </div>
-    <img id="imgqr" src="" style="width: 500px; object-fit: contain;">
-
+    <div align="center">
+    	<img  id="imgqr" src="" style="width: 500px; object-fit: contain;" >    
+    </div>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
         function genQR() {
@@ -113,4 +120,34 @@
 
     </script>
 </body>
+
+<style>
+
+
+
+#amount{
+	width: 300px;
+	height: 50px;
+}
+
+
+.button {
+  background-color: #00CCFF;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {opacity: 1}
+</style>
+
+
 </html>

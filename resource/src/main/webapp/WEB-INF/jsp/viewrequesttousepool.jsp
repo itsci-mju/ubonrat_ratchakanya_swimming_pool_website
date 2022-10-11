@@ -21,6 +21,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
 
 <body>
 
@@ -50,20 +55,20 @@
             <!-- เหมือนต้อง login เข้ามาก่อนถึงจะเห็นการแสดงผล -->
               <td colspan="2">
                 <div class="request_input">
-                  <input type="text" name="mid" id="mid" hidden="true" readonly value="<%= mb.getLogins().getMembers_id() %>">
+                  <input  type="text" name="mid" id="mid" hidden="true" readonly value="<%= mb.getLogins().getMembers_id() %>">
               </div>
               </td>
             </tr>
             <tr>
               <td colspan="2">
                 <div class="form__group field" style="float: left;">
-                  <label for="eventname" class="form__label">ชื่อกิจกรรม</label><br>
-                  <input type="text" class="form__field" placeholder="ชื่อกิจกรรม" value="<%= pr.get(i).getEvent_name() %>" style="width: 250px;" readonly><br>
+                  <label for="eventname" class="form__label" >ชื่อกิจกรรม</label><br>
+                  <input type="text" class="form-control" placeholder="ชื่อกิจกรรม" id="eventname" value="<%= pr.get(i).getEvent_name() %>"  readonly><br>
               </div>           
               <td>
                 <div class="form__group field" style="float: left;">
                 <label for="startdate" class="form__label">วันที่เริ่มใช้</label><br>
-                  <input type="text" class="form__field" placeholder="วันที่เริ่มใช้" value="<%= sdf2.format(pr.get(i).getStart_time().getTime())%>" style="width: 250px;" readonly ><br>
+                  <input type="text" class="form-control" placeholder="วันที่เริ่มใช้" id="startdate" value="<%= sdf2.format(pr.get(i).getStart_time().getTime())%>"  readonly ><br>
               </div>
               </td>              
             </tr>
@@ -72,13 +77,13 @@
               <td colspan="2">
                 <div class="request_input">   
                 <label  class="form__label">รายละเอียด</label> <br>               
-                  <input type="text" class="form__field" placeholder="รายละเอียด" value="<%= pr.get(i).getDetail()%>" style="width: 250px;" readonly ><br>
+                  <input type="text" class="form-control" placeholder="รายละเอียด" id="detel" value="<%= pr.get(i).getDetail()%>"  readonly ><br>
               </div>
               </td>           
               <td>
                 <div class="form__group field" style="float: left;">
                	  <label  class="form__label">วันที่สิ้นสุดการใช้</label> <br> 
-                  <input type="text" class="form__field" placeholder="วันที่สิ้นสุดการใช้" value="<%= sdf2.format(pr.get(i).getEnd_time().getTime())%>" style="width: 250px;" readonly >               
+                  <input type="text" class="form-control" placeholder="วันที่สิ้นสุดการใช้" id="enddate" value="<%= sdf2.format(pr.get(i).getEnd_time().getTime())%>" readonly >   <br>            
               </div>
               </td>              
             </tr>
@@ -86,9 +91,11 @@
             <% }%>
           </table>
         </form>
-    </div>
-  
+    </div>  
 </body>
+
+
+
 
 <link rel="stylesheet" href="css/nav.css">
  <style>
@@ -121,7 +128,22 @@ body{
 	justify-items: center;     
 }
 
-
+#eventname{
+	width: 240px;
+    height: 50px;
+}
+#startdate{
+	width: 240px;
+	height: 50px;
+}
+#detel{
+	width: 240px;
+	height: 50px;
+}
+#enddate{
+	width: 240px;
+	height: 50px;
+}
  </style>
 
 
