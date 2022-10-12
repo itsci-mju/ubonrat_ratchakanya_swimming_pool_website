@@ -12,6 +12,7 @@ import java.time.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.function.ServerResponse;
 
 import bean.*;
 import javassist.compiler.ast.StringL;
@@ -467,7 +469,7 @@ public class registerController {
 	}
 	
 	@RequestMapping(value="/getTimeToCourse", method=RequestMethod.POST)
-	public String getTimeToCourse(HttpServletRequest request,HttpSession session) {
+	public String getTimeToCourse(HttpServletRequest request,HttpSession session,HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("UTF-8"); 
 		} catch (UnsupportedEncodingException e1) {
@@ -606,10 +608,26 @@ public class registerController {
 		 }
 		System.out.println("aft:"+date_for_select);
 
+		String ck = request.getParameter("daytype")+"_"+request.getParameter("learntime");
+		Cookie c1 = new Cookie("coursedetail",ck);
+		c1.setMaxAge(300);
+		response.addCookie(c1);
 		session.removeAttribute("datesel");
 		session.setAttribute("datesel", date_for_select);
-		
 		return "course_register";
 	}
 	
+	
+	@RequestMapping(value="/doCourse_register", method=RequestMethod.POST)
+	public String doCourse_register(HttpServletRequest request,HttpSession session) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+
+		return "index";
+	}
 }

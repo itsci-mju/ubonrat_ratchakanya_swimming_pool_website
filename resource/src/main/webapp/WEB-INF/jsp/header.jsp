@@ -55,7 +55,7 @@
         <nav class="nav_bar">
             <span><a href="index">หน้าแรก</a></span>
             <span><a href="#">ปฏิทิน</a></span>
-            <span><a href="#">คอร์สเรียน</a></span>
+            <span><a href="gocourse_register">คอร์สเรียน</a></span>
             <span><a href="gorequest">แบบฟอร์ม</a></span>
             <span><a href="#">บุคลากร</a></span>
             <span><a href="#">ติดต่อเรา</a></span>
@@ -96,7 +96,7 @@
         	</div>
         	<div class="profile_name"><%= mb.getFirstname() %></div>
         	<div class="logout">
-            	<a href="dologout" id="logout">Log out</a>
+            	<a href="#" id="logout">Log out</a>
         	</div>
     	</div>
 	<%}else{ %>
@@ -125,7 +125,11 @@
     const logout = document.getElementById("logout")
     const response = "ต้องการออกจากระบบหรือไม่?";
     logout.addEventListener("click",(click)=>{
-        window.confirm(response)
+        // window.confirm(response)
+        if (window.confirm("Do you really want to leave?")) {
+  			window.open("dologout", "_self");
+		}
+
     });
 </script>
 </html>
