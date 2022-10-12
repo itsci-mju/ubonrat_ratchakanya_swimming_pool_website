@@ -148,29 +148,29 @@
 
             <!--  Faculty   -->
         <div class="form__group field">
-            <select name="faculty" id="faculty" class="form__field select_input">
+            <select name="faculty" id="faculty" class="form__field select_input" onblur="checkFac(regis)">
                 <option value="" selected disabled hidden>คณะ/วิทยาลัยที่สังกัด</option>
                 <% for(String f : facname) {%>
                 <option value="<%= f %>"><%= f %></option>
                 <%} %>
             </select>
-            <!-- 
-                <label for="faculty" class="form__label">คณะ/วิทยาลัยที่สังกัด</label>
-            <label class="alert-label" id="alertFac"> alert_DonotForgetToDelete </label> -->
+            
+               <!--  <label for="faculty" class="form__label">คณะ/วิทยาลัยที่สังกัด</label>-->
+            <label class="alert-label" id="alertFac">  </label> 
         </div>
         <!-- personal image profile -->
             <div class="request_input form__group field">
                 <label for="per_pic" class="req_file_">รูปหน้าตรง</label> <br>
                 <input type="file" name="per_pic" id="per_pic" class="req_file form-control" onblur="uploadPer_pic(regis)">
             <br>
-                <label class="alert-label" id="alertperpic"><!-- alert_DonotForgetToDelete --></label>
+                <label class="alert-label" id="alertperpic"></label>
             </div>
             <!-- Student image  -->
             <div class="request_input form__group field">
                 <label for="doc" class="req_file_">รูปบัตรนักศึกษา</label> <br>
                 <input type="file" name="stu_pic" id="stu_pic" class="req_file form-control" onblur="uploadStu_pic(regis)"> 
             <br>
-                <label class="alert-label" id="alertstupic"><!-- alert_DonotForgetToDelete --></label>
+                <label class="alert-label" id="alertstupic"></label>
             </div>
 
         <div class="submit_box" style="margin-left: 100px;">
@@ -182,6 +182,54 @@
 </div>
 <%@ include file="footer.jsp" %>
 </body>
+<script>
+// select option คณะ/วิทยาลัยที่สังกัด//
+function checkFac(regis){
+  var labelAlertFac  = document.getElementById("alertFac");
+  if(regis.faculty.value==("")){
+    labelAlertFac.innerText="กรุณาเลือกคณะ/วิทยาลัยที่สังกัด";
+    labelAlertFac.style.color="#ff5252";
+  }
+  else{
+    labelAlertFac.innerText="";  
+    }
+} 
+   
+   
+//Script รูปหน้าตรง //
+function uploadPer_pic(regis) { 
+  const  labelAlertper_pic = document.getElementById("alertperpic");
+  if(regis.per_pic.value==("")){
+	  labelAlertper_pic.innerText="กรุณาใส่รูปหน้าตรง";
+	  labelAlertper_pic.style.color="#ff5252";
+    }
+    else{
+    	labelAlertper_pic.innerText="สามารถใช้รูปหน้าตรงนี้ได้";
+    	labelAlertper_pic.style.color= "#4CAF50";
+    }
+  }   
+  
+  
+  
+//Script รูปบัตรนักศึกษา //
+function uploadStu_pic(regis) { 
+  const  labelAlertStu_pic = document.getElementById("alertstupic");
+  if(regis.stu_pic.value==("")){
+	  labelAlertStu_pic.innerText="กรุณาใส่รูปบัตรนักศึกษา";
+	  labelAlertStu_pic.style.color="#ff5252";
+    }
+    else{
+    	labelAlertStu_pic.innerText="สามารถใช้รูปบัตรนักศึกษานี้ได้";
+    	labelAlertStu_pic.style.color= "#4CAF50";
+    }
+  }  
+  
+  
+  
+  
+</script>
+
+</script>
 <script src="js/reg_progress.js"></script>
 <script src="js/fc_showpass.js"></script>
 <script src="js/fc_regis.js"></script>
