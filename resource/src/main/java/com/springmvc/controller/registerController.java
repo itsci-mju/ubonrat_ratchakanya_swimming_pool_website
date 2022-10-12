@@ -612,4 +612,18 @@ public class registerController {
 		return "course_register";
 	}
 	
+	@RequestMapping(value="/doCourse_register", method=RequestMethod.POST)
+	public String doCourse_register(HttpServletRequest request,HttpSession session) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+
+		return "index";
+	
+	}
+	
 }
