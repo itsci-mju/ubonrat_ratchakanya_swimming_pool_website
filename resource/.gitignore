@@ -1,8 +1,11 @@
 ._pom.xml
-.idea/
-.metadata/
+.idea
+.metadata
 *.iml
-target/
-.settings/
-build/
+.settings
+.project
+.classpath
+build
+target
+node_modules
 
