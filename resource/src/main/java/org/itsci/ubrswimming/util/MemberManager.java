@@ -23,7 +23,7 @@ public class MemberManager {
 	@Transactional
 	public Login verifyLoginWEB(String em, String pw){
 		Session session = sessionFactory.getCurrentSession();
-		Query<Login> query = session.createQuery("delete from Login l where l.email=:email", Login.class);
+		Query<Login> query = session.createQuery("from Login l where l.email=:email", Login.class);
 		query.setParameter("email", em);
 		Login l = query.getSingleResult();
 		return l;
