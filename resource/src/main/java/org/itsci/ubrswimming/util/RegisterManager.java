@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
-import org.itsci.ubrswimming.model.Logins;
+import org.itsci.ubrswimming.model.Login;
 import org.itsci.ubrswimming.model.Members;
 import org.itsci.ubrswimming.model.PoolReservations;
 
@@ -41,7 +41,7 @@ public class RegisterManager {
 		return i;
 	}
 
-	public int insertLogins(Logins log){
+	public int insertLogins(Login log){
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {

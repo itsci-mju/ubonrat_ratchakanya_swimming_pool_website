@@ -1,7 +1,5 @@
 package org.itsci.ubrswimming.controller;
 
-import java.io.UnsupportedEncodingException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -17,16 +15,10 @@ public class LoginController {
 
 	@RequestMapping(value="/isMemberLogin", method=RequestMethod.POST)
 	public String isMemberLogin(HttpServletRequest request,HttpSession session) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		String email = request.getParameter("email");
 		String password = request.getParameter("pwd");
 		MemberManager mem = new MemberManager();
-		Logins log = mem.verifyLoginWEB(email, password);
+		Login log = mem.verifyLoginWEB(email, password);
 			session.setAttribute("login", log);
 		return "index";
 	}

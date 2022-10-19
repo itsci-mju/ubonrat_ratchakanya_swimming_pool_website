@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import org.itsci.ubrswimming.model.Logins;
+import org.itsci.ubrswimming.model.Login;
 import org.itsci.ubrswimming.model.Members;
 import org.itsci.ubrswimming.model.PoolUsage;
 import org.itsci.ubrswimming.util.MemberManager;
@@ -87,7 +87,7 @@ public class RequestController {
         RequestManager req = new RequestManager();
         if(usage_t==0) {
         	MemberManager mn = new MemberManager();
-        	Logins l = new Logins();
+        	Login l = new Login();
         	Members m = new Members();
         	for (int i=0;i<mid.size();i++) {
         		int status = 0;

@@ -6,11 +6,11 @@
     <%@ page import="java.text.SimpleDateFormat,java.util.Calendar,java.util.TimeZone" %>
     <%
     	MemberManager mema = new MemberManager();
-    	Logins log = new Logins();
+    	Login log = new Login();
     	Members mb = new Members();
     	String type = null;
     	try{
-    			log = (Logins)session.getAttribute("login");
+    			log = (Login)session.getAttribute("login");
     			mb = new Members();
     			mb = mema.getmember(log.getMembers_id());
     			

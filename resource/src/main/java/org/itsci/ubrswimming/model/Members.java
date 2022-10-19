@@ -12,7 +12,7 @@ public class Members {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="members_id",nullable=false,referencedColumnName="members_id")
-	private Logins logins;
+	private Login logins;
 	
 	@Column(name="firstname",nullable=false,length=30)
 	private String firstname;
@@ -71,10 +71,10 @@ public class Members {
 	@Column(name="alumni_card",nullable=true,length=45)
 	private String alumni_card;
 
-	public Members(Logins logins, String firstname, String lastname, String gender, String phone,
-				   Calendar birthdate, int member_type, String address, String pid, String emergency_name,
-				   String emergency_phone, String image, String stuid, String faculty, String stu_card, String affiliation,
-				   String officer_card, String marriage_cer, String pid_card, String alumni_card) {
+	public Members(Login logins, String firstname, String lastname, String gender, String phone,
+                   Calendar birthdate, int member_type, String address, String pid, String emergency_name,
+                   String emergency_phone, String image, String stuid, String faculty, String stu_card, String affiliation,
+                   String officer_card, String marriage_cer, String pid_card, String alumni_card) {
 		super();
 		this.logins = logins;
 		this.firstname = firstname;
@@ -127,7 +127,7 @@ public class Members {
 
 
 
-	public Logins getLogins() {
+	public Login getLogins() {
 		return logins;
 	}
 
@@ -138,7 +138,7 @@ public class Members {
 
 
 
-	public void setLogins(Logins logins) {
+	public void setLogins(Login logins) {
 		this.logins = logins;
 	}
 

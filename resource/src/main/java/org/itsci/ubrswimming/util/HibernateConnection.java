@@ -22,7 +22,7 @@ public class HibernateConnection {
 		Configuration cfg = new Configuration()
 							.setProperties(database)
 							.addPackage("bean")
-							.addAnnotatedClass(Logins.class)
+							.addAnnotatedClass(Login.class)
 							.addAnnotatedClass(Members.class)
 							.addAnnotatedClass(Courses.class)
 							.addAnnotatedClass(RegisterCourses.class)

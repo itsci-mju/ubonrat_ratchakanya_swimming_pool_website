@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table (name="logins")
-public class Logins {
+public class Login {
 	@Id
 	@Column(name="email", length=50)
 	private String email;
@@ -23,11 +23,11 @@ public class Logins {
 	private members members_id;
  	*/
 
-	public Logins() {
+	public Login() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Logins(String email, String password, int status, String members_id) {
+	public Login(String email, String password, int status, String members_id) {
 		super();
 		this.email = email;
 		this.password = password;

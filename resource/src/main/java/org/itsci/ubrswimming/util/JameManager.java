@@ -11,7 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import org.itsci.ubrswimming.model.Logins;
+import org.itsci.ubrswimming.model.Login;
 import org.itsci.ubrswimming.model.Members;
 import org.itsci.ubrswimming.model.PoolUsage;
 
@@ -50,7 +50,7 @@ public class JameManager {
 				String date3[] = date2[1].split(":");
 				 		stime.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date2[0]), Integer.parseInt(date3[0]), Integer.parseInt(date3[1]));
 										 
-				Logins log = new Logins();
+				Login log = new Login();
 				log.setMembers_id(mid);
 				Members mb = new Members();
 				mb.setLogins(log);
@@ -65,9 +65,9 @@ public class JameManager {
 		
 		return pslist;
 	}
-	
-	
-	
+
+
+
 	
 	/*เอาราคารวมมาแสดง*/
 	public String getSumPrice(){

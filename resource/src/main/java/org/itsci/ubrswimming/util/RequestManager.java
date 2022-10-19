@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
-import org.itsci.ubrswimming.model.Logins;
+import org.itsci.ubrswimming.model.Login;
 import org.itsci.ubrswimming.model.Members;
 import org.itsci.ubrswimming.model.PoolReservations;
 import org.itsci.ubrswimming.model.PoolUsage;
@@ -83,7 +83,7 @@ public class RequestManager {
 				String date5[] = date4[2].split(" ");
 				String date6[] = date5[1].split(":");
 						 etime.set(Integer.parseInt(date4[0]), Integer.parseInt(date4[1])-1, Integer.parseInt(date5[0]), Integer.parseInt(date6[0]), Integer.parseInt(date6[1]));
-				Logins log = new Logins();
+				Login log = new Login();
 				log.setMembers_id(mid);
 				Members mb = new Members();
 				mb.setLogins(log);
@@ -207,7 +207,7 @@ public List<PoolReservations> getListRequestUsePool_memid(String memid){
 				String date5[] = date4[2].split(" ");
 				String date6[] = date5[1].split(":");
 						 etime.set(Integer.parseInt(date4[0]), Integer.parseInt(date4[1])-1, Integer.parseInt(date5[0]), Integer.parseInt(date6[0]), Integer.parseInt(date6[1]));
-				Logins log = new Logins();
+				Login log = new Login();
 				log.setMembers_id(mid);
 				Members mb = new Members();
 				mb.setLogins(log);
@@ -259,7 +259,7 @@ public List<PoolReservations> getListRequestUsePool_memid(String memid){
 				String date5[] = date4[2].split(" ");
 				String date6[] = date5[1].split(":");
 						 etime.set(Integer.parseInt(date4[0]), Integer.parseInt(date4[1])-1, Integer.parseInt(date5[0]), Integer.parseInt(date6[0]), Integer.parseInt(date6[1]));
-				Logins log = new Logins();
+				Login log = new Login();
 				log.setMembers_id(mid);
 				Members mb = new Members();
 				mb.setLogins(log);

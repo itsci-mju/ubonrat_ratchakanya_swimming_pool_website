@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import org.itsci.ubrswimming.model.Logins;
+import org.itsci.ubrswimming.model.Login;
 import org.itsci.ubrswimming.model.Members;
 import org.itsci.ubrswimming.model.PoolReservations;
 import org.itsci.ubrswimming.util.MemberManager;
@@ -75,7 +75,7 @@ public class JameController {
 		String edate[] = enddate.split("-");
 				ed.set(Integer.parseInt(edate[0]), Integer.parseInt(edate[1])-1, Integer.parseInt(edate[2]));
 				
-		Logins log = new Logins();
+		Login log = new Login();
 			log.setMembers_id(memberid);
 		Members mb = new Members();
 			mb.setLogins(log);
@@ -158,7 +158,7 @@ public class JameController {
 				String edate[] = enddate.split("-");
 						ed.set(Integer.parseInt(edate[0]), Integer.parseInt(edate[1])-1, Integer.parseInt(edate[2]), endhour, endminute);
 						
-				Logins log = new Logins();
+				Login log = new Login();
 					log.setMembers_id(memberid);
 				Members mb = new Members();
 					mb.setLogins(log);

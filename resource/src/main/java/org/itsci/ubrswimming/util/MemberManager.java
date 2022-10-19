@@ -6,35 +6,29 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.itsci.ubrswimming.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class MemberManager {
-	
-	public Logins verifyLoginWEB(String em, String pw){
-		Logins l = null;
-		ConnectionDB condb = new ConnectionDB();
-		Connection con = condb.getConnection();
-		try {
-			Statement stmt = con.createStatement();
-			String sql = "select email,password,status,members_id from logins where email = '" + em +
-					"' and password = '"+pw+"'";
-			ResultSet rs = stmt.executeQuery(sql); 
-			while (rs.next() && rs.getRow()==1) {
-				String email = rs.getString(1);
-				String pwd = rs.getString(2);
-				int status = Integer.parseInt(rs.getString(3));
-				String mid =(rs.getString(4));
-				
-				 l = new Logins(email,pwd,status,mid);
-			}
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}return l;
+
+	@Autowired
+	SessionFactory sessionFactory;
+
+	public Login verifyLoginWEB(String em, String pw){
+		Session session = sessionFactory.getCurrentSession();
+		Query<Login> query = session.createQuery("delete from Login l where l.email=:email", Login.class);
+		query.setParameter("email", em);
+		Login l = query.getSingleResult();
+		return l;
 	}
 	
-	public Logins getStatusfromLogin(String mid){
-		Logins l = null;
+	public Login getStatusfromLogin(String mid){
+		Login l = null;
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -45,7 +39,7 @@ public class MemberManager {
 				String member_id = rs.getString(1);
 				int status = Integer.parseInt(rs.getString(2));
 				
-				 l = new Logins(null,null,status,member_id);
+				 l = new Login(null,null,status,member_id);
 			}
 			con.close();
 		} catch (SQLException e) {
@@ -54,7 +48,7 @@ public class MemberManager {
 	}
 	
 	public Members getmtypefromMember(String mid){
-		Logins l = new Logins();
+		Login l = new Login();
 		Members m = new Members();
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
@@ -66,7 +60,7 @@ public class MemberManager {
 				String member_id = rs.getString(1);
 				int type = Integer.parseInt(rs.getString(2));
 				
-				 l = new Logins(null,null,0,member_id);
+				 l = new Login(null,null,0,member_id);
 				 m.setLogins(l);
 				 m.setMember_type(type);
 				 System.out.println(m.getMember_type());
@@ -81,8 +75,8 @@ public class MemberManager {
 	
 
 
-public Logins getLogin(String members_id){
-		Logins login = null;
+public Login getLogin(String members_id){
+		Login login = null;
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -95,7 +89,7 @@ public Logins getLogin(String members_id){
 				int status = Integer.parseInt(rs.getString(3));
 				String mid =(rs.getString(4));
 				
-				login = new Logins(email,pwd,status,mid);
+				login = new Login(email,pwd,status,mid);
 			}
 			con.close();
 		} catch (SQLException e) {
@@ -107,7 +101,7 @@ public Logins getLogin(String members_id){
 
 	public Members getmember(String memID) {
 		Members mb = new Members();
-		Logins log = new Logins();
+		Login log = new Login();
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {

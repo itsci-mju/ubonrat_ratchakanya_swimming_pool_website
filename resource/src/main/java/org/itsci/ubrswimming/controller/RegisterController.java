@@ -162,7 +162,7 @@ public class RegisterController {
 		 
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "1"+g+"0"+Long.toString(unix);
-		 Logins log = new Logins(email,pwd,1,mid);
+		 Login log = new Login(email,pwd,1,mid);
 		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate, mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
@@ -228,7 +228,7 @@ public class RegisterController {
 		 
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "2"+g+"0"+Long.toString(unix);
-		 Logins log = new Logins(email,pwd,1,mid);
+		 Login log = new Login(email,pwd,1,mid);
 		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
@@ -293,7 +293,7 @@ public class RegisterController {
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "3"+g+"0"+Long.toString(unix);
 		 
-		 Logins log = new Logins(email,pwd,1,mid);
+		 Login log = new Login(email,pwd,1,mid);
 		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
@@ -364,7 +364,7 @@ public class RegisterController {
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "4"+g+"0"+Long.toString(unix);
 		 
-		 Logins log = new Logins(email,pwd,1,mid);
+		 Login log = new Login(email,pwd,1,mid);
 		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
@@ -442,7 +442,7 @@ public class RegisterController {
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "2"+g+"0"+Long.toString(unix);
 		 
-		 Logins log = new Logins(email,pwd,status,mid);
+		 Login log = new Login(email,pwd,status,mid);
 		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
