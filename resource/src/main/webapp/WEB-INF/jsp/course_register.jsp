@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="bean.*,util.*,java.util.*"  %>
+<%@ page import="org.itsci.ubrswimming.bean.*,org.itsci.ubrswimming.util.*,java.util.*"  %>
 <%
 	ArrayList<String> datesel = new ArrayList<String>();
 	if(session.getAttribute("datesel")!=null){

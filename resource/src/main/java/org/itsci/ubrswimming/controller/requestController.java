@@ -1,4 +1,4 @@
-package com.springmvc.controller;
+package org.itsci.ubrswimming.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -13,12 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import bean.logins;
-import bean.members;
-import bean.pool_reservations;
-import bean.pool_usage;
-import util.memberManager;
-import util.requestManager;
+import org.itsci.ubrswimming.bean.logins;
+import org.itsci.ubrswimming.bean.members;
+import org.itsci.ubrswimming.bean.pool_usage;
+import org.itsci.ubrswimming.util.memberManager;
+import org.itsci.ubrswimming.util.requestManager;
 @Controller
 public class requestController {
 	

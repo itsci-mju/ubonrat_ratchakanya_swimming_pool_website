@@ -1,4 +1,4 @@
-package com.springmvc.controller;
+package org.itsci.ubrswimming.controller;
 
 import java.io.UnsupportedEncodingException;
 
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import bean.*;
-import util.*;
+import org.itsci.ubrswimming.bean.*;
+import org.itsci.ubrswimming.util.*;
 
 @Controller
 public class loginController {

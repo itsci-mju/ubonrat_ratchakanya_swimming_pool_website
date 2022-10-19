@@ -1,4 +1,4 @@
-package com.springmvc.controller;
+package org.itsci.ubrswimming.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

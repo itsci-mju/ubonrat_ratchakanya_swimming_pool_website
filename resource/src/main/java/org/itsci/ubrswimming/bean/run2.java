@@ -1,14 +1,9 @@
-package bean;
+package org.itsci.ubrswimming.bean;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.TimeZone;
-import java.time.*;
-import java.math.*;
 
 public class run2 {
 

@@ -1,4 +1,4 @@
-package bean;
+package org.itsci.ubrswimming.bean;
 
 import java.util.Calendar;
 
@@ -50,7 +50,7 @@ public class register_courses {
 	private courses courses_id;
 
 	public register_courses(int register_courses_id, Calendar start_learn, String learn_time, String learn_type,
-			String payment_document, int status, String reason, int learn_count, bean.members members,
+			String payment_document, int status, String reason, int learn_count, org.itsci.ubrswimming.bean.members members,
 			courses courses_id) {
 		super();
 		this.register_courses_id = register_courses_id;

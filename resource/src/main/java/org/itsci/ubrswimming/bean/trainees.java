@@ -1,4 +1,4 @@
-package bean;
+package org.itsci.ubrswimming.bean;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,7 +35,7 @@ public class trainees {
 	private register_courses register_courses;
 	
 	public trainees(int trainees_id, String name, int age, String tel, int student_gender,
-			bean.register_courses register_courses) {
+			org.itsci.ubrswimming.bean.register_courses register_courses) {
 		super();
 		this.trainees_id = trainees_id;
 		this.name = name;

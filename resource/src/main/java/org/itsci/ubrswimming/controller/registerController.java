@@ -1,8 +1,6 @@
-package com.springmvc.controller;
+package org.itsci.ubrswimming.controller;
 
-import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,17 +12,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-import bean.*;
-import javassist.compiler.ast.StringL;
-import util.*;
+import org.itsci.ubrswimming.bean.*;
+import org.itsci.ubrswimming.util.*;
 
 
 @Controller

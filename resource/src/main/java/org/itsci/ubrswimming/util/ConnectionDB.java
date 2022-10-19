@@ -1,4 +1,4 @@
-package util;
+package org.itsci.ubrswimming.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

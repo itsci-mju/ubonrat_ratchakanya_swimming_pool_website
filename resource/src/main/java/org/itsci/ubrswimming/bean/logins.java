@@ -1,4 +1,4 @@
-package bean;
+package org.itsci.ubrswimming.bean;
 
 import javax.persistence.*;
 

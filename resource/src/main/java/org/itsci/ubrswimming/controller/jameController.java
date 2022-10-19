@@ -1,4 +1,4 @@
-package com.springmvc.controller;
+package org.itsci.ubrswimming.controller;
 
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 import java.util.TimeZone;
 
 import javax.imageio.ImageIO;
@@ -25,13 +24,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import bean.logins;
-import bean.members;
-import bean.pool_reservations;
-import bean.pool_usage;
-import util.jameManager;
-import util.memberManager;
-import util.requestManager;
+import org.itsci.ubrswimming.bean.logins;
+import org.itsci.ubrswimming.bean.members;
+import org.itsci.ubrswimming.bean.pool_reservations;
+import org.itsci.ubrswimming.util.memberManager;
+import org.itsci.ubrswimming.util.requestManager;
 
 @Controller
 public class jameController {

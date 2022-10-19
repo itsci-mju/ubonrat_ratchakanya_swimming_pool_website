@@ -1,4 +1,4 @@
-package bean;
+package org.itsci.ubrswimming.bean;
 import java.util.Calendar;
 
 import javax.persistence.*;
@@ -71,10 +71,10 @@ public class members {
 	@Column(name="alumni_card",nullable=true,length=45)
 	private String alumni_card;
 
-	public members(bean.logins logins, String firstname, String lastname, String gender, String phone,
-			Calendar birthdate, int member_type, String address, String pid, String emergency_name,
-			String emergency_phone, String image, String stuid, String faculty, String stu_card, String affiliation,
-			String officer_card, String marriage_cer, String pid_card, String alumni_card) {
+	public members(org.itsci.ubrswimming.bean.logins logins, String firstname, String lastname, String gender, String phone,
+                   Calendar birthdate, int member_type, String address, String pid, String emergency_name,
+                   String emergency_phone, String image, String stuid, String faculty, String stu_card, String affiliation,
+                   String officer_card, String marriage_cer, String pid_card, String alumni_card) {
 		super();
 		this.logins = logins;
 		this.firstname = firstname;

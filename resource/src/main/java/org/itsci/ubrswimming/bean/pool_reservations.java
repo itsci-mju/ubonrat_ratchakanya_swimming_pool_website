@@ -1,4 +1,4 @@
-package bean;
+package org.itsci.ubrswimming.bean;
 
 import java.util.Calendar;
 
@@ -38,7 +38,7 @@ public class pool_reservations {
 	private members members;
 
 	public pool_reservations(int pool_reservations_id, String event_name, Calendar start_time, Calendar end_time,
-			String detail, int price, String document, int status, bean.members members) {
+			String detail, int price, String document, int status, org.itsci.ubrswimming.bean.members members) {
 		super();
 		this.pool_reservations_id = pool_reservations_id;
 		this.event_name = event_name;

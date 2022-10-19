@@ -1,23 +1,19 @@
-package util;
+package org.itsci.ubrswimming.util;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import bean.logins;
-import bean.members;
-import bean.pool_reservations;
-import bean.pool_usage;
+import org.itsci.ubrswimming.bean.logins;
+import org.itsci.ubrswimming.bean.members;
+import org.itsci.ubrswimming.bean.pool_usage;
 
 @Service
 public class jameManager {

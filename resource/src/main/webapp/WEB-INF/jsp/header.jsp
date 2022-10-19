@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
  
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ page import="bean.*,util.*,java.util.*"  %>
+    <%@ page import="org.itsci.ubrswimming.bean.*,org.itsci.ubrswimming.util.*,java.util.*"  %>
     <%@ page import="java.text.SimpleDateFormat,java.util.Calendar,java.util.TimeZone" %>
     <%
     	memberManager mema = new memberManager();

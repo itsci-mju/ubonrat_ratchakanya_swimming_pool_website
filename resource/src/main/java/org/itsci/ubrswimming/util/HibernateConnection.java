@@ -1,4 +1,4 @@
-package util;
+package org.itsci.ubrswimming.util;
 
 import java.util.Properties;
 
@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import bean.*;
+import org.itsci.ubrswimming.bean.*;
 
 public class HibernateConnection {
 	public static SessionFactory sessionFactory;

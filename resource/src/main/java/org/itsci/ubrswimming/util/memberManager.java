@@ -1,14 +1,12 @@
-package util;
+package org.itsci.ubrswimming.util;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.TimeZone;
 
-import bean.*;
+import org.itsci.ubrswimming.bean.*;
 
 public class memberManager {
 	

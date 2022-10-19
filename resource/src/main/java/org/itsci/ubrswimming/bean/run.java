@@ -1,9 +1,9 @@
-package bean;
+package org.itsci.ubrswimming.bean;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import util.*;
+import org.itsci.ubrswimming.util.*;
 
 public class run {
 
