@@ -115,21 +115,12 @@
     <!-- not login  -->
     	<nav class="nav_bar">
         	<span><a href="index">หน้าแรก</a></span>
-        	<span><a href="gocourse_register">คอร์สเรียน</a></span>
+        	<span><a href="#">คอร์สเรียน</a></span>
         	<span><a href="#">บุคลากร</a></span>
         	<span><a href="#">ติดต่อเรา</a></span>
     	</nav>
     <%} %>
  
-<!-- 
-    name:	<%= mb.getFirstname() %> <br>
-    <%if(log != null){ %>
-    log email : <%= log.getEmail() %> <br>
-    log pass : <%= log.getPassword() %> <br>
-    log status: <%= log.getStatus() %> <br>
-    log mid: <%= log.getMembers_id() %> <br>
-    bdate : <%= sdf.format(mb.getBirthdate().getTime())
-     %>
-    <%} %> -->
+
 </body>
 </html>

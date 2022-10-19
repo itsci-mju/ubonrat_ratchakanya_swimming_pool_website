@@ -80,6 +80,33 @@ public class memberManager {
 	}
 	
 	
+	
+
+
+public logins getLogin(String members_id){
+		logins login = null;
+		ConnectionDB condb = new ConnectionDB();
+		Connection con = condb.getConnection();
+		try {
+			Statement stmt = con.createStatement();
+			String sql = "select email,password,status,members_id from logins where members_id = '" + members_id +"' ";
+			ResultSet rs = stmt.executeQuery(sql); 
+			while (rs.next() && rs.getRow()==1) {
+				String email = rs.getString(1);
+				String pwd = rs.getString(2);
+				int status = Integer.parseInt(rs.getString(3));
+				String mid =(rs.getString(4));
+				
+				login = new logins (email,pwd,status,mid);
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}return login;
+	}
+	
+	//// JAMEEEEEEEEEEEEEEEEEEEEEEEE 
+
 	public members getmember(String memID) {
 		members mb = new members();
 		logins log = new logins();
@@ -118,8 +145,9 @@ public class memberManager {
 				String date[] = bd.split("-");
 				String date2[] = date[2].split(" ");
 				 		birthdate.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date2[0]));
-				 		
-				log.setMembers_id(member_id);
+				
+				//// JAMEEEEEEEEEEE 	
+				log = getLogin(member_id);
 				 mb = new members(log,firstname,lastname,gender,phone,birthdate,
 							member_type,address,pid,emergency_name,emergency_phone,image,
 							stuid,faculty,stu_card,affliation,officer_card,marriage_cer,
@@ -132,6 +160,10 @@ public class memberManager {
 		
 		return mb;
 	}
+    
+
+
+
 	/*
 	public members getallmember() {
 		members mb = new members();

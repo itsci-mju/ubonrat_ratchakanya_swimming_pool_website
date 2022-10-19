@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<context:component-scan
+		 base-package="com.springmvc.controller">
+	</context:component-scan>
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+ 	<property name="prefix" value="/WEB-INF/jsp/"/>
+ 	<property name="suffix" value=".jsp"/>
+ 	
+	</bean>
+	
+	<!-- ต้องใช้ -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<property name="maxUploadSize" value="10000000"/>
+	</bean>
+	<!-- เพิ่ม -->
+	<mvc:resources location="${pageContext.request.contextPath}/image/" mapping="/image/**"></mvc:resources>
+	
+	<mvc:resources location="C:\Users\ACER NITRO 5\workspac_IT215\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\IT496_UBR_project\image/" mapping="/img2/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/images/" mapping="/img/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/image/" mapping="/img3/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/stylesheet/" mapping="/css/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/javascript/" mapping="/js/**"></mvc:resources>
+</beans>
