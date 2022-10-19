@@ -10,14 +10,14 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
-import org.itsci.ubrswimming.bean.logins;
-import org.itsci.ubrswimming.bean.members;
-import org.itsci.ubrswimming.bean.pool_reservations;
-import org.itsci.ubrswimming.bean.pool_usage;
+import org.itsci.ubrswimming.model.Logins;
+import org.itsci.ubrswimming.model.Members;
+import org.itsci.ubrswimming.model.PoolReservations;
+import org.itsci.ubrswimming.model.PoolUsage;
 
-public class requestManager {
+public class RequestManager {
 	
-	public int addRequestToUse(pool_reservations pool){
+	public int addRequestToUse(PoolReservations pool){
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -50,8 +50,8 @@ public class requestManager {
 		return -1;
 	}
 	
-	public List<pool_reservations> getListRequestUsePool(){
-		List<pool_reservations> pslist = new ArrayList<>();
+	public List<PoolReservations> getListRequestUsePool(){
+		List<PoolReservations> pslist = new ArrayList<>();
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -83,11 +83,11 @@ public class requestManager {
 				String date5[] = date4[2].split(" ");
 				String date6[] = date5[1].split(":");
 						 etime.set(Integer.parseInt(date4[0]), Integer.parseInt(date4[1])-1, Integer.parseInt(date5[0]), Integer.parseInt(date6[0]), Integer.parseInt(date6[1]));
-				logins log = new logins();
+				Logins log = new Logins();
 				log.setMembers_id(mid);
-				members mb = new members();
+				Members mb = new Members();
 				mb.setLogins(log);
-				 pool_reservations ps = new pool_reservations(rid, ename, stime, etime, detail, price, doc, status, mb);
+				 PoolReservations ps = new PoolReservations(rid, ename, stime, etime, detail, price, doc, status, mb);
 				 pslist.add(ps);
 			}
 			con.close();
@@ -98,7 +98,7 @@ public class requestManager {
 		return pslist;
 	}
 	
-	public int updateRequestToUse_manager(pool_reservations pool){
+	public int updateRequestToUse_manager(PoolReservations pool){
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -118,7 +118,7 @@ public class requestManager {
 	}
 	
 	// record_usage ------------------->
-	public int recordUsageService_mem(pool_usage pus){
+	public int recordUsageService_mem(PoolUsage pus){
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -144,7 +144,7 @@ public class requestManager {
 		return -1;
 	}
 	
-	public int recordUsageService_non(pool_usage pus){
+	public int recordUsageService_non(PoolUsage pus){
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -173,8 +173,8 @@ public class requestManager {
 
 
 
-public List<pool_reservations> getListRequestUsePool_memid(String memid){
-		List<pool_reservations> pslist = new ArrayList<>();
+public List<PoolReservations> getListRequestUsePool_memid(String memid){
+		List<PoolReservations> pslist = new ArrayList<>();
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -207,11 +207,11 @@ public List<pool_reservations> getListRequestUsePool_memid(String memid){
 				String date5[] = date4[2].split(" ");
 				String date6[] = date5[1].split(":");
 						 etime.set(Integer.parseInt(date4[0]), Integer.parseInt(date4[1])-1, Integer.parseInt(date5[0]), Integer.parseInt(date6[0]), Integer.parseInt(date6[1]));
-				logins log = new logins();
+				Logins log = new Logins();
 				log.setMembers_id(mid);
-				members mb = new members();
+				Members mb = new Members();
 				mb.setLogins(log);
-				 pool_reservations ps = new pool_reservations(rid, ename, stime, etime, detail, price, doc, status, mb);
+				 PoolReservations ps = new PoolReservations(rid, ename, stime, etime, detail, price, doc, status, mb);
 				 pslist.add(ps);
 			}
 			con.close();
@@ -225,8 +225,8 @@ public List<pool_reservations> getListRequestUsePool_memid(String memid){
 	
 	
 	
-	public pool_reservations getRequestUsePoolReturn(String id){
-		pool_reservations pslist = null ;
+	public PoolReservations getRequestUsePoolReturn(String id){
+		PoolReservations pslist = null ;
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -259,11 +259,11 @@ public List<pool_reservations> getListRequestUsePool_memid(String memid){
 				String date5[] = date4[2].split(" ");
 				String date6[] = date5[1].split(":");
 						 etime.set(Integer.parseInt(date4[0]), Integer.parseInt(date4[1])-1, Integer.parseInt(date5[0]), Integer.parseInt(date6[0]), Integer.parseInt(date6[1]));
-				logins log = new logins();
+				Logins log = new Logins();
 				log.setMembers_id(mid);
-				members mb = new members();
+				Members mb = new Members();
 				mb.setLogins(log);
-				pslist = new pool_reservations(rid, ename, stime, etime, detail, price, doc, status, mb);
+				pslist = new PoolReservations(rid, ename, stime, etime, detail, price, doc, status, mb);
 				
 			}
 			con.close();

@@ -1,4 +1,4 @@
-package org.itsci.ubrswimming.bean;
+package org.itsci.ubrswimming.model;
 
 import java.util.Calendar;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table (name="pool_usage")
-public class pool_usage {
+public class PoolUsage {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="pool_usage_id")
@@ -35,17 +35,17 @@ public class pool_usage {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="members_id",nullable=true,referencedColumnName="members_id")
-	private members members;
+	private Members members;
 	
 	
 
-	public pool_usage() {
+	public PoolUsage() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public pool_usage(int pool_usage_id, String coupon_no, Calendar time, int usage_type, int adult, int child,
-			int amount, int price, org.itsci.ubrswimming.bean.members members) {
+	public PoolUsage(int pool_usage_id, String coupon_no, Calendar time, int usage_type, int adult, int child,
+					 int amount, int price, Members members) {
 		super();
 		this.pool_usage_id = pool_usage_id;
 		this.coupon_no = coupon_no;
@@ -106,11 +106,11 @@ public class pool_usage {
 		this.price = price;
 	}
 
-	public members getMembers() {
+	public Members getMembers() {
 		return members;
 	}
 
-	public void setMembers(members members) {
+	public void setMembers(Members members) {
 		this.members = members;
 	}
 

@@ -13,13 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import org.itsci.ubrswimming.bean.logins;
-import org.itsci.ubrswimming.bean.members;
-import org.itsci.ubrswimming.bean.pool_usage;
-import org.itsci.ubrswimming.util.memberManager;
-import org.itsci.ubrswimming.util.requestManager;
+import org.itsci.ubrswimming.model.Logins;
+import org.itsci.ubrswimming.model.Members;
+import org.itsci.ubrswimming.model.PoolUsage;
+import org.itsci.ubrswimming.util.MemberManager;
+import org.itsci.ubrswimming.util.RequestManager;
 @Controller
-public class requestController {
+public class RequestController {
 	
 
 	@RequestMapping(value="/doRecordUsage", method=RequestMethod.POST)
@@ -83,12 +83,12 @@ public class requestController {
         System.out.println(price);
         String coupon = "coupon";
 //        pool_usage_id, coupon_no, time, usage_type, adult, child, amount, price, members_id 
-        pool_usage pus = new pool_usage();
-        requestManager req = new requestManager();
+        PoolUsage pus = new PoolUsage();
+        RequestManager req = new RequestManager();
         if(usage_t==0) {
-        	memberManager mn = new memberManager();
-        	logins l = new logins();
-        	members m = new members();
+        	MemberManager mn = new MemberManager();
+        	Logins l = new Logins();
+        	Members m = new Members();
         	for (int i=0;i<mid.size();i++) {
         		int status = 0;
         		int mtype = 0;
@@ -104,33 +104,33 @@ public class requestController {
         			price = 0;
         			l.setMembers_id(mid.get(i));
         			m.setLogins(l);
-        			pus = new pool_usage(0,coupon,time,usage_t,0,0,1,price,m);
+        			pus = new PoolUsage(0,coupon,time,usage_t,0,0,1,price,m);
         			req.recordUsageService_mem(pus);
         		}else if(mid.get(i)!=null){
         			if(mtype == 0) { //20
         				price = 20;
             			l.setMembers_id(mid.get(i));
             			m.setLogins(l);
-            			pus = new pool_usage(0,coupon,time,usage_t,0,0,1,price,m);
+            			pus = new PoolUsage(0,coupon,time,usage_t,0,0,1,price,m);
             			req.recordUsageService_mem(pus);
         			}else if(mtype == 3){ //50
         				price = 50;
             			l.setMembers_id(mid.get(i));
             			m.setLogins(l);
-            			pus = new pool_usage(0,coupon,time,usage_t,0,0,1,price,m);
+            			pus = new PoolUsage(0,coupon,time,usage_t,0,0,1,price,m);
             			req.recordUsageService_mem(pus);
         			}else { // 30
         				price = 30;
             			l.setMembers_id(mid.get(i));
             			m.setLogins(l);
-            			pus = new pool_usage(0,coupon,time,usage_t,0,0,1,price,m);
+            			pus = new PoolUsage(0,coupon,time,usage_t,0,0,1,price,m);
             			req.recordUsageService_mem(pus);
         			} //end add
         		}//end if
         	}///end loop
         }else {
         	int amount = adult+child;
-        	pus = new pool_usage(0,coupon,time,usage_t,adult,child,amount,price,null);
+        	pus = new PoolUsage(0,coupon,time,usage_t,adult,child,amount,price,null);
         	req.recordUsageService_non(pus);
         }
         

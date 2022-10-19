@@ -1,4 +1,4 @@
-package org.itsci.ubrswimming.bean;
+package org.itsci.ubrswimming.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="courses")
-public class courses {
+public class Courses {
 	@Id
 	@Column(name="courses_id")
 	private int courses_id;
@@ -27,8 +27,8 @@ public class courses {
 	@Column(name="courses_type", nullable=false, length=45)
 	private String courses_type;
 
-	public courses(int courses_id, String courses_name, String description, int price, int max_day,
-			String courses_type) {
+	public Courses(int courses_id, String courses_name, String description, int price, int max_day,
+				   String courses_type) {
 		super();
 		this.courses_id = courses_id;
 		this.courses_name = courses_name;
@@ -38,7 +38,7 @@ public class courses {
 		this.courses_type = courses_type;
 	}
 
-	public courses() {
+	public Courses() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

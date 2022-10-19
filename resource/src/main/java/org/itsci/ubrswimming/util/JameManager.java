@@ -11,17 +11,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import org.itsci.ubrswimming.bean.logins;
-import org.itsci.ubrswimming.bean.members;
-import org.itsci.ubrswimming.bean.pool_usage;
+import org.itsci.ubrswimming.model.Logins;
+import org.itsci.ubrswimming.model.Members;
+import org.itsci.ubrswimming.model.PoolUsage;
 
 @Service
-public class jameManager {
+public class JameManager {
 @Autowired	
 	
 
-	public List<pool_usage> getListRequestUsePool_memid(){
-		List<pool_usage> pslist = new ArrayList<>();
+	public List<PoolUsage> getListRequestUsePool_memid(){
+		List<PoolUsage> pslist = new ArrayList<>();
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -50,11 +50,11 @@ public class jameManager {
 				String date3[] = date2[1].split(":");
 				 		stime.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date2[0]), Integer.parseInt(date3[0]), Integer.parseInt(date3[1]));
 										 
-				logins log = new logins();
+				Logins log = new Logins();
 				log.setMembers_id(mid);
-				members mb = new members();
+				Members mb = new Members();
 				mb.setLogins(log);
-				pool_usage pu = new pool_usage(pool_usage_id, coupon_no, stime, usage_type, adult, child, amount, price ,mb);
+				PoolUsage pu = new PoolUsage(pool_usage_id, coupon_no, stime, usage_type, adult, child, amount, price ,mb);
 				 		
 				 pslist.add(pu);
 			}

@@ -9,11 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import org.itsci.ubrswimming.bean.*;
+import org.itsci.ubrswimming.model.*;
 import org.itsci.ubrswimming.util.*;
 
 @Controller
-public class loginController {
+public class LoginController {
 
 	@RequestMapping(value="/isMemberLogin", method=RequestMethod.POST)
 	public String isMemberLogin(HttpServletRequest request,HttpSession session) {
@@ -25,8 +25,8 @@ public class loginController {
 		}
 		String email = request.getParameter("email");
 		String password = request.getParameter("pwd");
-		memberManager mem = new memberManager();
-		logins log = mem.verifyLoginWEB(email, password);
+		MemberManager mem = new MemberManager();
+		Logins log = mem.verifyLoginWEB(email, password);
 			session.setAttribute("login", log);
 		return "index";
 	}

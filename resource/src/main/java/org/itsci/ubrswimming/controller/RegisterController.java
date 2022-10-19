@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.TimeZone;
 import java.time.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,14 +15,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import org.itsci.ubrswimming.bean.*;
+import org.itsci.ubrswimming.model.*;
 import org.itsci.ubrswimming.util.*;
 
 
 @Controller
-public class registerController {
+public class RegisterController {
 
-	public registerController() {
+	public RegisterController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -102,7 +101,7 @@ public class registerController {
 			e1.printStackTrace();
 		}
 		String email = request.getParameter("email");
-		registerManager mm = new registerManager();
+		RegisterManager mm = new RegisterManager();
 		Boolean result = mm.verifyEmail(email);
 		session.removeAttribute("message");
 		if(result) {
@@ -163,15 +162,15 @@ public class registerController {
 		 
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "1"+g+"0"+Long.toString(unix);
-		 logins log = new logins(email,pwd,1,mid);
-		 members mb = new members(log,fname,lname,gender
+		 Logins log = new Logins(email,pwd,1,mid);
+		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate, mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,"","",""
 				 				,per_pic,stuid,faculty
 				 				,stu_pic,"","","","","");
 		 
-		 registerManager mm = new registerManager();
+		 RegisterManager mm = new RegisterManager();
 		 mm.insertLogins(log);
 		 mm.insertMembers(mb);
 		 
@@ -229,8 +228,8 @@ public class registerController {
 		 
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "2"+g+"0"+Long.toString(unix);
-		 logins log = new logins(email,pwd,1,mid);
-		 members mb = new members(log,fname,lname,gender
+		 Logins log = new Logins(email,pwd,1,mid);
+		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,pid,"",""
@@ -238,7 +237,7 @@ public class registerController {
 				 				,"",affiliation,officer_card
 				 				,marriage,id_cards,"");
 		 
-		 registerManager mm = new registerManager();
+		 RegisterManager mm = new RegisterManager();
 		 mm.insertLogins(log);
 		 mm.insertMembers(mb);
 		 session.setAttribute("message", "สมัคครสมาชิกเสร็จสิ้น รอการอนุมัติ");
@@ -294,8 +293,8 @@ public class registerController {
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "3"+g+"0"+Long.toString(unix);
 		 
-		 logins log = new logins(email,pwd,1,mid);
-		 members mb = new members(log,fname,lname,gender
+		 Logins log = new Logins(email,pwd,1,mid);
+		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,pid,"",""
@@ -303,7 +302,7 @@ public class registerController {
 				 				,"","",""
 				 				,"","",alumni_card);
 		 
-		 registerManager mm = new registerManager();
+		 RegisterManager mm = new RegisterManager();
 		 mm.insertLogins(log);
 		 mm.insertMembers(mb);
 		 session.setAttribute("message", "สมัคครสมาชิกเสร็จสิ้น รอการอนุมัติ");
@@ -365,15 +364,15 @@ public class registerController {
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "4"+g+"0"+Long.toString(unix);
 		 
-		 logins log = new logins(email,pwd,1,mid);
-		 members mb = new members(log,fname,lname,gender
+		 Logins log = new Logins(email,pwd,1,mid);
+		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,pid,emn,emp
 				 				,per_pic,"","","","","",""
 				 				,id_cards,"");
 		 
-		 registerManager mm = new registerManager();
+		 RegisterManager mm = new RegisterManager();
 		 mm.insertLogins(log);
 		 mm.insertMembers(mb);
 		 session.setAttribute("message", "สมัคครสมาชิกเสร็จสิ้น รอการอนุมัติ");
@@ -443,8 +442,8 @@ public class registerController {
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "2"+g+"0"+Long.toString(unix);
 		 
-		 logins log = new logins(email,pwd,status,mid);
-		 members mb = new members(log,fname,lname,gender
+		 Logins log = new Logins(email,pwd,status,mid);
+		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,pid,"",""
@@ -452,7 +451,7 @@ public class registerController {
 				 				,"",affiliation,officer_card
 				 				,"",id_cards,"");
 		 
-		 registerManager mm = new registerManager();
+		 RegisterManager mm = new RegisterManager();
 		 mm.insertLogins(log);
 		 mm.insertMembers(mb);
 		 session.setAttribute("message", "สมัคครสมาชิกเสร็จสิ้น");
@@ -496,8 +495,8 @@ public class registerController {
 			reqt = "9:59";
 		}
 		
-		registerManager rm = new registerManager();
-		List<pool_reservations> psv = (List<pool_reservations>)rm.getTimeforCourse(thisDay+" "+reqt);
+		RegisterManager rm = new RegisterManager();
+		List<PoolReservations> psv = (List<PoolReservations>)rm.getTimeforCourse(thisDay+" "+reqt);
 		
 		ArrayList<String> dt = new ArrayList<String>();
 		if (psv.size()>0) {
@@ -505,7 +504,7 @@ public class registerController {
 			System.out.println(thisDay.getYear());
 			now.set(thisDay.getYear()/*+543*/, thisDay.getMonthValue()-1, thisDay.getDayOfMonth(), Integer.parseInt(time[0]), Integer.parseInt(time[1]));
 			System.out.println(psv.size());
-			for (pool_reservations p:psv) {
+			for (PoolReservations p:psv) {
 				Calendar st = p.getStart_time();
 				Calendar en = p.getEnd_time();
 				

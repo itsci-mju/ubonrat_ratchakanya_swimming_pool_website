@@ -6,12 +6,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
 
-import org.itsci.ubrswimming.bean.*;
+import org.itsci.ubrswimming.model.*;
 
-public class memberManager {
+public class MemberManager {
 	
-	public logins verifyLoginWEB(String em,String pw){
-		logins l = null;
+	public Logins verifyLoginWEB(String em, String pw){
+		Logins l = null;
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -25,7 +25,7 @@ public class memberManager {
 				int status = Integer.parseInt(rs.getString(3));
 				String mid =(rs.getString(4));
 				
-				 l = new logins (email,pwd,status,mid);
+				 l = new Logins(email,pwd,status,mid);
 			}
 			con.close();
 		} catch (SQLException e) {
@@ -33,8 +33,8 @@ public class memberManager {
 		}return l;
 	}
 	
-	public logins getStatusfromLogin(String mid){
-		logins l = null;
+	public Logins getStatusfromLogin(String mid){
+		Logins l = null;
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -45,7 +45,7 @@ public class memberManager {
 				String member_id = rs.getString(1);
 				int status = Integer.parseInt(rs.getString(2));
 				
-				 l = new logins (null,null,status,member_id);
+				 l = new Logins(null,null,status,member_id);
 			}
 			con.close();
 		} catch (SQLException e) {
@@ -53,9 +53,9 @@ public class memberManager {
 		}return l;
 	}
 	
-	public members getmtypefromMember(String mid){
-		logins l = new logins();
-		members m = new members();
+	public Members getmtypefromMember(String mid){
+		Logins l = new Logins();
+		Members m = new Members();
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -66,7 +66,7 @@ public class memberManager {
 				String member_id = rs.getString(1);
 				int type = Integer.parseInt(rs.getString(2));
 				
-				 l = new logins (null,null,0,member_id);
+				 l = new Logins(null,null,0,member_id);
 				 m.setLogins(l);
 				 m.setMember_type(type);
 				 System.out.println(m.getMember_type());
@@ -81,8 +81,8 @@ public class memberManager {
 	
 
 
-public logins getLogin(String members_id){
-		logins login = null;
+public Logins getLogin(String members_id){
+		Logins login = null;
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -95,7 +95,7 @@ public logins getLogin(String members_id){
 				int status = Integer.parseInt(rs.getString(3));
 				String mid =(rs.getString(4));
 				
-				login = new logins (email,pwd,status,mid);
+				login = new Logins(email,pwd,status,mid);
 			}
 			con.close();
 		} catch (SQLException e) {
@@ -105,9 +105,9 @@ public logins getLogin(String members_id){
 	
 	//// JAMEEEEEEEEEEEEEEEEEEEEEEEE 
 
-	public members getmember(String memID) {
-		members mb = new members();
-		logins log = new logins();
+	public Members getmember(String memID) {
+		Members mb = new Members();
+		Logins log = new Logins();
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -146,7 +146,7 @@ public logins getLogin(String members_id){
 				
 				//// JAMEEEEEEEEEEE 	
 				log = getLogin(member_id);
-				 mb = new members(log,firstname,lastname,gender,phone,birthdate,
+				 mb = new Members(log,firstname,lastname,gender,phone,birthdate,
 							member_type,address,pid,emergency_name,emergency_phone,image,
 							stuid,faculty,stu_card,affliation,officer_card,marriage_cer,
 							pid_card,alumni_card);

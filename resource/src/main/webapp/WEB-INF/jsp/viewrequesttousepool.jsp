@@ -3,7 +3,7 @@
     
     
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ page import="org.itsci.ubrswimming.bean.*,org.itsci.ubrswimming.util.*,java.util.*"  %>
+    <%@ page import="org.itsci.ubrswimming.model.*,org.itsci.ubrswimming.util.*,java.util.*"  %>
     <%@ page import="java.text.SimpleDateFormat,java.util.Calendar,java.util.TimeZone" %>
     
      <% SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
@@ -32,8 +32,8 @@
 <%@ include file="header.jsp" %>
 
       <% 
-   	requestManager rqm = new requestManager();
-    List <pool_reservations>  pr = rqm.getListRequestUsePool_memid(log.getMembers_id());
+   	RequestManager rqm = new RequestManager();
+    List <PoolReservations>  pr = rqm.getListRequestUsePool_memid(log.getMembers_id());
     
    %>
    

@@ -1,11 +1,11 @@
-package org.itsci.ubrswimming.bean;
+package org.itsci.ubrswimming.model;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-public class run2 {
+public class Run2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

@@ -2,16 +2,16 @@
     pageEncoding="UTF-8"%>
  
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ page import="org.itsci.ubrswimming.bean.*,org.itsci.ubrswimming.util.*,java.util.*"  %>
+    <%@ page import="org.itsci.ubrswimming.model.*,org.itsci.ubrswimming.util.*,java.util.*"  %>
     <%@ page import="java.text.SimpleDateFormat,java.util.Calendar,java.util.TimeZone" %>
     <%
-    	memberManager mema = new memberManager();
-    	logins log = new logins();
-    	members mb = new members();
+    	MemberManager mema = new MemberManager();
+    	Logins log = new Logins();
+    	Members mb = new Members();
     	String type = null;
     	try{
-    			log = (logins)session.getAttribute("login");
-    			mb = new members();
+    			log = (Logins)session.getAttribute("login");
+    			mb = new Members();
     			mb = mema.getmember(log.getMembers_id());
     			
     			if(log.getStatus()==2){

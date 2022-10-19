@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ page import="org.itsci.ubrswimming.bean.*,org.itsci.ubrswimming.util.*,java.util.*"  %>
+    <%@ page import="org.itsci.ubrswimming.model.*,org.itsci.ubrswimming.util.*,java.util.*"  %>
     <%@ page import="java.text.SimpleDateFormat,java.util.Calendar,java.util.TimeZone" %>
     <%
-    	requestManager req = new requestManager();
+    	RequestManager req = new RequestManager();
     
-    	List<pool_reservations> psv = (List<pool_reservations>) req.getListRequestUsePool();
+    	List<PoolReservations> psv = (List<PoolReservations>) req.getListRequestUsePool();
     %>
 <!DOCTYPE html>
 <html>
@@ -43,7 +43,7 @@
                 </tr>
             </thead>
             <tbody class="column-table">
-            <% for(pool_reservations p:psv) { %>
+            <% for(PoolReservations p:psv) { %>
                 <tr align="center">
                     <td align="left">
                         <div class="nametd">

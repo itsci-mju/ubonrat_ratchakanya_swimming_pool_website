@@ -1,18 +1,18 @@
-package org.itsci.ubrswimming.bean;
+package org.itsci.ubrswimming.model;
 import java.util.Calendar;
 
 import javax.persistence.*;
 
 @Entity
 @Table (name="members")
-public class members {
+public class Members {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="members_id",nullable=false,referencedColumnName="members_id")
-	private logins logins;
+	private Logins logins;
 	
 	@Column(name="firstname",nullable=false,length=30)
 	private String firstname;
@@ -71,10 +71,10 @@ public class members {
 	@Column(name="alumni_card",nullable=true,length=45)
 	private String alumni_card;
 
-	public members(org.itsci.ubrswimming.bean.logins logins, String firstname, String lastname, String gender, String phone,
-                   Calendar birthdate, int member_type, String address, String pid, String emergency_name,
-                   String emergency_phone, String image, String stuid, String faculty, String stu_card, String affiliation,
-                   String officer_card, String marriage_cer, String pid_card, String alumni_card) {
+	public Members(Logins logins, String firstname, String lastname, String gender, String phone,
+				   Calendar birthdate, int member_type, String address, String pid, String emergency_name,
+				   String emergency_phone, String image, String stuid, String faculty, String stu_card, String affiliation,
+				   String officer_card, String marriage_cer, String pid_card, String alumni_card) {
 		super();
 		this.logins = logins;
 		this.firstname = firstname;
@@ -127,7 +127,7 @@ public class members {
 
 
 
-	public logins getLogins() {
+	public Logins getLogins() {
 		return logins;
 	}
 
@@ -138,7 +138,7 @@ public class members {
 
 
 
-	public void setLogins(logins logins) {
+	public void setLogins(Logins logins) {
 		this.logins = logins;
 	}
 
@@ -567,7 +567,7 @@ public class members {
 
 
 
-	public members() {
+	public Members() {
 		// TODO Auto-generated constructor stub
 	}
 

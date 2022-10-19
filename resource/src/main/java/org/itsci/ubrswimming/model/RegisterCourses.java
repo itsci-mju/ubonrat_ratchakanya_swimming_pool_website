@@ -1,4 +1,4 @@
-package org.itsci.ubrswimming.bean;
+package org.itsci.ubrswimming.model;
 
 import java.util.Calendar;
 
@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="register_courses")
-public class register_courses {
+public class RegisterCourses {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="register_courses_id")
@@ -43,15 +43,15 @@ public class register_courses {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="members_id",nullable=false,referencedColumnName="members_id")
-	private members members;
+	private Members members;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="courses_id",nullable=false)
-	private courses courses_id;
+	private Courses courses_id;
 
-	public register_courses(int register_courses_id, Calendar start_learn, String learn_time, String learn_type,
-			String payment_document, int status, String reason, int learn_count, org.itsci.ubrswimming.bean.members members,
-			courses courses_id) {
+	public RegisterCourses(int register_courses_id, Calendar start_learn, String learn_time, String learn_type,
+						   String payment_document, int status, String reason, int learn_count, Members members,
+						   Courses courses_id) {
 		super();
 		this.register_courses_id = register_courses_id;
 		this.start_learn = start_learn;
@@ -129,19 +129,19 @@ public class register_courses {
 		this.learn_count = learn_count;
 	}
 
-	public members getMembers() {
+	public Members getMembers() {
 		return members;
 	}
 
-	public void setMembers(members members) {
+	public void setMembers(Members members) {
 		this.members = members;
 	}
 
-	public courses getCourses_id() {
+	public Courses getCourses_id() {
 		return courses_id;
 	}
 
-	public void setCourses_id(courses courses_id) {
+	public void setCourses_id(Courses courses_id) {
 		this.courses_id = courses_id;
 	}
 

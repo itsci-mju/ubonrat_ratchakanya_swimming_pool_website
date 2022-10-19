@@ -10,11 +10,11 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
-import org.itsci.ubrswimming.bean.logins;
-import org.itsci.ubrswimming.bean.members;
-import org.itsci.ubrswimming.bean.pool_reservations;
+import org.itsci.ubrswimming.model.Logins;
+import org.itsci.ubrswimming.model.Members;
+import org.itsci.ubrswimming.model.PoolReservations;
 
-public class registerManager {
+public class RegisterManager {
 	
 	public boolean verifyEmail(String email){
 		Boolean i = true;
@@ -41,7 +41,7 @@ public class registerManager {
 		return i;
 	}
 
-	public int insertLogins(logins log){
+	public int insertLogins(Logins log){
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -61,7 +61,7 @@ public class registerManager {
 		return -1;
 	}
 	
-	public int insertMembers(members mb){
+	public int insertMembers(Members mb){
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -104,8 +104,8 @@ public class registerManager {
 		return -1;
 	}
 	
-	public List<pool_reservations> getTimeforCourse(String rqdate){
-		List<pool_reservations> pslist = new ArrayList<>();
+	public List<PoolReservations> getTimeforCourse(String rqdate){
+		List<PoolReservations> pslist = new ArrayList<>();
 		ConnectionDB condb = new ConnectionDB();
 		Connection con = condb.getConnection();
 		try {
@@ -134,7 +134,7 @@ public class registerManager {
 				String date6[] = date5[1].split(":");
 						 etime.set(Integer.parseInt(date4[0]), Integer.parseInt(date4[1])-1, Integer.parseInt(date5[0]), Integer.parseInt(date6[0]), Integer.parseInt(date6[1]));
 				
-				pool_reservations ps = new pool_reservations();
+				PoolReservations ps = new PoolReservations();
 				ps.setStart_time(stime);
 				ps.setEnd_time(etime);
 				ps.setStatus(status);

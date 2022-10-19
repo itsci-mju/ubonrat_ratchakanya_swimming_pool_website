@@ -1,10 +1,10 @@
-package org.itsci.ubrswimming.bean;
+package org.itsci.ubrswimming.model;
 
 import javax.persistence.*;
 
 @Entity
 @Table (name="logins")
-public class logins {
+public class Logins {
 	@Id
 	@Column(name="email", length=50)
 	private String email;
@@ -23,11 +23,11 @@ public class logins {
 	private members members_id;
  	*/
 
-	public logins() {
+	public Logins() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public logins(String email, String password, int status, String members_id) {
+	public Logins(String email, String password, int status, String members_id) {
 		super();
 		this.email = email;
 		this.password = password;

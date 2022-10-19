@@ -1,4 +1,4 @@
-package org.itsci.ubrswimming.bean;
+package org.itsci.ubrswimming.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="trainees")
-public class trainees {
+public class Trainees {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="trainees_id")
@@ -32,10 +32,10 @@ public class trainees {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="register_courses_id",nullable=false,referencedColumnName="register_courses_id")
-	private register_courses register_courses;
+	private RegisterCourses register_courses;
 	
-	public trainees(int trainees_id, String name, int age, String tel, int student_gender,
-			org.itsci.ubrswimming.bean.register_courses register_courses) {
+	public Trainees(int trainees_id, String name, int age, String tel, int student_gender,
+					RegisterCourses register_courses) {
 		super();
 		this.trainees_id = trainees_id;
 		this.name = name;
@@ -107,19 +107,19 @@ public class trainees {
 
 
 
-	public register_courses getRegister_courses() {
+	public RegisterCourses getRegister_courses() {
 		return register_courses;
 	}
 
 
 
-	public void setRegister_courses(register_courses register_courses) {
+	public void setRegister_courses(RegisterCourses register_courses) {
 		this.register_courses = register_courses;
 	}
 
 
 
-	public trainees() {
+	public Trainees() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

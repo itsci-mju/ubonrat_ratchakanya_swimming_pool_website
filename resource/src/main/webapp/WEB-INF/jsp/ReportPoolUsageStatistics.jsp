@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ page import="org.itsci.ubrswimming.bean.*,org.itsci.ubrswimming.util.*,java.util.*"  %>
+    <%@ page import="org.itsci.ubrswimming.model.*,org.itsci.ubrswimming.util.*,java.util.*"  %>
     <%@ page import="java.text.SimpleDateFormat,java.util.Calendar,java.util.TimeZone" %>
     
    
@@ -27,8 +27,8 @@
  <%@ include file="header.jsp" %>
  
  <% 
-	jameManager jm = new jameManager();
-	List<pool_usage> listpu = jm.getListRequestUsePool_memid();
+	JameManager jm = new JameManager();
+	List<PoolUsage> listpu = jm.getListRequestUsePool_memid();
 	
 	/*ราคารวมมาแสดง*/
 	String sumPrice = jm.getSumPrice();

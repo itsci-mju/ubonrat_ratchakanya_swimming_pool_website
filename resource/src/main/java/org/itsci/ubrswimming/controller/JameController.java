@@ -24,14 +24,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import org.itsci.ubrswimming.bean.logins;
-import org.itsci.ubrswimming.bean.members;
-import org.itsci.ubrswimming.bean.pool_reservations;
-import org.itsci.ubrswimming.util.memberManager;
-import org.itsci.ubrswimming.util.requestManager;
+import org.itsci.ubrswimming.model.Logins;
+import org.itsci.ubrswimming.model.Members;
+import org.itsci.ubrswimming.model.PoolReservations;
+import org.itsci.ubrswimming.util.MemberManager;
+import org.itsci.ubrswimming.util.RequestManager;
 
 @Controller
-public class jameController {
+public class JameController {
 	
 	
 	@RequestMapping(value="/memberprofile", method=RequestMethod.GET)
@@ -75,15 +75,15 @@ public class jameController {
 		String edate[] = enddate.split("-");
 				ed.set(Integer.parseInt(edate[0]), Integer.parseInt(edate[1])-1, Integer.parseInt(edate[2]));
 				
-		logins log = new logins();
+		Logins log = new Logins();
 			log.setMembers_id(memberid);
-		members mb = new members();
+		Members mb = new Members();
 			mb.setLogins(log);
-		pool_reservations pr = new pool_reservations(0, eventname,sd,ed,detail,0, detail, 1, mb);
+		PoolReservations pr = new PoolReservations(0, eventname,sd,ed,detail,0, detail, 1, mb);
 		
 		
 		
-		requestManager rqm = new requestManager();
+		RequestManager rqm = new RequestManager();
 		rqm.addRequestToUse(pr);
 		return "index";
 	}
@@ -110,7 +110,7 @@ public class jameController {
 		int r = -1;
 	
 		String pid =request.getParameter("id");
-        requestManager req = new requestManager();
+        RequestManager req = new RequestManager();
         r = req.acceptReservations(pid);
         
         request.setAttribute("resultApprove", r);
@@ -123,7 +123,7 @@ public class jameController {
     public String deleteReservations (HttpServletRequest request,HttpSession session) {
         int r = -1;
         String rpid =request.getParameter("id");
-        requestManager req = new requestManager();
+        RequestManager req = new RequestManager();
         r = req.deleteReservations(rpid);
         request.setAttribute("resultCancel", r);
 
@@ -158,12 +158,12 @@ public class jameController {
 				String edate[] = enddate.split("-");
 						ed.set(Integer.parseInt(edate[0]), Integer.parseInt(edate[1])-1, Integer.parseInt(edate[2]), endhour, endminute);
 						
-				logins log = new logins();
+				Logins log = new Logins();
 					log.setMembers_id(memberid);
-				members mb = new members();
+				Members mb = new Members();
 					mb.setLogins(log);
-				pool_reservations pr = new pool_reservations(0,eventname,sd,ed,detail,0,file.getOriginalFilename(),0,mb);
-				requestManager rqm = new requestManager();
+				PoolReservations pr = new PoolReservations(0,eventname,sd,ed,detail,0,file.getOriginalFilename(),0,mb);
+				RequestManager rqm = new RequestManager();
 				rqm.addRequestToUse(pr);
 				
 				
@@ -282,7 +282,7 @@ public class jameController {
 		int price = 0;
 		// calculate price 
 		if (usage_t==0) {
-			memberManager mm = new memberManager();
+			MemberManager mm = new MemberManager();
 			int t = mm.getmember(mid).getMember_type();
 			price=0;
 		}else {

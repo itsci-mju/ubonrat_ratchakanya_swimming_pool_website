@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import org.itsci.ubrswimming.bean.*;
+import org.itsci.ubrswimming.model.*;
 
 public class HibernateConnection {
 	public static SessionFactory sessionFactory;
@@ -22,13 +22,13 @@ public class HibernateConnection {
 		Configuration cfg = new Configuration()
 							.setProperties(database)
 							.addPackage("bean")
-							.addAnnotatedClass(logins.class)
-							.addAnnotatedClass(members.class)
-							.addAnnotatedClass(courses.class)
-							.addAnnotatedClass(register_courses.class)
-							.addAnnotatedClass(trainees.class)
-							.addAnnotatedClass(pool_usage.class)
-							.addAnnotatedClass(pool_reservations.class)
+							.addAnnotatedClass(Logins.class)
+							.addAnnotatedClass(Members.class)
+							.addAnnotatedClass(Courses.class)
+							.addAnnotatedClass(RegisterCourses.class)
+							.addAnnotatedClass(Trainees.class)
+							.addAnnotatedClass(PoolUsage.class)
+							.addAnnotatedClass(PoolReservations.class)
 							;
 		StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties());
 		sessionFactory = cfg.buildSessionFactory(ssrb.build());

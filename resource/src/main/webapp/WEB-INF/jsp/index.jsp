@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
     
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ page import="org.itsci.ubrswimming.bean.*,org.itsci.ubrswimming.util.*,java.util.*"  %>
+    <%@ page import="org.itsci.ubrswimming.model.*,org.itsci.ubrswimming.util.*,java.util.*"  %>
 <%
-	memberManager mm = new memberManager();
-	members lmb = mm.getmember("001");
+	MemberManager mm = new MemberManager();
+	Members lmb = mm.getmember("001");
 	
 	//poolreservationsManager pr = new poolreservationsManager();
 	//pool_reservations lpm = pr
