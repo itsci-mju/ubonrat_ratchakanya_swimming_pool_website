@@ -12,6 +12,7 @@ import org.hibernate.query.Query;
 import org.itsci.ubrswimming.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class MemberManager {
@@ -19,6 +20,7 @@ public class MemberManager {
 	@Autowired
 	SessionFactory sessionFactory;
 
+	@Transactional
 	public Login verifyLoginWEB(String em, String pw){
 		Session session = sessionFactory.getCurrentSession();
 		Query<Login> query = session.createQuery("delete from Login l where l.email=:email", Login.class);
