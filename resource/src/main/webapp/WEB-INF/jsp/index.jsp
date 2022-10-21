@@ -39,7 +39,10 @@
      
     	<a href="barcode">BarCode</a><br>
     	
-    	<a href="qrcode">QrCode</a>
+    	<a href="qrcode">QrCode</a><br>
+    	
+    	<a href="show_calendar">ShowCalender</a>
+    	
     	<%}%>
     	
     	 </div>

@@ -37,6 +37,23 @@ public class PoolReservations {
 	@JoinColumn(name="members_id",nullable=false,referencedColumnName="members_id")
 	private Members members;
 
+	
+	
+	
+
+	public PoolReservations(String event_name, Calendar start_time, int status) {
+		super();
+		this.event_name = event_name;
+		this.start_time = start_time;
+		this.status = status;
+	}
+
+
+	public PoolReservations() {
+		super();
+	}
+
+
 	public PoolReservations(int pool_reservations_id, String event_name, Calendar start_time, Calendar end_time,
 							String detail, int price, String document, int status, Members members) {
 		super();
@@ -51,10 +68,7 @@ public class PoolReservations {
 		this.members = members;
 	}
 
-	public PoolReservations() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	public int getPool_reservations_id() {
 		return pool_reservations_id;

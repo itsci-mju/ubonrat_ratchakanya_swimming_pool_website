@@ -297,7 +297,6 @@ public class JameController {
   
     @RequestMapping(value="/ReportPoolUsageStatistics", method=RequestMethod.GET)
 	public String ReportPoolUsageStatistics(HttpServletRequest request,HttpSession session) {
-    	
 		return "ReportPoolUsageStatistics";
 	}
     
@@ -330,7 +329,14 @@ public class JameController {
    	}
     
     
- 
+    @RequestMapping(value="/show_calendar", method=RequestMethod.GET)
+   	public String getPool_reservationsCalendar() {
+   		return "show_calendar";
+   	}
+    
+    
+    
+   
     
   
 }

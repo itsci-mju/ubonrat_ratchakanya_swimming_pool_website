@@ -62,7 +62,7 @@
       <% for(int i=0 ; i < listpu.size(); i++) { %>
         <tr >
           <td><%= sdf2.format(listpu.get(i).getTime().getTime()) %></td>
-   <!-- ค้างไว้ก่อนกำลังคิดปรึกษาอู๋ -->       <td><%= listpu.get(i).getUsage_type() %></td>
+   		       <td><%= listpu.get(i).getUsage_type() %></td>
           <td><%= listpu.get(i).getAmount() %></td>
           <td><%= listpu.get(i).getPrice() %></td>
           <td><%= listpu.get(i).getPrice() %></td>
