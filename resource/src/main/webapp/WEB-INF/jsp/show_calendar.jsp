@@ -63,7 +63,7 @@
 
 	<div id="wrapper"  >
 		<div>
-			<div id="calendar" ></div>
+			<div id="calendar"></div>
 		</div>
 	</div>
 
@@ -81,8 +81,7 @@
 	    	var sampleEvents = [
 	    		
 			<% for(PoolReservations s : prs) { %>
-			
-			
+
 			{
 			    title:"<%= s.getEvent_name() %>" ,
 			    date: new Date(<%= sdf2.format(s.getStart_time().getTime())%>),
@@ -222,7 +221,7 @@
     right: 0;
     left: 0;
     margin: auto;
-    background-color: #23ff40;
+    background-color: #ff0000;
     width: 0.3em;
     height: 0.3em;
     border-radius: 50%;
@@ -458,6 +457,7 @@
 		function showEvent(event){
 			if(event && event !== null && event !== undefined){
 				eventTitle.text(event.title);
+				
 
 			}else{
 				eventTitle.text("ไม่มีกิจกรรมในวันนี้");

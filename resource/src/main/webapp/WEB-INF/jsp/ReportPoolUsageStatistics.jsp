@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Reportpoolusagestatistics</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -45,9 +45,9 @@
     	
 
 <div class="container fit" align="center" style="padding-top:25px;" >
-    <p style="font-size: 26px; padding-left: 20px; color:#353b48;">สถิติการเข้าใช้งานของผู้ใช้บริการสระว่ายน้ำ
-    <table class="table">           
-  <table class="table table-striped">
+    <p style="width: 100%; font-size: 34px; margin: 0;" align="center" class="title">สถิติการเข้าใช้งานของผู้ใช้บริการสระว่ายน้ำ</p>
+    <table class="table" >           
+  <table class="table table-striped"  border="1px">
     <thead >
         <tr>
           <th>วันที่</th>
@@ -73,14 +73,15 @@
        </tbody>
   </table>
   <div class="under"align="right">
-        <div> รายได้รวม
-          <input type="text" value="<%= sumPrice.toString() %>">
+        <div> รายได้รวม : 
+          <input type="text" value="<%= sumPrice.toString() %>"readonly>
           บาท
        </div>
        <div>
-          จำนวนผู้ใช้บริการ
-          <input type="text" value="<%= sumAmount.toString() %>">
+          จำนวนผู้ใช้บริการ : 
+          <input type="text" value="<%= sumAmount.toString() %>" readonly> 
           คน
+          
       </div>
   </div>
 </div>
@@ -91,5 +92,12 @@
 .fit{
   padding: 60px;
 }
+
+
+.form-control{
+  width: 150px;
+
+}
+
 </style>
 </html>

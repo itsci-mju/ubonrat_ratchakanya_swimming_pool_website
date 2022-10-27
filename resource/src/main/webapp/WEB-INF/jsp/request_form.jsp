@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReqestForm</title>
 </head>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -26,7 +27,7 @@
             <tr>
               <td colspan="2">
                 <div class="request_input">
-                  <input type="text" name="mid" id="mid" hidden="true" readonly value="<%= mb.getLogins().getMembers_id() %>">
+                  <input type="hidden" name="mid" id="mid" readonly value="<%= mb.getLogins().getMembers_id() %>">
               </div>
               </td>
             </tr>
@@ -76,7 +77,7 @@
               <td colspan="2">
                 <div class="request_input"> 
                   <label for="detail" style="color: #4CAF50;">รายละเอียด</label><br>
-                  <textarea name="detail" id="detail" cols="30" rows="10" class="textarea_det" onblur="checkDetail(frm)" resiz></textarea><br>
+                  <textarea name="detail" id="detail" cols="30" rows="10" class="textarea_det" onblur="checkDetail(frm)"></textarea><br>
                   <label class="alert-label" id="alertDetail"></label>
               </div>
               </td>

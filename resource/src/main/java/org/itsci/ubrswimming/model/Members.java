@@ -99,21 +99,9 @@ public class Members {
 	}
 
 
-
-
-
-
-
-
 	public int getId() {
 		return id;
 	}
-
-
-
-
-
-
 
 
 	public void setId(int id) {
@@ -122,18 +110,9 @@ public class Members {
 
 
 
-
-
-
-
-
 	public Login getLogins() {
 		return logins;
 	}
-
-
-
-
 
 
 

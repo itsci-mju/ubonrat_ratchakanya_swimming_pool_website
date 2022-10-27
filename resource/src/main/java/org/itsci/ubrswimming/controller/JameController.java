@@ -34,9 +34,9 @@ import org.itsci.ubrswimming.util.RequestManager;
 public class JameController {
 	
 	
-	@RequestMapping(value="/memberprofile", method=RequestMethod.GET)
+	@RequestMapping(value="/view_member_profile", method=RequestMethod.GET)
 	public String memberprofile() {
-		return "memberprofile";
+		return "view_member_profile";
 	}
 	
 	
@@ -50,7 +50,7 @@ public class JameController {
 	
 	
 	@RequestMapping(value="/addMakeEvent", method=RequestMethod.POST)
-	public String getRequestToUse(HttpServletRequest request,HttpSession session) {
+	public String getRequestToUse2(HttpServletRequest request,HttpSession session) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (UnsupportedEncodingException e1) {
@@ -130,9 +130,9 @@ public class JameController {
         return "manage_form";
     }
 
-@RequestMapping(value="/getRequestToUse", method=RequestMethod.POST ,consumes =  MediaType.MULTIPART_FORM_DATA_VALUE)
-	public String getRequestToUse(@RequestParam("doc") MultipartFile file, ServletRequest request,HttpSession session) {
-		
+    /*แบบปอร์มขอเข้าใช้สระว่ายน้ำ*/ 
+    @RequestMapping(value="/getRequestToUse", method = RequestMethod.GET)
+    	public String getRequestToUse(HttpServletRequest request, HttpSession session, @RequestParam("doc") MultipartFile file) {
 			try {
 				request.setCharacterEncoding("UTF-8");
 				
@@ -140,7 +140,7 @@ public class JameController {
 				Calendar ed = Calendar.getInstance();
 		        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		        sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
-		        
+		     
 		        String memberid = request.getParameter("mid");
 		        String eventname = request.getParameter("eventname");
 				String startdate = request.getParameter("startdate");
@@ -193,7 +193,6 @@ public class JameController {
 
 					BufferedImage imageWrite = getScaledInstance(image, width, height,
 							RenderingHints.VALUE_RENDER_QUALITY, true);
-
 					if (type_image.equalsIgnoreCase(".png")) {
 						ImageIO.write(imageWrite, "jpg", new File(path + "/" + Givefile));
 					} else if (type_image.equalsIgnoreCase(".jpeg")) {
@@ -201,10 +200,8 @@ public class JameController {
 					} else {
 						ImageIO.write(imageWrite, "jpg", new File(path + "/" + Givefile));
 					}
-				} else {
-					
 				}
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -212,7 +209,8 @@ public class JameController {
 		return "index";
 	}
 	
-	
+    
+    
 	public static BufferedImage getScaledInstance(BufferedImage img, int targetWidth, int targetHeight, Object hint,
 			boolean higherQuality) {
 		int type = (img.getTransparency() == Transparency.OPAQUE) ? BufferedImage.TYPE_INT_RGB
@@ -248,6 +246,7 @@ public class JameController {
 		} while (w != targetWidth || h != targetHeight);
 		return ret;
 	}
+	
 	public static File convert(MultipartFile file, String path) throws IOException {
 		System.out.println(path);
 		File convFile = new File(path);
@@ -333,6 +332,7 @@ public class JameController {
    	public String getPool_reservationsCalendar() {
    		return "show_calendar";
    	}
+    
     
     
     

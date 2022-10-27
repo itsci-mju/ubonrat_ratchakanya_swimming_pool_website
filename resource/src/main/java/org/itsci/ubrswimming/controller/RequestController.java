@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.itsci.ubrswimming.model.Login;
 import org.itsci.ubrswimming.model.Members;
+import org.itsci.ubrswimming.model.PoolReservations;
 import org.itsci.ubrswimming.model.PoolUsage;
 import org.itsci.ubrswimming.util.MemberManager;
 import org.itsci.ubrswimming.util.RequestManager;
@@ -135,5 +136,45 @@ public class RequestController {
         }
         
 		return "record_usage";
+	}
+	
+	@RequestMapping(value="/getRequestToUse", method=RequestMethod.POST)
+	public String getRequestToUse(HttpServletRequest request,HttpSession session) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Calendar sd = Calendar.getInstance();
+		Calendar ed = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
+        
+        String memberid = request.getParameter("mid");
+        String eventname = request.getParameter("eventname");
+		String startdate = request.getParameter("startdate");
+		int starthour = Integer.parseInt(request.getParameter("starthour"));
+		int startminute = Integer.parseInt(request.getParameter("startminute"));
+		String enddate = request.getParameter("enddate");
+		int endhour = Integer.parseInt(request.getParameter("endhour"));
+		int endminute = Integer.parseInt(request.getParameter("endminute"));
+		String detail = request.getParameter("detail");
+		String filename = request.getParameter("doc");
+
+
+		String sdate[] = startdate.split("-");
+		 		sd.set(Integer.parseInt(sdate[0]), Integer.parseInt(sdate[1])-1, Integer.parseInt(sdate[2]), starthour, startminute);
+		String edate[] = enddate.split("-");
+				ed.set(Integer.parseInt(edate[0]), Integer.parseInt(edate[1])-1, Integer.parseInt(edate[2]), endhour, endminute);
+				
+		Login log = new Login();
+			log.setMembers_id(memberid);
+		Members mb = new Members();
+			mb.setLogins(log);
+		PoolReservations pr = new PoolReservations(0,eventname,sd,ed,detail,0,filename,0,mb);
+		RequestManager rqm = new RequestManager();
+		rqm.addRequestToUse(pr);
+		return "index";
 	}
 }

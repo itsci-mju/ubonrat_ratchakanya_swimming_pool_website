@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>memberprofile</title>
+<title>viewmemberprofile</title>
 </head>
 
 <!-- CSS only -->
@@ -41,15 +41,15 @@
    %>
       
       	
-	<form name="frm" method="post" action="goedit" class="fit">
+	<form name="frm" method="post" action="view_member_profile" class="fit">
             <div align="center" style="padding-top:25px;" >
-            <p style="font-size: 26px; padding-left: 20px; color:#353b48;">ข้อมูลส่วนตัว
+            <p style="font-size: 34px; margin: 5;" align="center" class="title">ข้อมูลส่วนตัว </p>
             <table>      
                 <tr>
                     <td colspan="2" style="text-align: left; display:none;">
                         <div class="form-floating"> 
                             <input type="text" name="id" class="form-control registered" placeholder="id"  value="<%= mb.getLogins().getMembers_id() %>" Onblur="form(frm)" readonly>
-                            <label for="floating">id</label>
+                            <label for="floating" >id</label>
                         </div>
                     </td>
                 </tr>          
@@ -57,13 +57,13 @@
                     <td>
                         <div class="form-floating">
                             <input type="text" name="fname" id="fname" class="form-control registered" placeholder="ชื่อ" Onblur="form(frm)" value="<%= mb.getFirstname() %>" readonly>
-                            <label for="floating">ชื่อ</label>
+                            <label for="floating"><b>ชื่อ</b></label>
                           </div>
                     </td>
                     <td>
                         <div class="form-floating">
                             <input type="text" name="lname" id="lname" class="form-control registered" placeholder="นามสกุล" Onblur="form(frm)" value="<%= mb.getLastname() %>" readonly>
-                            <label for="floating">นามสกุล</label>
+                            <label for="floating"><b>นามสกุล</b></label>
                           </div>
                     </td>
                 </tr>
@@ -71,13 +71,13 @@
                     <td>
                         <div class="form-floating">
                             <input type="text" name="birthday" id="birthday" class="form-control registered" placeholder="วันเกิด" Onblur="form(frm)" value="<%= Birthdate %>"  readonly>
-                            <label for="floating">วันเกิด</label>
+                            <label for="floating"><b>วันเกิด</b></label>
                           </div>
                     </td>
                     <td>
                         <div class="form-floating">
                             <input type="text" name="housenumber" id="housenumber" class="form-control registered"   placeholder="บ้านเลขที่" Onblur="form(frm)" value="<%= parts[0] %>"   readonly>
-                            <label for="floating">ที่อยู่</label>
+                            <label for="floating"><b>ที่อยู่</b></label>
                         </div>
                     </td>
                 </tr>
@@ -85,13 +85,13 @@
                <td>
                         <div class="form-floating">
                             <input type="text" name="sub_area" id="sub_area" class="form-control registered" placeholder="ตำบล" value="<%= parts[1] %>" readonly Onblur="form(frm)">
-                            <label for="floating">ตำบล</label>
+                            <label for="floating"><b>ตำบล</b></label>
                         </div>
                     </td>
                     <td>
                         <div class="form-floating">
                             <input type="text" name="area" id="area" class="form-control registered" placeholder="อำเภอ" value="<%= parts[2] %>" readonly Onblur="form(frm)">
-                            <label for="floating">อำเภอ</label>
+                            <label for="floating"><b>อำเภอ</b></label>
                           </div>
                     </td>           
                 </tr>
@@ -99,13 +99,13 @@
                     <td>
                         <div class="form-floating">
                             <input type="text" name="province" id="province" class="form-control registered" placeholder="จังหวัด" value="<%= parts[3] %>" readonly Onblur="form(frm)">
-                            <label for="floating">จังหวัด</label>
+                            <label for="floating"><b>จังหวัด</b></label>
                           </div>
                     </td>
                     <td>
                         <div class="form-floating">
                             <input type="text" name="zipcode" id="zipcode" class="form-control registered" placeholder="รหัสไปรษณีย์" value="<%= parts[4] %>" readonly Onblur="form(frm)">
-                            <label for="floating">รหัสไปรษณีย์</label>
+                            <label for="floating"><b>รหัสไปรษณีย์</b></label>
                           </div>
                     </td>
                 </tr>
@@ -113,7 +113,7 @@
                     <td>
                         <div class="form-floating">
                         <input type="text" name="tel" id="tel" class="form-control registered" placeholder="โทรศัพท์" readonly Onblur="form(frm)" maxlength="10" value="<%= mb.getPhone() %>">
-                        <label for="floating">โทรศัพท์</label>
+                        <label for="floating"><b>โทรศัพท์</b></label>
                         </div>
                     </td> 
                 </tr>
@@ -125,13 +125,14 @@
 
 
 <link rel="stylesheet" href="css/nav.css">
+<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet"/>
  <style>
- 	@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700;800;900&display=swap');
+ 	
 *{
    margin: 0;
    padding: 0;
    box-sizing: border-box;
-   font-family: 'Mitr', sans-serif;
+   font-family: 'Kanit', sans-serif;
 }
 
 
@@ -139,23 +140,28 @@
 
 
 @import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
-body{
-	background-color: #FFFFFF;
-	}
+
 .fit {
-	background-color: #B2EBF2;
-	border-radius: 10px;
-	margin-left: 440px;
-	margin-right: 410px;
-	margin-top: 20px;
-	margin-bottom: 99px;
-	padding: 100px;
-	padding-top: 30px;
-	display: flex;
-	justify-items: center;
+  background-color: #B2EBF2;
+    border-radius: 10px;
+    margin-left: 420px;
+    margin-right: 460px;
+    margin-top: 15px;
+    margin-bottom: 100px;
+    padding: 57px;
+    padding-top: 30px;
+    display: flex;
+    justify-items: center;
 }
 
 
+.form-control{
+  margin: 5px;
+
+}
+td{
+  padding:5px;
+}
  </style>
 
 

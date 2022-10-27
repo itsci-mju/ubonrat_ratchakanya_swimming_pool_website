@@ -126,7 +126,7 @@ public class JameManager {
 
 
 
-	
+	//Calendar 
 	public List<PoolReservations> getPool_reservationsCalendar(){
 		List<PoolReservations> prs = new ArrayList<>();
 		ConnectionDB condb = new ConnectionDB();

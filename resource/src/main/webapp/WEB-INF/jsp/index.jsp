@@ -30,7 +30,7 @@
      <% if (lmb == null ){ %>
     	 
     <% }else{%>
-    	 <a href="memberprofile">ดูข้อมูลส่วนตัว</a> <br>
+    	 <a href="view_member_profile">ดูข้อมูลส่วนตัว</a> <br>
     	 <a href="viewrequesttousepool">ดูผลการทำเรื่องขอเข้าใช้สระว่ายน้ำ</a> <br>
     	 
     	 <a href="make_event">สร้างกิจกรรมของสระว่ายน้ำ</a> <br>

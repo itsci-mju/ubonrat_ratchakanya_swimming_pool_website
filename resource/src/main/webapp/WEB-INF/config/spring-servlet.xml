@@ -15,15 +15,22 @@
 		 base-package="org.itsci.ubrswimming.controller">
 	</context:component-scan>
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
- 	<property name="prefix" value="/WEB-INF/jsp/"/>
+ 	
+ 	<property name="prefix" value="/WEB-INF/view/"/>
  	<property name="suffix" value=".jsp"/>
  	
 	</bean>
+	
+	
 	<!-- ต้องใช้ -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	    <property name="maxUploadSize" value="10000000"/>
+		<property name="maxUploadSize" value="10000000"/>
+		<property name="maxInMemorySize" value="1048576" />
 	</bean>
 	<!-- เพิ่ม -->
+	
+	
+	
 	<mvc:resources location="${pageContext.request.contextPath}/image/" mapping="/image/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/image/" mapping="/img3/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/stylesheet/" mapping="/css/**"></mvc:resources>

@@ -150,23 +150,23 @@ function checkDetail(regis){
             </tr>
             <tr>
               <td>
-                <div class="form__group field" style="float: left;">
+                <div class="form__group field" style="float: center;">
                   <input type="date" class="form__field" placeholder="วันที่เริ่มใช้" name="startdate" id='startdate' required style="width: 150px;" onblur="checkStartdate(frm)">
                   <label for="startdate" class="form__label">วันที่เริ่มใช้</label>
                   <label class="alert-label" id="alertStartdate"></label>
-              	</div>
-              </td> 
-            </tr>
-            
-            <tr>
-              <td>
-                <div class="form__group field" style="float: left;">
+              	</div>	
+              </td>
+               
+               <td>
+                <div class="form__group field" style="float: center;">
                   <input type="date" class="form__field" placeholder="วันที่สิ้นสุดการใช้" name="enddate" id='enddate' required style="width: 150px;" onblur="checkEnddate(frm)">
                   <label for="enddate" class="form__label">วันที่สิ้นสุดการใช้</label>
                   <label class="alert-label" id="alertEnddate"></label>
-              </div>
-              </td>
+              	</div>
+              </td>    
             </tr>
+            
+            
             
             <tr>
               <td colspan="2">

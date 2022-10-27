@@ -144,6 +144,12 @@ body{
 	width: 240px;
 	height: 50px;
 }
+
+td{
+  padding: 6px;
+}
+
+
  </style>
 
 
