@@ -59,7 +59,7 @@ public class RequestManager {
 			
 			String table = "pool_reservations";
 			String column = "pool_reservations_id, event_name, start_time, end_time, detail, price, document, status, members_id";
-			String sql = "select "+ column +" from "+table+";";
+			String sql = "select "+ column +" from "+table+" where status = 0;";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				int rid = rs.getInt(1);

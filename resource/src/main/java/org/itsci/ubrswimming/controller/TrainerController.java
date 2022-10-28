@@ -15,4 +15,9 @@ public class TrainerController {
 	}
 	
 	
+	@RequestMapping(value="/ListCoursesMember", method=RequestMethod.GET)
+	public String ListCoursesMember() {
+		return "ListCoursesMember";
+	}
+	
 }

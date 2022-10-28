@@ -43,7 +43,12 @@
     	
     	<a href="show_calendar">ShowCalender</a><br>
     	
+    	
+    	<!-- Trainer -->
 		<a href="ViewTeachSchedule">ViewTeachSchedule</a><br>
+		<a href="ListCoursesMember">ListCoursesMember</a><br>
+		
+		
     	<%}%>
     	
     	 </div>

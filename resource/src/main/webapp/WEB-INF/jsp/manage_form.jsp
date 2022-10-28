@@ -57,7 +57,7 @@
                         <%= sdf.format(p.getEnd_time().getTime()) %>
                     </td>
                     <td>
-                        <a href="view_request?id=<%= p.getPool_reservations_id() %>"><i class="bi bi-file-earmark-text"></i></a>
+                        <a href="view_request?id=<%= p.getPool_reservations_id() %>"> <i class="bi bi-file-earmark-text"></i></a>
                     </td>
                     <td class="accept"> 
                         <a href="approve_request?id=<%= p.getPool_reservations_id() %>"> <i class="bi bi-check2-square"></i></a>

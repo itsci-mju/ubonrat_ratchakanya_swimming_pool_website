@@ -76,7 +76,7 @@
             <tr>
               <td colspan="2">
                 <div class="request_input">   
-                <label  class="form__label">รายละเอียด</label> <br>               
+                <label  class="form__label">รายละเอียด ไม่เอาไหน ถ้าใจรักเธอ</label> <br>               
                   <input type="text" class="form-control" placeholder="รายละเอียด" id="detel" value="<%= pr.get(i).getDetail()%>"  readonly ><br>
               </div>
               </td>           

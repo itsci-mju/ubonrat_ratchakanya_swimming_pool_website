@@ -18,6 +18,15 @@ public class Trainees {
 	@Column(name="trainees_id")
 	private int trainees_id;
 	
+	public Trainees(int trainees_id, String name, int age, String tel, int student_gender) {
+		super();
+		this.trainees_id = trainees_id;
+		this.name = name;
+		this.age = age;
+		this.tel = tel;
+		this.student_gender = student_gender;
+	}
+
 	@Column(name="name", nullable=false, length=65)
 	private String name;
 	
