@@ -41,8 +41,9 @@
     	
     	<a href="qrcode">QrCode</a><br>
     	
-    	<a href="show_calendar">ShowCalender</a>
+    	<a href="show_calendar">ShowCalender</a><br>
     	
+		<a href="ViewTeachSchedule">ViewTeachSchedule</a><br>
     	<%}%>
     	
     	 </div>
