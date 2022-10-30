@@ -38,89 +38,183 @@
 </head>
 <link rel="stylesheet" href="css/main_style.css">
 <link rel="stylesheet" href="css/original.css">
-<body>
-<header class="header_page">
-        <div class="logo_main">
-            <img src="img/mju-logo.png" class="logo_img">
+<body id="nonselect">
+	<div class="content-head">
+        <header class="header_page">
+            <div class="logo_main">
+                <img src="img/mju-logo.png">
+            </div>
+            <div class="web_name">
+                <p class="hp-1">สระว่ายน้ำอุบลรัตน์ราชกัญญา</p>
+                <p class="hp-2">มหาวิทยาลัยแม่โจ้</p>
+            </div>
+        </header>
+        <div class="ham-bar">
+            <i class="bi bi-list" onclick="openNav() "></i>
         </div>
-        <div class="web_name">
-            <p class="wn1">สระว่ายน้ำอุบลรัตน์ราชกัญญา</p>
-            <p class="wn2">มหาวิทยาลัยแม่โจ้</p>
+    </div>
+    <div id="mySidenav" class="nav_bar">
+        <div class="nav-close-div">
+            <!--ห้ามลบ-->
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> 
         </div>
-    </header>
-    <% if(log != null){ %>
-    <!-- still login -->
-    	<%if(log.getStatus()==1||log.getStatus()==2){ %>
-    	<!--web user -->
-        <nav class="nav_bar">
-            <span><a href="index">หน้าแรก</a></span>
-            <span><a href="#">ปฏิทิน</a></span>
-            <span><a href="#">คอร์สเรียน</a></span>
-            <span><a href="gorequest">แบบฟอร์ม</a></span>
-            <span><a href="#">บุคลากร</a></span>
-            <span><a href="#">ติดต่อเรา</a></span>
-        </nav>
+        <% if(log!=null){ %>
+        <!-- still login -->
+    		<%if(log.getStatus()==1||log.getStatus()==2){ %>
+    	<!-- web user -->
+        	<div class="nav-element">
+    			<a href="index">หน้าแรก</a>
+    			<div class="nav-dropdown">
+                	<button data-toggle="dropdown" type="button" class="dropdown-btn">
+                    คอร์สเรียน
+                    	<i class="bi bi-caret-down-fill" style="font-size: 16px;"></i>
+                	</button>
+                	<ul class="dropdown-menu">
+                    	<li><a href="#">คอร์สเรียนของฉัน</a></li>
+                    	<li><a href="gocourse_register">สมัครคอร์สเรียน</a></li>
+                	</ul>
+            	</div>
+            	<a href="#">ปฏิทิน</a>
+            	<div class="nav-dropdown">
+                	<button data-toggle="dropdown" type="button" class="dropdown-btn">
+                    	แบบฟอร์ม
+                    	<i class="bi bi-caret-down-fill" style="font-size: 16px;"></i>
+                	</button>
+                	<ul class="dropdown-menu">
+                    	<li><a href="gocourse_register">ขอเข้าใช้งานสระน้ำ</a></li>
+                    	<li><a href="#">ประวัติคำร้องขอ</a></li>
+                	</ul>
+            	</div>
+        		<a href="#">บุคลากร</a>
+        		<a href="#">ติดต่อเรา</a>
+   			</div>
 		<%}else if(log.getStatus()==3){ %>
 		<!-- Trainer -->
-    	<nav class="nav_bar">
-        	<span><a href="index">หน้าแรก</a></span>
-        	<span><a href="#">ปฏิทิน</a></span>
-        	<span><a href="#">คอร์สเรียน</a></span>
-        	<span><a href="#">บุคลากร</a></span>
-        	<span><a href="#">ติดต่อเรา</a></span>
-    	</nav>
+			<div class="nav-element">
+    			<a href="index">หน้าแรก</a>
+    			<div class="nav-dropdown">
+                	<button data-toggle="dropdown" type="button" class="dropdown-btn">
+                    คอร์สเรียน
+                    	<i class="bi bi-caret-down-fill" style="font-size: 16px;"></i>
+                	</button>
+                	<ul class="dropdown-menu">
+                    	<li><a href="#">ตารางสอน</a></li>
+                    	<li><a href="#">คอร์สเรียนที่ได้รับมอบหมาย</a></li>
+                	</ul>
+            	</div>
+            	<a href="#">ปฏิทิน</a>
+            	<div class="nav-dropdown">
+                	<button data-toggle="dropdown" type="button" class="dropdown-btn">
+                    	แบบฟอร์ม
+                    	<i class="bi bi-caret-down-fill" style="font-size: 16px;"></i>
+                	</button>
+                	<ul class="dropdown-menu">
+                    	<li><a href="gocourse_register">ขอเข้าใช้งานสระน้ำ</a></li>
+                    	<li><a href="#">ประวัติคำร้องขอ</a></li>
+                	</ul>
+            	</div>
+        		<a href="#">บุคลากร</a>
+        		<a href="#">ติดต่อเรา</a>
+   		</div>
 		<%}else if(log.getStatus()==4){ %>
 		<!-- Manager -->
-    	<nav class="nav_bar">
-        	<span><a href="index">หน้าแรก</a></span>
-        	<span><a href="goRecord_usage">บันทึกการเข้าใช้งาน</a></span>
-        	<span><a href="#">ปฏิทิน</a></span>
-        	<span><a href="#">จัดการคอร์สเรียน</a></span>
-        	<span><a href="#">จัดการสมาชิก</a></span>
-            <span><a href="gomanageform">จัดการแบบฟอร์ม</a></span>
-        	<span><a href="#">สถิติ</a></span>
-    	</nav>
-		<% }else{ %>
-		<!-- not login  -->
-    	<nav class="nav_bar">
-        	<span><a href="index">หน้าแรก</a></span>
-        	<span><a href="#">คอร์สเรียน</a></span>
-        	<span><a href="#">ปฏิทิน</a></span>
-        	<span><a href="#">บุคลากร</a></span>
-        	<span><a href="#">ติดต่อเรา</a></span>
-    	</nav>
-		<%} %>
-		<div id="profile_pos" class="profile_<%= type %>">
-        	<div class="profile_circle">
-            	<img src="img/<%= mb.getImage() %>"  class="pimg">
-        	</div>
-        	<div class="profile_name"><%= mb.getFirstname() %></div>
-        	<div class="logout">
-            	<a href="dologout">Log out</a>
-        	</div>
-    	</div>
-	<%}else{ %>
-	<!-- not login -->
-		<div class="login_btn">
-        	<a href="loginpage">
-            	เข้าสู่ระบบ
-        	</a>
-    	</div>
-    	<div class="regis_btn">
-        	<a href="pre_reg">
-           		สมัครสมาชิก
-        	</a>
-    	</div> 
-    
-    <!-- not login  -->
-    	<nav class="nav_bar">
-        	<span><a href="index">หน้าแรก</a></span>
-        	<span><a href="#">คอร์สเรียน</a></span>
-        	<span><a href="#">บุคลากร</a></span>
-        	<span><a href="#">ติดต่อเรา</a></span>
-    	</nav>
+		<div class="nav-element">
+    			<a href="index">หน้าแรก</a>
+    			<a href="goRecord_usage">บันทึกการเข้าใช้งาน</a>
+    			<a href="#">ปฏิทิน</a>
+    			<a href="#">จัดการคอร์สเรียน</a>
+            	<a href="#">จัดการสมาชิก</a>
+            	<div class="nav-dropdown">
+                	<button data-toggle="dropdown" type="button" class="dropdown-btn">
+                    	แบบฟอร์ม
+                    	<i class="bi bi-caret-down-fill" style="font-size: 16px;"></i>
+                	</button>
+                	<ul class="dropdown-menu">
+                    	<li><a href="gomanageform">จัดการแบบฟอร์ม</a></li>
+                    	<li><a href="#">สร้างกิจกรรม</a></li>
+                	</ul>
+            	</div>
+        		<a href="#">สถิติ</a>
+   		</div> 
+    	<% } %>
+        <div id="profile_pos" class="profile-pool">
+            <div class="circle_prof">
+            	<img src="img/<%= mb.getImage() %>">
+            </div>
+            <div class="user-name">
+                <%= mb.getFirstname() %>
+            </div>
+            <div class="logout">
+                <a href="#" id="logout">Log out</a>
+            </div>
+        </div>
+        <%}else{ %>
+    	<!-- not login  -->
+    		<div class="nav-element">
+    			<a href="index">หน้าแรก</a>
+    			<a href="#">คอร์สเรียน</a>
+        		<a href="#">บุคลากร</a>
+        		<a href="#">ติดต่อเรา</a>
+    			<a href="loginpage">เข้าสู่ระบบ</a>
+    			<a href="pre_reg">สมัครสมาชิก</a>
+   			</div>
     <%} %>
- 
+        <hr><!-- ตัวปิด nav ให้ overflow ไม่ทับตัวสุดท้าย -->
+    </div>
 
 </body>
+<script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "100%";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+
+window.addEventListener('resize', function(event) {
+    if(window.innerWidth>700){
+        openNav()
+    }else{
+        closeNav()
+    }
+}, true);
+
+
+function showdropdown(a) {
+    a.parentNode.getElementsByClassName('dropdown-menu')[0].classList.add("show");
+}
+function closedropdown(){
+    var i;
+        var dropdowns = document.getElementsByClassName("dropdown-menu");
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+}
+
+window.onclick = function(event) {
+    if(!event.target.matches('.dropdown-btn')){
+        console.log("hmmm")
+        closedropdown()
+    }else if(event.target.matches('.dropdown-btn')&&(event.target.parentNode.getElementsByClassName('dropdown-menu')[0].classList.contains('show'))){
+        closedropdown()
+    }
+    else{
+        showdropdown(event.target)
+    }
+} 
+</script>
+<script>
+const logout = document.getElementById("logout")
+const response = "ต้องการออกจากระบบหรือไม่?";
+logout.addEventListener("click",(click)=>{
+    // window.confirm(response)
+    if (window.confirm(response)) {
+window.open("dologout", "_self");
+}
+});
+</script>
 </html>

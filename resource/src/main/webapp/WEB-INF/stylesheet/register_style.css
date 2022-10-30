@@ -54,6 +54,11 @@
 }
 
 /* pre register page  */
+#verify {
+  display: flex;
+  justify-content: center;
+}
+
 .div1 {
   background-color: #ECEFF1;
   padding: 20px;
@@ -286,12 +291,10 @@
   font-size: 16px;
 }
 
-/*
-.hidden_cont{
+.hidden_cont {
   display: none;
 }
 
-.showup_cont{
+.showup_cont {
   display: block;
-}
-*//*# sourceMappingURL=register_style.css.map */
+}/*# sourceMappingURL=register_style.css.map */

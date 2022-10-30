@@ -1,5 +1,3 @@
-
-/* record usage service */
 function restart_animation(el) {
     el.style.animation = 'none';
     el.offsetHeight; /* trigger reflow */
@@ -17,24 +15,26 @@ function restart_animation(el) {
     document.getElementById("content-alert").style.display = "none"
     document.getElementById("content-alert-text").innerHTML = "";
   }
-/*  ^^^^^^^^ na in ^^^^^^^^^^^^  */
-function checktypeinput(){
+  
+  /* record usage service */
+  function checktypeinput() {
     var um = document.getElementById("usetype_m");
     var uf = document.getElementById("usetype_f");
     var mb = document.getElementById("member_section");
     var wk = document.getElementById("nonmember_section");
     if (um.checked) {
-        mb.style.display = "unset"
-        wk.style.display = "none"
-        alert_card_hide()
-      } else if (uf.checked) {
-        mb.style.display = "none"
-        wk.style.display = "unset"
-        alert_card_hide()
-      }
-}
-
-$(document).ready(function () {
+      mb.style.display = "unset"
+      wk.style.display = "none"
+      alert_card_hide()
+    } else if (uf.checked) {
+      mb.style.display = "none"
+      wk.style.display = "unset"
+      alert_card_hide()
+    }
+  }
+  
+  
+  $(document).ready(function () {
     dropdownCreate();
     checktypeinput();
     /*  เมื่อยกเลิก จะลบค่าทั้งหมด */
@@ -104,7 +104,7 @@ $(document).ready(function () {
         '</tr>'
       );
     })
-  /*--> สำคัญ */ frm.q.value = count_mem;
+  
     // Remove selected rows
     $("#del-row-mem").click(function () {
       $("#member_w tbody tr").each(function (index) {
@@ -148,7 +148,7 @@ $(document).ready(function () {
       );
       dropdownCreate()
     })
-  /*--> สำคัญ */ frm.q.value = count_non;
+  
   
     // Remove selected rows
     $("#del-row-non").click(function () {
@@ -267,7 +267,7 @@ $(document).ready(function () {
         var y, i, k, s, h, sl, yl;
         s = that.parentNode.parentNode.getElementsByTagName("select")[0];
         sl = s.length;
-        console.log(sl)
+        // console.log(sl)
         h = that.parentNode.previousSibling;
         for (i = 0; i < sl; i++) {
           if (s.options[i].innerHTML == that.innerHTML) {
