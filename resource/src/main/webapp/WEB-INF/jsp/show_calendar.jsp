@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
-<%@ include file="header.jsp" %>
+<%@ include file="common/header.jsp" %>
 <% 
 	JameManager jm = new JameManager();
 	List<PoolReservations> prs = jm.getPool_reservationsCalendar();	

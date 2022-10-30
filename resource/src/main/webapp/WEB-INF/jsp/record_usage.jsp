@@ -14,7 +14,7 @@
     }
 </style>
 <body onload="checktypeinput()">
-<%@ include file="header.jsp" %>
+<%@ include file="common/header.jsp" %>
     <div class="content-record">
         <form action="getRequestToUse" method="post" name="frm">
             <!-- head -->
@@ -79,7 +79,7 @@
         </div>
         </form>
     </div>
-    <%@ include file="footer.jsp" %>
+    <%@ include file="common/footer.jsp" %>
 </body>
 <script src="js/fc_record.js"></script>
 </html>

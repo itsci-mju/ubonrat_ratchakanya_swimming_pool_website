@@ -7,7 +7,7 @@
 <title>ViewTeachSchedule</title>
 </head>
 <body>
-<%@ include file="header.jsp" %>
+<%@ include file="common/header.jsp" %>
 
 	<% TrainerManager tn = new TrainerManager();	
 	List<Courses> cou = tn.ViewTeachSchedule();

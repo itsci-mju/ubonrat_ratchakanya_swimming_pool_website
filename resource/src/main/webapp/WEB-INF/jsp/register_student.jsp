@@ -32,20 +32,7 @@
 <link rel="stylesheet" href="css/original.css">
 <link rel="stylesheet" href="css/register_style.css">
 <body onload="togglePass()"> 
- <%@ include file="header.jsp" %>
-    <!--
-    <div class="container">
-  <div class="progress">
-    <div class="percent"></div>
-  </div>
-  <div class="steps">
-    <div class="step" id="0"></div>
-    <div class="step" id="1"></div>
-    <div class="step" id="2"></div>
-    <div class="step" id="3"></div>
-  </div>
-</div>
--->
+ <%@ include file="common/header.jsp" %>
 <div class="re-content">
     <form action="doRegister_student" method="post" name="regis">
         <p style="font-size: 26px; margin: auto;" align="center"> สมัครสมาชิก : นักศึกษา </p>
@@ -180,57 +167,8 @@
         </section>
 </form>
 </div>
-<%@ include file="footer.jsp" %>
+<%@ include file="common/footer.jsp" %>
 </body>
-<script>
-// select option คณะ/วิทยาลัยที่สังกัด//
-function checkFac(regis){
-  var labelAlertFac  = document.getElementById("alertFac");
-  if(regis.faculty.value==("")){
-    labelAlertFac.innerText="กรุณาเลือกคณะ/วิทยาลัยที่สังกัด";
-    labelAlertFac.style.color="#ff5252";
-  }
-  else{
-    labelAlertFac.innerText="";  
-    }
-} 
-   
-   
-//Script รูปหน้าตรง //
-function uploadPer_pic(regis) { 
-  const  labelAlertper_pic = document.getElementById("alertperpic");
-  if(regis.per_pic.value==("")){
-	  labelAlertper_pic.innerText="กรุณาใส่รูปหน้าตรง";
-	  labelAlertper_pic.style.color="#ff5252";
-    }
-    else{
-    	labelAlertper_pic.innerText="สามารถใช้รูปหน้าตรงนี้ได้";
-    	labelAlertper_pic.style.color= "#4CAF50";
-    }
-  }   
-  
-  
-  
-//Script รูปบัตรนักศึกษา //
-function uploadStu_pic(regis) { 
-  const  labelAlertStu_pic = document.getElementById("alertstupic");
-  if(regis.stu_pic.value==("")){
-	  labelAlertStu_pic.innerText="กรุณาใส่รูปบัตรนักศึกษา";
-	  labelAlertStu_pic.style.color="#ff5252";
-    }
-    else{
-    	labelAlertStu_pic.innerText="สามารถใช้รูปบัตรนักศึกษานี้ได้";
-    	labelAlertStu_pic.style.color= "#4CAF50";
-    }
-  }  
-  
-  
-  
-  
-</script>
-
-</script>
-<script src="js/reg_progress.js"></script>
 <script src="js/fc_showpass.js"></script>
 <script src="js/fc_regis.js"></script>
 <script src="js/cs_regis.js"></script>

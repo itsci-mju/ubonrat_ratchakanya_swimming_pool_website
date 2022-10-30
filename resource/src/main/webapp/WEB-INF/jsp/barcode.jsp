@@ -14,7 +14,7 @@
 <title>BarCode</title>
 </head>
 <body align="center">
-<%@ include file="header.jsp" %>
+<%@ include file="common/header.jsp" %>
 
 
 <div align="center" style="padding-top:25px;">

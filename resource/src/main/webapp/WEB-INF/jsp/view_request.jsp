@@ -25,7 +25,7 @@
 
 <body>
 
-<%@ include file="header.jsp" %>
+<%@ include file="common/header.jsp" %>
 
 <% RequestManager rqm = new RequestManager();
 

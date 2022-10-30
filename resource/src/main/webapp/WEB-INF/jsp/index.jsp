@@ -13,10 +13,10 @@
 <link rel="stylesheet" href="css/main_style.css">
 <link rel="stylesheet" href="css/original.css">
 <body id="nonselect">
-    <%@ include file="header.jsp" %>
+    <%@ include file="common/header.jsp" %>
     <div class="main-content">
      index.jsp
      </div>
-    <%@ include file="footer.jsp" %>
+    <%@ include file="common/footer.jsp" %>
 </body>
 </html>

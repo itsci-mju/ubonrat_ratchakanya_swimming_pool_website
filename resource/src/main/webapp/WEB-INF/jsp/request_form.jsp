@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="css/original.css">
 <link rel="stylesheet" href="css/register.css">
 <body id="nonselect">
- <%@ include file="header.jsp" %>
+ <%@ include file="common/header.jsp" %>
     <div class="content-request">
         <form action="getRequestToUse" method="post" name="frm" enctype="multipart/form-data">
           <table>
@@ -102,7 +102,7 @@
           </table>
         </form>
     </div>
-    <%@ include file="footer.jsp" %>
+    <%@ include file="common/footer.jsp" %>
 </body>
 <script src="javascript/cs_requestform.js"></script>
 </html>
