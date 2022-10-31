@@ -13,7 +13,6 @@
     <title>Generate QRCode</title>
 </head>
 <body align="center">
-<%@ include file="header.jsp" %>
     <div align="center">
         
         <form action="" method="post" name="regis"><br>

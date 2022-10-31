@@ -23,6 +23,10 @@
     background: #01579B; 
   }
 
+*{
+  font-family: 'Kanit', sans-serif;
+}
+
 body{
     font-family: 'Kanit', sans-serif;
     font-size: 18px;

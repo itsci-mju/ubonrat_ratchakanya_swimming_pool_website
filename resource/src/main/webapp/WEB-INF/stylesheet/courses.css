@@ -10,6 +10,14 @@ body {
   /* hide radio buttons */
 }
 
+hr {
+  text-align: center;
+  width: 80%;
+  background: rgb(204, 204, 204) none repeat scroll 0% 0%;
+  border: 0px none;
+  height: 1px;
+}
+
 table {
   width: 100%;
 }
@@ -33,6 +41,18 @@ th.number {
 
 td:nth-last-child {
   text-align: center;
+}
+
+th.sex-head {
+  width: 10%;
+}
+
+th.age-head {
+  width: 8%;
+}
+
+th.tel-head {
+  width: 20%;
 }
 
 input[type="text"],
@@ -71,6 +91,7 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+  text-align: right;
 }
 
 input[type="text"]:focus,
@@ -93,7 +114,8 @@ input::placeholder {
 
 input[type="reset"],
 input[type="button"],
-input[type="submit"] {
+input[type="submit"],
+button[type="submit"] {
   outline: transparent none medium;
   position: relative;
   font-family: 'Kanit', sans-serif;
@@ -123,26 +145,30 @@ input[type="reset"]:active {
   color: rgb(32, 31, 30);
 }
 
-input[type="submit"] {
+input[type="submit"],
+button[type="submit"] {
   border: 1px solid #0078d4;
   background-color: #0078d4;
   color: rgb(255, 255, 255);
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover,
+button[type="submit"]:hover {
   background-color: #106ebe;
   border: 1px solid #106ebe;
   color: rgb(255, 255, 255);
 }
 
-input[type="submit"]:active {
+input[type="submit"]:active,
+button[type="submit"]:active {
   background-color: #005a9e;
   border: 1px solid #005a9e;
   color: rgb(255, 255, 255);
 }
 
 
-input[type="submit"]:focus {
+input[type="submit"]:focus,
+button[type="submit"]:focus {
   /* box-shadow: 0 0 1px 0 #0078d4; */
   outline: 1px solid #FFF;
   outline-offset: -4px;
@@ -150,7 +176,7 @@ input[type="submit"]:focus {
 }
 
 input[type="reset"]:focus,
-input[type="button"]:focus{
+input[type="button"]:focus {
   outline: 1px solid #0078d4;
   outline-offset: -4px;
 }
@@ -189,7 +215,7 @@ input[type="button"]:focus{
 .checkbox input:focus~.checkmark {
   border: 1px solid #0078d4;
   /* box-shadow: 0 0 1px 0 #0078d4; */
-  outline: #0078d4 solid 1px ;
+  outline: #0078d4 solid 1px;
 }
 
 .checkbox input:checked~.checkmark {
@@ -210,7 +236,7 @@ input[type="button"]:focus{
 .checkbox:hover input:focus:checked~.checkmark {
   background-color: #005a9e;
   border: 1px solid #005a9e;
-  outline: #005a9e solid 1px ;
+  outline: #005a9e solid 1px;
 }
 
 .checkmark:after {
@@ -248,6 +274,95 @@ input[type="button"]:focus{
   transform: rotate(45deg);
 }
 
+
+/* Customize the label (the container) */
+.radio {
+  display: inline-block;
+  position: relative;
+  padding: 10px 30px;
+  cursor: pointer;
+  background: #f3f2f1;
+  min-width: 100px;
+  /* min-height: 100px; */
+  text-align: center;
+}
+
+.typeselec:checked+.radio {
+  background: #f3f2f1;
+  outline: 1px solid #0078d4;
+}
+
+.typeselec:focus+.radio {
+  outline: 2px solid #0078d4;
+}
+
+.typeselec:hover+.radio {
+  outline: 1px solid #005a9e;
+}
+
+.typeselec:hover:focus+.radio {
+  outline: 2px solid #005a9e;
+}
+
+/* Create a custom radio button */
+.radio .radiocheckmark {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+/* Style the indicator (dot/circle) */
+.radio .radiocheckmark::before {
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: transparent;
+  content: "";
+  position: absolute;
+  display: block;
+}
+
+.typeselec:checked+.radio .radiocheckmark {
+  outline: 1px solid #0078d4;
+}
+
+.typeselec:focus+.radio .radiocheckmark,
+.typeselec:hover+.radio .radiocheckmark {
+  outline: 1px solid #005a9e;
+}
+
+.typeselec:checked+.radio .radiocheckmark::before,
+.typeselec:focus+.radio .radiocheckmark::before {
+  background: #0078d4;
+}
+
+.typeselec:checked:hover+.radio .radiocheckmark::before {
+  background: #005a9e;
+}
+
+.typeselec+.radio i {
+  font-size: 50px;
+}
+
+.typeselec:checked+.radio i,
+.typeselec:focus+.radio i {
+  color: #0078d4;
+}
+
+.typeselec:checked+.radio i {
+  color: #005a9e;
+}
+
+.typeselec+.radio span:last-child{
+  display: block;
+}
+
 .add-row,
 .del-row {
   font-family: 'Kanit', sans-serif;
@@ -268,9 +383,20 @@ input[type="button"]:focus{
   background: rgb(237, 235, 233);
 }
 
+.add-row:disabled {
+  color: #a19f9d;
+  background: #f3f2f1;
+  cursor: default;
+}
+
+.add-row:disabled i {
+  color: #a19f9d;
+}
+
 .add-row i {
   color: #0078d4;
 }
+
 
 .add-rowspan {
   font-size: medium;
@@ -404,9 +530,9 @@ input[type="button"]:focus{
   border-radius: 0 0 8px 8px;
 }
 
-.content-record {
+.course-content {
   margin: 0 auto 25px;
-  width: 640px;
+  width: 790px;
   background: #f4f3f3;
   border-radius: 8px;
   box-shadow: 0 1.6px 3.6px 0 rgba(0, 0, 0, .132), 0 .3px .9px 0 rgba(0, 0, 0, .108);
@@ -492,6 +618,13 @@ input[type="button"]:focus{
   padding: 20px 0;
 }
 
+.button-area {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 20px 0;
+}
+
 @keyframes alert-card {
   from {
     background-color: #a80000;
@@ -511,10 +644,22 @@ input[type="button"]:focus{
   animation: alert-card 250ms linear 4 alternate;
 }
 
+.gty-div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 2em 0;
+}
+
+#daysch{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 
 @media(max-width: 767px) {
-  .content-record {
-    width: 80%;
+  .course-content {
+    width: 95%;
     min-width: 340px;
   }
 }

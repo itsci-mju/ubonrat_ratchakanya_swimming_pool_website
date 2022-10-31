@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/original.css">
 <body>
-<%@ include file="header.jsp" %>
+<%@ include file="common/header.jsp" %>
     <div class="div1">
         <a href="reg_stu">
             <div class="button1" id="student">
@@ -37,6 +37,6 @@
         </div>
         </a>
     </div>
-    <%@ include file="footer.jsp" %>
+    <%@ include file="common/footer.jsp" %>
 </body>
 </html>

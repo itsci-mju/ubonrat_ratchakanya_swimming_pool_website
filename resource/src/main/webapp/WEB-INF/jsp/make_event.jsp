@@ -121,7 +121,7 @@ function checkDetail(regis){
 <link rel="stylesheet" href="css/original.css">
 <link rel="stylesheet" href="css/register.css">
 <body id="nonselect">
- <%@ include file="header.jsp" %>
+<%@ include file="common/header.jsp" %>
     <div class="content-request">
         <form action="addMakeEvent" method="post" name="frm">
           <table>
@@ -189,6 +189,6 @@ function checkDetail(regis){
           </table>
         </form>
     </div>
-    <%@ include file="footer.jsp" %>
+    <%@ include file="common/footer.jsp" %>
 </body>
 </html>

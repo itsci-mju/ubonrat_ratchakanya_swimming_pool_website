@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="css/courses.css">
 
 <body>
-  <%@ include file="header.jsp" %>
+  <%@ include file="common/header.jsp" %>
   <div class="course-content">
     <p style="font-size: 26px; margin: auto;" align="center">แบบฟอร์มสมัครเรียนว่ายน้ำ </p>
     <div class="section_area">
@@ -152,6 +152,7 @@
       </form>
     </div>
   </div>
+  <%@ include file="common/footer.jsp" %>
 </body>
 <script src="js/fc_course_regis.js"></script>
 <script>
