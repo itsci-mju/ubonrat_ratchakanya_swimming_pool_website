@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="css/original.css">
 <link rel="stylesheet" href="css/staff_content.css">
 <body id="nonselect">
-<%@ include file="header.jsp" %>
+<%@ include file="common/header.jsp" %>
     <div class="content-manage">
         <table class="manage_table">
             <thead class="column-table">
@@ -77,6 +77,6 @@
             </tfoot>
         </table>
     </div>
-    <%@ include file="footer.jsp" %>
+    <%@ include file="common/footer.jsp" %>
 </body>
 </html>

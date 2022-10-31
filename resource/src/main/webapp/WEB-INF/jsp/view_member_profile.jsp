@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>viewmemberprofile</title>
+<title>โปรไฟล์ของฉัน</title>
 </head>
 
 <!-- CSS only -->
@@ -24,7 +24,7 @@
 
 <body>
 
-<%@ include file="header.jsp" %>
+<%@ include file="common/header.jsp" %>
 
 <%	
 

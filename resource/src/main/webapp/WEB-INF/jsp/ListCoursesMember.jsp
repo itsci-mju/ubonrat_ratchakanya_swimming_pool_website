@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="header.jsp" %>
+<%@ include file="common/header.jsp" %>
 
 	<% TrainerManager tn = new TrainerManager();	
 	List<Trainees> tr = tn.ListCoursesMember();
@@ -53,5 +53,6 @@
           </table>		
 	</div><br>
 	<%} %>
+	<%@ include file="common/footer.jsp" %>
 </body>
 </html>

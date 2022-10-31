@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="css/original.css">
 <link rel="stylesheet" href="css/login.css">
 <body onload="showpass()" id="nonselect">
+<%@ include file="common/header.jsp" %>
     <div class="login-form" align="center">
         <p style="font-size: 26px; color: #1B5E20;">เข้าสู่ระบบ</p>
         <form action="isMemberLogin" method="post" name="login">
@@ -53,6 +54,7 @@
             </table>
         </form>
     </div>
+    <%@ include file="common/footer.jsp" %>
 </body>
 <script src="js/fc_showpass.js"></script>
 </html>
