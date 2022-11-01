@@ -36,10 +36,11 @@ import org.itsci.ubrswimming.util.MemberManager;
 import org.itsci.ubrswimming.util.RequestManager;
 
 @Controller
+@RequestMapping("/member")
 public class JameController {
 	
 	
-	@RequestMapping(value="/view_member_profile", method=RequestMethod.GET)
+	@RequestMapping(value="/profile", method=RequestMethod.GET)
 	public String memberprofile() {
 		return "view_member_profile";
 	}

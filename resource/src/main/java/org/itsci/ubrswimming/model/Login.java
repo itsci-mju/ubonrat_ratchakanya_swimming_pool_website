@@ -1,5 +1,7 @@
 package org.itsci.ubrswimming.model;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +19,8 @@ public class Login {
 	
 	@Column(name="members_id", length=13,nullable=false, unique = true)
 	private String members_id;
+	
+	private Set<Authority> authorities;  
 	/*
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="members_id",nullable=false)
