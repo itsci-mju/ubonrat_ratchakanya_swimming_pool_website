@@ -30,7 +30,7 @@
 <% RequestManager rqm = new RequestManager();
 
 	String id = (String) session.getAttribute("idrequest");
-    PoolReservations pr = rqm.getRequestUsePoolReturn(id);
+    PoolReservation pr = rqm.getRequestUsePoolReturn(id);
    %>
    
    

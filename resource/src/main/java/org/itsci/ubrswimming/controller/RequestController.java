@@ -14,20 +14,21 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.itsci.ubrswimming.model.Login;
-import org.itsci.ubrswimming.model.Members;
-import org.itsci.ubrswimming.model.PoolReservations;
+import org.itsci.ubrswimming.model.Member;
 import org.itsci.ubrswimming.model.PoolUsage;
 import org.itsci.ubrswimming.util.MemberManager;
 import org.itsci.ubrswimming.util.RequestManager;
 
 @Controller
 public class RequestController {
-
+	@Autowired
+	private RequestManager requestm;
 
     @RequestMapping(value = "/doRecordUsage", method = RequestMethod.POST)
     public String recordUsageService(HttpServletRequest request, HttpSession session) {
@@ -91,11 +92,10 @@ public class RequestController {
         String coupon = "coupon";
 //        pool_usage_id, coupon_no, time, usage_type, adult, child, amount, price, members_id 
         PoolUsage pus = new PoolUsage();
-        RequestManager req = new RequestManager();
         if (usage_t == 0) {
             MemberManager mn = new MemberManager();
             Login l = new Login();
-            Members m = new Members();
+            Member m = new Member();
             for (int i = 0; i < mid.size(); i++) {
                 int status = 0;
                 int mtype = 0;
@@ -112,33 +112,33 @@ public class RequestController {
                     l.setMembers_id(mid.get(i));
                     m.setLogins(l);
                     pus = new PoolUsage(0, coupon, time, usage_t, 0, 0, 1, price, m);
-                    req.recordUsageService_mem(pus);
+                    requestm.recordUsageService_mem(pus);
                 } else if (mid.get(i) != null) {
                     if (mtype == 0) { //20
                         price = 20;
                         l.setMembers_id(mid.get(i));
                         m.setLogins(l);
                         pus = new PoolUsage(0, coupon, time, usage_t, 0, 0, 1, price, m);
-                        req.recordUsageService_mem(pus);
+                        requestm.recordUsageService_mem(pus);
                     } else if (mtype == 3) { //50
                         price = 50;
                         l.setMembers_id(mid.get(i));
                         m.setLogins(l);
                         pus = new PoolUsage(0, coupon, time, usage_t, 0, 0, 1, price, m);
-                        req.recordUsageService_mem(pus);
+                        requestm.recordUsageService_mem(pus);
                     } else { // 30
                         price = 30;
                         l.setMembers_id(mid.get(i));
                         m.setLogins(l);
                         pus = new PoolUsage(0, coupon, time, usage_t, 0, 0, 1, price, m);
-                        req.recordUsageService_mem(pus);
+                        requestm.recordUsageService_mem(pus);
                     } //end add
                 }//end if
             }///end loop
         } else {
             int amount = adult + child;
             pus = new PoolUsage(0, coupon, time, usage_t, adult, child, amount, price, null);
-            req.recordUsageService_non(pus);
+            requestm.recordUsageService_non(pus);
         }
 
         return "record_usage";

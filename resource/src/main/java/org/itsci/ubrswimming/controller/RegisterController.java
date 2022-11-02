@@ -11,6 +11,7 @@ import java.time.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,76 +22,8 @@ import org.itsci.ubrswimming.util.*;
 
 @Controller
 public class RegisterController {
-
-	public RegisterController() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	// --> Student Register form
-	// --> สมัคครสมาชิกของนักศึกษา
-	/*
-	@RequestMapping(value="/doRegister_student", method=RequestMethod.POST)
-	public ModelAndView doRegister_student(HttpServletRequest request) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	 int message = 0; 
-	 ModelAndView mav = new ModelAndView("login"); 
-	 if (ServletFileUpload.isMultipartContent(request)) { 
-	 try { 
-	 List<FileItem> data = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request); 
-		String fname = request.getParameter("fname");
-		String lname = request.getParameter("lname");
-		String gender = request.getParameter("gender");
-		String tel = request.getParameter("tel");
-		String birthdate = request.getParameter("birthdate");
-		String email = request.getParameter("email");
-		String address = request.getParameter("address");
-		String sub_districts = request.getParameter("sub_districts");
-		String districts = request.getParameter("districts");
-		String province = request.getParameter("province");
-		String post_code = request.getParameter("post_code");
-		String pwd = request.getParameter("pwd");
-		String per_pic = request.getParameter("per_pic");
-		String stu_pic = request.getParameter("stu_pic");
-		String stuid = request.getParameter("stuid");
-		String faculty = request.getParameter("faculty");
-	 members mb = new members("", fname, lname, gender, tel, birthdate, "นักศึกษา", address, "", "", "", per_pic, stuid, faculty, stu_pic, "", "", "", "", "");
-	 logins log = new logins(email, pwd, 1, "");
-	 
-	 
-	 
-			 /*
-			 members(String member_id, String firstname, String lastname, int gender, String phone, String birthdate,
-				String member_type, String address, String pid, String emergency_name, String emergency_phone, String image,
-				String stuid, String faculty, String stu_card, String affliation, String officer_card, String marriage_cer,
-				String pid_card, String alumni_card);  */
-	/*
-	 siteManager mm = new siteManager(); 
-	 loginbean log = new loginbean(uname,pwd,3,0);
-	 mm.insertLogin(log);
-	 message =  (mm.insertCanteen(ct));
-	 String   path = request.getSession().getServletContext().getRealPath("/")+"\\WEB-INF/images";
-	 data.get(7).write(new File(path + File.separator + image))
-	 } catch (Exception e) { 
-		 e.printStackTrace(); 
-		 
-		 } 
-		 } 
-		 
-		 mav.addObject("message", message); 
-		 return mav; 
-		 }
-	*/
-	@RequestMapping(value="/testVerifyEmail", method=RequestMethod.GET)
-	public String testVerifyEmail() {
-	
-		return "testVerifyEmail";
-	}
+	@Autowired
+	private RegisterManager regism;
 	
 	@RequestMapping(value="/verifyEmail", method=RequestMethod.POST)
 	public String verifyEmail(HttpServletRequest request,HttpSession session) {
@@ -101,8 +34,7 @@ public class RegisterController {
 			e1.printStackTrace();
 		}
 		String email = request.getParameter("email");
-		RegisterManager mm = new RegisterManager();
-		Boolean result = mm.verifyEmail(email);
+		Boolean result = regism.verifyEmail(email);
 		session.removeAttribute("message");
 		if(result) {
 			session.setAttribute("message", "อีเมลนี้เคยถูกใช้งานแล้ว");
@@ -163,16 +95,15 @@ public class RegisterController {
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "1"+g+"0"+Long.toString(unix);
 		 Login log = new Login(email,pwd,1,mid);
-		 Members mb = new Members(log,fname,lname,gender
+		 Member mb = new Member(log,fname,lname,gender
 				 				,tel,birthdate, mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,"","",""
 				 				,per_pic,stuid,faculty
 				 				,stu_pic,"","","","","");
 		 
-		 RegisterManager mm = new RegisterManager();
-		 mm.insertLogins(log);
-		 mm.insertMembers(mb);
+		 regism.insertLogins(log);
+		 regism.insertMembers(mb);
 		 
 		 session.setAttribute("message", "สมัคครสมาชิกเสร็จสิ้น รอการอนุมัติ");
 		return "index";
@@ -229,7 +160,7 @@ public class RegisterController {
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "2"+g+"0"+Long.toString(unix);
 		 Login log = new Login(email,pwd,1,mid);
-		 Members mb = new Members(log,fname,lname,gender
+		 Member mb = new Member(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,pid,"",""
@@ -237,9 +168,8 @@ public class RegisterController {
 				 				,"",affiliation,officer_card
 				 				,marriage,id_cards,"");
 		 
-		 RegisterManager mm = new RegisterManager();
-		 mm.insertLogins(log);
-		 mm.insertMembers(mb);
+		 regism.insertLogins(log);
+		 regism.insertMembers(mb);
 		 session.setAttribute("message", "สมัคครสมาชิกเสร็จสิ้น รอการอนุมัติ");
 		return "index";
 	}
@@ -294,17 +224,15 @@ public class RegisterController {
 		 String mid = "3"+g+"0"+Long.toString(unix);
 		 
 		 Login log = new Login(email,pwd,1,mid);
-		 Members mb = new Members(log,fname,lname,gender
+		 Member mb = new Member(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,pid,"",""
 				 				,per_pic,"",""
 				 				,"","",""
 				 				,"","",alumni_card);
-		 
-		 RegisterManager mm = new RegisterManager();
-		 mm.insertLogins(log);
-		 mm.insertMembers(mb);
+		 regism.insertLogins(log);
+		 regism.insertMembers(mb);
 		 session.setAttribute("message", "สมัคครสมาชิกเสร็จสิ้น รอการอนุมัติ");
 		return "index";
 	}
@@ -365,16 +293,15 @@ public class RegisterController {
 		 String mid = "4"+g+"0"+Long.toString(unix);
 		 
 		 Login log = new Login(email,pwd,1,mid);
-		 Members mb = new Members(log,fname,lname,gender
+		 Member mb = new Member(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,pid,emn,emp
 				 				,per_pic,"","","","","",""
 				 				,id_cards,"");
-		 
-		 RegisterManager mm = new RegisterManager();
-		 mm.insertLogins(log);
-		 mm.insertMembers(mb);
+	
+		 regism.insertLogins(log);
+		 regism.insertMembers(mb);
 		 session.setAttribute("message", "สมัคครสมาชิกเสร็จสิ้น รอการอนุมัติ");
 		return "index";
 	}
@@ -443,7 +370,7 @@ public class RegisterController {
 		 String mid = "2"+g+"0"+Long.toString(unix);
 		 
 		 Login log = new Login(email,pwd,status,mid);
-		 Members mb = new Members(log,fname,lname,gender
+		 Member mb = new Member(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,pid,"",""
@@ -451,9 +378,8 @@ public class RegisterController {
 				 				,"",affiliation,officer_card
 				 				,"",id_cards,"");
 		 
-		 RegisterManager mm = new RegisterManager();
-		 mm.insertLogins(log);
-		 mm.insertMembers(mb);
+		 regism.insertLogins(log);
+		 regism.insertMembers(mb);
 		 session.setAttribute("message", "สมัคครสมาชิกเสร็จสิ้น");
 		return "index";
 	}
@@ -495,8 +421,7 @@ public class RegisterController {
 			reqt = "9:59";
 		}
 		
-		RegisterManager rm = new RegisterManager();
-		List<PoolReservations> psv = (List<PoolReservations>)rm.getTimeforCourse(thisDay+" "+reqt);
+		List<PoolReservation> psv = (List<PoolReservation>)regism.getTimeforCourse(thisDay+" "+reqt);
 		
 		ArrayList<String> dt = new ArrayList<String>();
 		if (psv.size()>0) {
@@ -504,7 +429,7 @@ public class RegisterController {
 			System.out.println(thisDay.getYear());
 			now.set(thisDay.getYear()/*+543*/, thisDay.getMonthValue()-1, thisDay.getDayOfMonth(), Integer.parseInt(time[0]), Integer.parseInt(time[1]));
 			System.out.println(psv.size());
-			for (PoolReservations p:psv) {
+			for (PoolReservation p:psv) {
 				Calendar st = p.getStart_time();
 				Calendar en = p.getEnd_time();
 				
@@ -616,6 +541,11 @@ public class RegisterController {
 
 		return "index";
 	
+	}
+	
+	public RegisterController() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	
 }

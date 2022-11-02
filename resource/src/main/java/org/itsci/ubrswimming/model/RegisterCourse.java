@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="register_courses")
-public class RegisterCourses {
+public class RegisterCourse {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="register_courses_id")
@@ -43,15 +43,19 @@ public class RegisterCourses {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="members_id",nullable=false,referencedColumnName="members_id")
-	private Members members;
+	private Member member;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="trainer_id",nullable=true,referencedColumnName="members_id")
+	private Member trainer;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="courses_id",nullable=false)
-	private Courses courses_id;
+	private Course courses_id;
 
-	public RegisterCourses(int register_courses_id, Calendar start_learn, String learn_time, String learn_type,
-						   String payment_document, int status, String reason, int learn_count, Members members,
-						   Courses courses_id) {
+	public RegisterCourse(int register_courses_id, Calendar start_learn, String learn_time, String learn_type,
+			String payment_document, int status, String reason, int learn_count, Member member, Member trainer,
+			Course courses_id) {
 		super();
 		this.register_courses_id = register_courses_id;
 		this.start_learn = start_learn;
@@ -61,7 +65,8 @@ public class RegisterCourses {
 		this.status = status;
 		this.reason = reason;
 		this.learn_count = learn_count;
-		this.members = members;
+		this.member = member;
+		this.trainer = trainer;
 		this.courses_id = courses_id;
 	}
 
@@ -129,22 +134,35 @@ public class RegisterCourses {
 		this.learn_count = learn_count;
 	}
 
-	public Members getMembers() {
-		return members;
+	public Member getMember() {
+		return member;
 	}
 
-	public void setMembers(Members members) {
-		this.members = members;
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
-	public Courses getCourses_id() {
+	public Member getTrainer() {
+		return trainer;
+	}
+
+	public void setTrainer(Member trainer) {
+		this.trainer = trainer;
+	}
+
+	public Course getCourses_id() {
 		return courses_id;
 	}
 
-	public void setCourses_id(Courses courses_id) {
+	public void setCourses_id(Course courses_id) {
 		this.courses_id = courses_id;
 	}
 
-	
+	public RegisterCourse() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
+	
+	
 }

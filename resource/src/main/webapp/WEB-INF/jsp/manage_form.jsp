@@ -6,7 +6,7 @@
     <%
     	RequestManager req = new RequestManager();
     
-    	List<PoolReservations> psv = (List<PoolReservations>) req.getListRequestUsePool();
+    	List<PoolReservation> psv = (List<PoolReservation>) req.getListRequestUsePool();
     %>
 <!DOCTYPE html>
 <html>
@@ -43,7 +43,7 @@
                 </tr>
             </thead>
             <tbody class="column-table">
-            <% for(PoolReservations p:psv) { %>
+            <% for(PoolReservation p:psv) { %>
                 <tr align="center">
                     <td align="left">
                         <div class="nametd">

@@ -10,7 +10,7 @@
 <%@ include file="common/header.jsp" %>
 
 	<% TrainerManager tn = new TrainerManager();	
-	List<Trainees> tr = tn.ListCoursesMember();
+	List<Trainee> tr = tn.ListCoursesMember();
 	
 	String student_gender = "" ;
 

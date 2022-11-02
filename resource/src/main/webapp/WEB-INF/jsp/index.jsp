@@ -15,7 +15,7 @@
     
    
     <div class="main-content">
-    index.jsp
+    index.jsp หน้าเปล่าๆ ยังไม่ได้เพิ่ม content 
     </div>
     <%@ include file="common/footer.jsp" %>
 </body>

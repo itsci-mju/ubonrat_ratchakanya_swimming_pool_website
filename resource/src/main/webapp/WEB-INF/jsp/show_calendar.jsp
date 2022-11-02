@@ -6,7 +6,7 @@
 <%@ include file="common/header.jsp" %>
 <% 
 	JameManager jm = new JameManager();
-	List<PoolReservations> prs = jm.getPool_reservationsCalendar();	
+	List<PoolReservation> prs = jm.getPool_reservationsCalendar();	
 	
 	  SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy,MM,dd");
      sdf2.setTimeZone(TimeZone.getTimeZone("GMT+7")); 
@@ -82,7 +82,7 @@
 
 	    	var sampleEvents = [
 	    		
-			<% for(PoolReservations s : prs) { %>
+			<% for(PoolReservation s : prs) { %>
 
 			{
 			    title:"<%= s.getEvent_name() %>" ,

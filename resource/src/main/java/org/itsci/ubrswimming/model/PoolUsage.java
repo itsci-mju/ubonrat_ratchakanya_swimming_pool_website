@@ -35,7 +35,7 @@ public class PoolUsage {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="members_id",nullable=true,referencedColumnName="members_id")
-	private Members members;
+	private Member member;
 	
 	
 
@@ -45,7 +45,7 @@ public class PoolUsage {
 	}
 
 	public PoolUsage(int pool_usage_id, String coupon_no, Calendar time, int usage_type, int adult, int child,
-					 int amount, int price, Members members) {
+					 int amount, int price, Member member) {
 		super();
 		this.pool_usage_id = pool_usage_id;
 		this.coupon_no = coupon_no;
@@ -55,7 +55,7 @@ public class PoolUsage {
 		this.child = child;
 		this.amount = amount;
 		this.price = price;
-		this.members = members;
+		this.member = member;
 	}
 
 	public int getPool_usage_id() {
@@ -106,12 +106,12 @@ public class PoolUsage {
 		this.price = price;
 	}
 
-	public Members getMembers() {
-		return members;
+	public Member getMember() {
+		return member;
 	}
 
-	public void setMembers(Members members) {
-		this.members = members;
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 	public int getAdult() {

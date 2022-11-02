@@ -10,306 +10,99 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.itsci.ubrswimming.model.Login;
-import org.itsci.ubrswimming.model.Members;
-import org.itsci.ubrswimming.model.PoolReservations;
+import org.itsci.ubrswimming.model.Member;
+import org.itsci.ubrswimming.model.PoolReservation;
 import org.itsci.ubrswimming.model.PoolUsage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+@Repository
 public class RequestManager {
 	
-	public int addRequestToUse(PoolReservations pool){
-		ConnectionDB condb = new ConnectionDB();
-		Connection con = condb.getConnection();
-		try {
-			Calendar sd = pool.getStart_time();
-			Calendar ed = pool.getEnd_time();
-	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	        sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
-	        String startdate = sdf.format(sd.getTime());
-	        String enddate = sdf.format(ed.getTime());
-	        
-			Statement stmt = con.createStatement();
-			String table = "pool_reservations";
-			String column = "event_name, start_time, end_time, detail, price, document, status, members_id";
-			String sql = "insert into "+table+"("+column+") "
-						+ "values('"+pool.getEvent_name()+"','"
-									+startdate+"','"
-									+enddate+"','"
-									+pool.getDetail()+"','"
-									+pool.getPrice()+"','"
-									+pool.getDocument()+"','"
-									+pool.getStatus()+"','"
-									+pool.getMembers().getLogins().getMembers_id()+"');";
-			int result = stmt.executeUpdate(sql);
-			con.close();
-			return result;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return -1;
+	@Autowired
+	SessionFactory sessionFactory;
+
+	@Transactional
+	public int addRequestToUse(PoolReservation pool){
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(pool);
+		return 1;
 	}
 	
-	public List<PoolReservations> getListRequestUsePool(){
-		List<PoolReservations> pslist = new ArrayList<>();
-		ConnectionDB condb = new ConnectionDB();
-		Connection con = condb.getConnection();
-		try {
-			Statement stmt = con.createStatement();
-			
-			String table = "pool_reservations";
-			String column = "pool_reservations_id, event_name, start_time, end_time, detail, price, document, status, members_id";
-			String sql = "select "+ column +" from "+table+" where status = 0;";
-			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				int rid = rs.getInt(1);
-				String ename = rs.getString(2);
-				String start_time = rs.getString(3);
-				String end_time = rs.getString(4);
-				String detail = rs.getString(5);
-				int price = rs.getInt(6);
-				String doc = rs.getString(7);
-				int status = rs.getInt(8);        
-				String mid = rs.getString(9);
-				
-				Calendar stime = Calendar.getInstance(); 
-				Calendar etime = Calendar.getInstance(); 
-				
-				String date[] = start_time.split("-");
-				String date2[] = date[2].split(" ");
-				String date3[] = date2[1].split(":");
-				 		stime.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date2[0]), Integer.parseInt(date3[0]), Integer.parseInt(date3[1]));
-				String date4[] = end_time.split("-");
-				String date5[] = date4[2].split(" ");
-				String date6[] = date5[1].split(":");
-						 etime.set(Integer.parseInt(date4[0]), Integer.parseInt(date4[1])-1, Integer.parseInt(date5[0]), Integer.parseInt(date6[0]), Integer.parseInt(date6[1]));
-				Login log = new Login();
-				log.setMembers_id(mid);
-				Members mb = new Members();
-				mb.setLogins(log);
-				 PoolReservations ps = new PoolReservations(rid, ename, stime, etime, detail, price, doc, status, mb);
-				 pslist.add(ps);
-			}
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+	@Transactional
+	public List<PoolReservation> getListRequestUsePool(){
+		Session session = sessionFactory.getCurrentSession();
+		Query<PoolReservation> query = session.createQuery("from PoolReservation p where p.status=:status", PoolReservation.class);
+		query.setParameter("status", 0);
+		List<PoolReservation> pslist = query.getResultList();
 		return pslist;
 	}
 	
-	public int updateRequestToUse_manager(PoolReservations pool){
-		ConnectionDB condb = new ConnectionDB();
-		Connection con = condb.getConnection();
-		try {
-			Statement stmt = con.createStatement();
-			String table = "pool_reservations";
-			String setColumn = " price = '"+pool.getPrice()+"', status = '"+pool.getStatus()+"'";
-			String where = "pool_reservations_id = '"+pool.getPool_reservations_id()+"'";
-			String sql = "update "+table+" set "+setColumn+" where "+where+";";
-			int result = stmt.executeUpdate(sql);
-			con.close();
-			return result;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return -1;
+	@Transactional
+	public int updateRequestToUse_manager(PoolReservation pool) {
+		Session session = sessionFactory.getCurrentSession();
+		Query<PoolReservation> query = session.createQuery("update PoolReservation p set p.price=:price, status=:status", PoolReservation.class);
+		query.setParameter("price", pool.getPrice());
+		query.setParameter("status", pool.getStatus());
+		int result = query.executeUpdate();
+		return result;
 	}
 	
 	// record_usage ------------------->
+	@Transactional
 	public int recordUsageService_mem(PoolUsage pus){
-		ConnectionDB condb = new ConnectionDB();
-		Connection con = condb.getConnection();
-		try {
-	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	        sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
-			Statement stmt = con.createStatement();
-			String table = "pool_usage";
-			String column = "coupon_no, time, usage_type, amount, price, members_id";
-			String sql = "insert into "+table+"("+column+") "
-						+ "values('"+pus.getCoupon_no()+"','"
-									+sdf.format(pus.getTime().getTime())+"','"
-									+pus.getUsage_type()+"','"
-									+pus.getAmount()+"','"
-									+pus.getPrice()+"','"
-									+pus.getMembers().getLogins().getMembers_id()+"');";
-			int result = stmt.executeUpdate(sql);
-			con.close();
-			return result;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return -1;
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(pus);
+		return 1;
 	}
 	
+	@Transactional
 	public int recordUsageService_non(PoolUsage pus){
-		ConnectionDB condb = new ConnectionDB();
-		Connection con = condb.getConnection();
-		try {
-	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	        sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
-			Statement stmt = con.createStatement();
-			String table = "pool_usage";
-			String column = "coupon_no, time, usage_type, adult, child, amount, price";
-			String sql = "insert into "+table+"("+column+") "
-						+ "values('"+pus.getCoupon_no()+"','"
-									+sdf.format(pus.getTime().getTime())+"','"
-									+pus.getUsage_type()+"','"
-									+pus.getAdult()+"','"
-									+pus.getChild()+"','"
-									+pus.getAmount()+"','"
-									+pus.getPrice()+"');";
-			int result = stmt.executeUpdate(sql);
-			con.close();
-			return result;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return -1;
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(pus);
+		return 1;
 	}
-
-
-
-public List<PoolReservations> getListRequestUsePool_memid(String memid){
-		List<PoolReservations> pslist = new ArrayList<>();
-		ConnectionDB condb = new ConnectionDB();
-		Connection con = condb.getConnection();
-		try {
-			Statement stmt = con.createStatement();
-			
-			String table = "pool_reservations";
-			String column = "pool_reservations_id, event_name, start_time, end_time, detail, price, document, status, members_id";
-			String where = "members_id";
-			String sql = "SELECT  pool_reservations_id,event_name, start_time, end_time, detail, price, document, status, members_id FROM pool_reservations  where members_id ='"+memid+"' order by pool_reservations_id desc limit 1";
-			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				int rid = rs.getInt(1);
-				String ename = rs.getString(2);
-				String start_time = rs.getString(3);
-				String end_time = rs.getString(4);
-				String detail = rs.getString(5);
-				int price = rs.getInt(6);
-				String doc = rs.getString(7);
-				int status = rs.getInt(8);        
-				String mid = rs.getString(9);
-				
-				Calendar stime = Calendar.getInstance(); 
-				Calendar etime = Calendar.getInstance(); 
-				
-				String date[] = start_time.split("-");
-				String date2[] = date[2].split(" ");
-				String date3[] = date2[1].split(":");
-				 		stime.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date2[0]), Integer.parseInt(date3[0]), Integer.parseInt(date3[1]));
-				String date4[] = end_time.split("-");
-				String date5[] = date4[2].split(" ");
-				String date6[] = date5[1].split(":");
-						 etime.set(Integer.parseInt(date4[0]), Integer.parseInt(date4[1])-1, Integer.parseInt(date5[0]), Integer.parseInt(date6[0]), Integer.parseInt(date6[1]));
-				Login log = new Login();
-				log.setMembers_id(mid);
-				Members mb = new Members();
-				mb.setLogins(log);
-				 PoolReservations ps = new PoolReservations(rid, ename, stime, etime, detail, price, doc, status, mb);
-				 pslist.add(ps);
-			}
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+	
+	@Transactional
+	public List<PoolReservation> getListRequestUsePool_memid(String memid){
+		Session session = sessionFactory.getCurrentSession();
+		Query<PoolReservation> query = session.createQuery("from PoolReservation p where p.members_id=:members_id", PoolReservation.class);
+		query.setParameter("members_id", memid);
+		List<PoolReservation> pslist = query.getResultList();
 		return pslist;
 	}
 	
-	
-	
-	
-	public PoolReservations getRequestUsePoolReturn(String id){
-		PoolReservations pslist = null ;
-		ConnectionDB condb = new ConnectionDB();
-		Connection con = condb.getConnection();
-		try {
-			Statement stmt = con.createStatement();
-			
-			String table = "pool_reservations";
-			String column = "pool_reservations_id, event_name, start_time, end_time, detail, price, document, status, members_id";
-			String where = "members_id";
-			String sql = "SELECT  pool_reservations_id,event_name, start_time, end_time, detail, price, document, status, members_id FROM pool_reservations where  pool_reservations_id ="+id+"";
-			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				int rid = rs.getInt(1);
-				String ename = rs.getString(2);
-				String start_time = rs.getString(3);
-				String end_time = rs.getString(4);
-				String detail = rs.getString(5);
-				int price = rs.getInt(6);
-				String doc = rs.getString(7);
-				int status = rs.getInt(8);        
-				String mid = rs.getString(9);
-				
-				Calendar stime = Calendar.getInstance(); 
-				Calendar etime = Calendar.getInstance(); 
-				
-				String date[] = start_time.split("-");
-				String date2[] = date[2].split(" ");
-				String date3[] = date2[1].split(":");
-				 		stime.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date2[0]), Integer.parseInt(date3[0]), Integer.parseInt(date3[1]));
-				String date4[] = end_time.split("-");
-				String date5[] = date4[2].split(" ");
-				String date6[] = date5[1].split(":");
-						 etime.set(Integer.parseInt(date4[0]), Integer.parseInt(date4[1])-1, Integer.parseInt(date5[0]), Integer.parseInt(date6[0]), Integer.parseInt(date6[1]));
-				Login log = new Login();
-				log.setMembers_id(mid);
-				Members mb = new Members();
-				mb.setLogins(log);
-				pslist = new PoolReservations(rid, ename, stime, etime, detail, price, doc, status, mb);
-				
-			}
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return pslist;
+	@Transactional
+	public PoolReservation getRequestUsePoolReturn(String id){
+		Session session = sessionFactory.getCurrentSession();
+		Query<PoolReservation> query = session.createQuery("from PoolReservation p where p.pool_reservations_id=:id", PoolReservation.class);
+		query.setParameter("id", id);
+		PoolReservation pool = query.getSingleResult();
+		return pool;
 	}
 
+	@Transactional
+	public int acceptReservation(String pid) {
+		Session session = sessionFactory.getCurrentSession();
+		Query<PoolReservation> query = session.createQuery("update PoolReservation p set p.status=:status where pool_reservations_id=:pool_reservations_id", PoolReservation.class);
+		query.setParameter("pool_reservations_id", pid);
+		query.setParameter("status", 1);
+		int result = query.executeUpdate();
+		return result;
+	}
 
-
-public int acceptReservations(String pid) {
-        ConnectionDB condb = new ConnectionDB();
-        Connection con = condb.getConnection();
-        try {
-            Statement stmt = con.createStatement();
-            String sql = "update pool_reservations "
-                            + "set status = 1  "
-                            + " where pool_reservations_id = '"+pid+"' ";
-            int result = stmt.executeUpdate(sql);
-            con.close();
-            return result; 
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return -1; 
-    }
+	@Transactional
+	public int deleteReservation(String pid) {
+		Session session = sessionFactory.getCurrentSession();
+		Query<PoolReservation> query = session.createQuery("delete from PoolReservation where  pool_reservations_id =:pool_reservations_id", PoolReservation.class);
+		query.setParameter("pool_reservations_id", pid);
+		int result = query.executeUpdate();
+		return result;
+	}
 	
-	
-	
-    public int deleteReservations(String prid) {
-        ConnectionDB condb = new ConnectionDB();
-        Connection con = condb.getConnection();
-        try {
-            Statement stmt = con.createStatement();
-            String sql = "delete from pool_reservations where  pool_reservations_id = '"+prid+"' ";
-            int result = stmt.executeUpdate(sql);
-            con.close();
-            return result; 
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
 }

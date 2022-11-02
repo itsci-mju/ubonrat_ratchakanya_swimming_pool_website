@@ -12,13 +12,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="trainees")
-public class Trainees {
+public class Trainee {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="trainees_id")
 	private int trainees_id;
 	
-	public Trainees(int trainees_id, String name, int age, String tel, int student_gender) {
+	public Trainee(int trainees_id, String name, int age, String tel, int student_gender) {
 		super();
 		this.trainees_id = trainees_id;
 		this.name = name;
@@ -41,10 +41,10 @@ public class Trainees {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="register_courses_id",nullable=false,referencedColumnName="register_courses_id")
-	private RegisterCourses register_courses;
+	private RegisterCourse register_courses;
 	
-	public Trainees(int trainees_id, String name, int age, String tel, int student_gender,
-					RegisterCourses register_courses) {
+	public Trainee(int trainees_id, String name, int age, String tel, int student_gender,
+			RegisterCourse register_courses) {
 		super();
 		this.trainees_id = trainees_id;
 		this.name = name;
@@ -53,85 +53,59 @@ public class Trainees {
 		this.student_gender = student_gender;
 		this.register_courses = register_courses;
 	}
-
-
 
 	public int getTrainees_id() {
 		return trainees_id;
 	}
 
-
-
 	public void setTrainees_id(int trainees_id) {
 		this.trainees_id = trainees_id;
 	}
-
-
 
 	public String getName() {
 		return name;
 	}
 
-
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
 
 	public int getAge() {
 		return age;
 	}
 
-
-
 	public void setAge(int age) {
 		this.age = age;
 	}
-
-
 
 	public String getTel() {
 		return tel;
 	}
 
-
-
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-
-
 
 	public int getStudent_gender() {
 		return student_gender;
 	}
 
-
-
 	public void setStudent_gender(int student_gender) {
 		this.student_gender = student_gender;
 	}
 
-
-
-	public RegisterCourses getRegister_courses() {
+	public RegisterCourse getRegister_courses() {
 		return register_courses;
 	}
 
-
-
-	public void setRegister_courses(RegisterCourses register_courses) {
+	public void setRegister_courses(RegisterCourse register_courses) {
 		this.register_courses = register_courses;
 	}
 
-
-
-	public Trainees() {
+	public Trainee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	
 }

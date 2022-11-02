@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="courses")
-public class Courses {
+public class Course {
 	@Id
 	@Column(name="courses_id")
 	private int courses_id;
@@ -27,7 +27,7 @@ public class Courses {
 	@Column(name="courses_type", nullable=false, length=45)
 	private String courses_type;
 
-	public Courses(int courses_id, String courses_name, String description, int price, int max_day,
+	public Course(int courses_id, String courses_name, String description, int price, int max_day,
 				   String courses_type) {
 		super();
 		this.courses_id = courses_id;
@@ -38,7 +38,7 @@ public class Courses {
 		this.courses_type = courses_type;
 	}
 
-	public Courses() {
+	public Course() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

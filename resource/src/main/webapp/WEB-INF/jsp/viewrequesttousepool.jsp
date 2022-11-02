@@ -33,7 +33,7 @@
 
       <% 
    	RequestManager rqm = new RequestManager();
-    List <PoolReservations>  pr = rqm.getListRequestUsePool_memid(log.getMembers_id());
+    List <PoolReservation>  pr = rqm.getListRequestUsePool_memid(log.getMembers_id());
     
    %>
    

@@ -18,6 +18,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,14 +31,18 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 import org.itsci.ubrswimming.model.Login;
-import org.itsci.ubrswimming.model.Members;
-import org.itsci.ubrswimming.model.PoolReservations;
+import org.itsci.ubrswimming.model.Member;
+import org.itsci.ubrswimming.model.PoolReservation;
 import org.itsci.ubrswimming.util.MemberManager;
 import org.itsci.ubrswimming.util.RequestManager;
 
 @Controller
 public class JameController {
+	@Autowired
+	private RequestManager requestm;
 	
+	@Autowired
+	private MemberManager MemberManager;
 	
 	@RequestMapping(value="/view_member_profile", method=RequestMethod.GET)
 	public String memberprofile() {
@@ -82,14 +87,11 @@ public class JameController {
 				
 		Login log = new Login();
 			log.setMembers_id(memberid);
-		Members mb = new Members();
+		Member mb = new Member();
 			mb.setLogins(log);
-		PoolReservations pr = new PoolReservations(0, eventname,sd,ed,detail,0, detail, 1, mb);
-		
-		
-		
-		RequestManager rqm = new RequestManager();
-		rqm.addRequestToUse(pr);
+		PoolReservation pr = new PoolReservation(0, eventname,sd,ed,detail,0, detail, 1, mb);
+
+		requestm.addRequestToUse(pr);
 		return "index";
 	}
 	
@@ -115,8 +117,8 @@ public class JameController {
 		int r = -1;
 	
 		String pid =request.getParameter("id");
-        RequestManager req = new RequestManager();
-        r = req.acceptReservations(pid);
+
+        r = requestm.acceptReservation(pid);
         
         request.setAttribute("resultApprove", r);
 
@@ -128,94 +130,11 @@ public class JameController {
     public String deleteReservations (HttpServletRequest request,HttpSession session) {
         int r = -1;
         String rpid =request.getParameter("id");
-        RequestManager req = new RequestManager();
-        r = req.deleteReservations(rpid);
+        r = requestm.deleteReservation(rpid);
         request.setAttribute("resultCancel", r);
 
         return "manage_form";
     }
-
-    /*แบบปอร์มขอเข้าใช้สระว่ายน้ำ*/ 
-//    @RequestMapping(value="/getRequestToUse", method = RequestMethod.GET)
-//    						
-//    	public String getRequestToUse(HttpServletRequest request, HttpSession session, @RequestParam("doc") MultipartFile file) {
-//			try {
-//				request.setCharacterEncoding("UTF-8");
-//				
-//				Calendar sd = Calendar.getInstance();
-//				Calendar ed = Calendar.getInstance();
-//		        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		        sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
-//		     
-//		        String memberid = request.getParameter("mid");
-//		        String eventname = request.getParameter("eventname");
-//				String startdate = request.getParameter("startdate");
-//				int starthour = Integer.parseInt(request.getParameter("starthour"));
-//				int startminute = Integer.parseInt(request.getParameter("startminute"));
-//				String enddate = request.getParameter("enddate");
-//				int endhour = Integer.parseInt(request.getParameter("endhour"));
-//				int endminute = Integer.parseInt(request.getParameter("endminute"));
-//				String detail = request.getParameter("detail");
-//				String filename = request.getParameter("doc");
-//
-//
-//				String sdate[] = startdate.split("-");
-//				 		sd.set(Integer.parseInt(sdate[0]), Integer.parseInt(sdate[1])-1, Integer.parseInt(sdate[2]), starthour, startminute);
-//				String edate[] = enddate.split("-");
-//						ed.set(Integer.parseInt(edate[0]), Integer.parseInt(edate[1])-1, Integer.parseInt(edate[2]), endhour, endminute);
-//						
-//				Login log = new Login();
-//					log.setMembers_id(memberid);
-//				Members mb = new Members();
-//					mb.setLogins(log);
-//				PoolReservations pr = new PoolReservations(0,eventname,sd,ed,detail,0,file.getOriginalFilename(),0,mb);
-//				RequestManager rqm = new RequestManager();
-//				rqm.addRequestToUse(pr);
-//				
-//				
-//				String Givefile =  file.getOriginalFilename();
-//				if (!file.isEmpty()) {
-//					String original_file_name = file.getOriginalFilename();
-//					String type_image = original_file_name.substring(original_file_name.lastIndexOf("."));				
-//					String path =  "D:\\project\\resource\\src\\main\\webapp\\WEB-INF\\image";
-//					//String path = request.getServletContext().getRealPath("/") + "image";
-//					System.out.println(path);
-//					System.out.println(original_file_name);	
-//					
-//					File uploadPic;
-//					uploadPic = convert(file, path + "/" + Givefile);
-//
-//					BufferedImage image = ImageIO.read(uploadPic);
-//					int width = 0;
-//					int height = 0;
-//
-//					if (image.getWidth() > image.getHeight()) {
-//						width = 400;
-//						height = 400;
-//					} else {
-//						width = 400;
-//						height = 400;
-//					}
-//
-//					BufferedImage imageWrite = getScaledInstance(image, width, height,
-//							RenderingHints.VALUE_RENDER_QUALITY, true);
-//					if (type_image.equalsIgnoreCase(".png")) {
-//						ImageIO.write(imageWrite, "jpg", new File(path + "/" + Givefile));
-//					} else if (type_image.equalsIgnoreCase(".jpeg")) {
-//						ImageIO.write(imageWrite, "jpg", new File(path + "/" + Givefile));
-//					} else {
-//						ImageIO.write(imageWrite, "jpg", new File(path + "/" + Givefile));
-//					}
-//				}
-//
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		
-//		return "index";
-//	}
-	
-    
     
     /*แบบปอร์มขอเข้าใช้สระว่ายน้ำ*/ 
     //อันที่อาจารย์เก่งทำให้
@@ -295,17 +214,13 @@ public class JameController {
 
             Login log = new Login();
             log.setMembers_id(memberid);
-            Members mb = new Members();
+            Member mb = new Member();
             mb.setLogins(log);
-            PoolReservations pr = new PoolReservations(0, eventname, sd, ed, detail, 0, filename, 0, mb);
-            RequestManager rqm = new RequestManager();
-            rqm.addRequestToUse(pr);
+            PoolReservation pr = new PoolReservation(0, eventname, sd, ed, detail, 0, filename, 0, mb);
+            requestm.addRequestToUse(pr);
         }
         return "index";
     }
-    
-    
-    
     
 	public static BufferedImage getScaledInstance(BufferedImage img, int targetWidth, int targetHeight, Object hint,
 			boolean higherQuality) {
@@ -354,7 +269,6 @@ public class JameController {
 		return convFile;
 	}
 	
-	
 	@RequestMapping(value="/doRecordUsage55", method=RequestMethod.POST)
 	public String recordUsageService(HttpServletRequest request,HttpSession session) {
 		try {
@@ -377,8 +291,7 @@ public class JameController {
 		int price = 0;
 		// calculate price 
 		if (usage_t==0) {
-			MemberManager mm = new MemberManager();
-			int t = mm.getmember(mid).getMember_type();
+			int t = MemberManager.getmember(mid).getMember_type();
 			price=0;
 		}else {
 			price=(child*30)+(adult*50);

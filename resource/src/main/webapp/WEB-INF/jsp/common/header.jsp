@@ -7,11 +7,11 @@
     <%
     	MemberManager mema = new MemberManager();
     	Login log = new Login();
-    	Members mb = new Members();
+    	Member mb = new Member();
     	String type = null;
     	try{
     			log = (Login)session.getAttribute("login");
-    			mb = new Members();
+    			mb = new Member();
     			mb = mema.getmember(log.getMembers_id());
     			
     			if(log.getStatus()==2){
@@ -38,6 +38,14 @@
 </head>
 <link rel="stylesheet" href="css/main_style.css">
 <link rel="stylesheet" href="css/original.css">
+<style>
+ 	.nav_bar{
+ 		z-index:800;
+ 	}
+ 	.dropdown-menu{
+ 		z-index:800;
+ 	}
+</style>
 <body id="nonselect">
 	<div class="content-head">
         <header class="header_page">
@@ -81,7 +89,7 @@
                     	<i class="bi bi-caret-down-fill" style="font-size: 16px;"></i>
                 	</button>
                 	<ul class="dropdown-menu">
-                    	<li><a href="gocourse_register">ขอเข้าใช้งานสระน้ำ</a></li>
+                    	<li><a href="gorequest">ขอเข้าใช้งานสระน้ำ</a></li>
                     	<li><a href="#">ประวัติคำร้องขอ</a></li>
                 	</ul>
             	</div>

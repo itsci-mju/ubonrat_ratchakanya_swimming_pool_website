@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table (name="pool_reservations")
-public class PoolReservations {
+public class PoolReservation {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="pool_reservations_id")
@@ -35,13 +35,13 @@ public class PoolReservations {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="members_id",nullable=false,referencedColumnName="members_id")
-	private Members members;
+	private Member members;
 
 	
 	
 	
 
-	public PoolReservations(String event_name, Calendar start_time, int status) {
+	public PoolReservation(String event_name, Calendar start_time, int status) {
 		super();
 		this.event_name = event_name;
 		this.start_time = start_time;
@@ -49,13 +49,13 @@ public class PoolReservations {
 	}
 
 
-	public PoolReservations() {
+	public PoolReservation() {
 		super();
 	}
 
 
-	public PoolReservations(int pool_reservations_id, String event_name, Calendar start_time, Calendar end_time,
-							String detail, int price, String document, int status, Members members) {
+	public PoolReservation(int pool_reservations_id, String event_name, Calendar start_time, Calendar end_time,
+							String detail, int price, String document, int status, Member members) {
 		super();
 		this.pool_reservations_id = pool_reservations_id;
 		this.event_name = event_name;
@@ -134,11 +134,11 @@ public class PoolReservations {
 		this.status = status;
 	}
 
-	public Members getMembers() {
+	public Member getMembers() {
 		return members;
 	}
 
-	public void setMembers(Members members) {
+	public void setMembers(Member members) {
 		this.members = members;
 	}
 	

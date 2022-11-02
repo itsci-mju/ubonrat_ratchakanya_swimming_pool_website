@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table (name="members")
-public class Members {
+public class Member {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -71,7 +71,7 @@ public class Members {
 	@Column(name="alumni_card",nullable=true,length=45)
 	private String alumni_card;
 
-	public Members(Login logins, String firstname, String lastname, String gender, String phone,
+	public Member(Login logins, String firstname, String lastname, String gender, String phone,
                    Calendar birthdate, int member_type, String address, String pid, String emergency_name,
                    String emergency_phone, String image, String stuid, String faculty, String stu_card, String affiliation,
                    String officer_card, String marriage_cer, String pid_card, String alumni_card) {
@@ -98,455 +98,175 @@ public class Members {
 		this.alumni_card = alumni_card;
 	}
 
-
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
-
 	public Login getLogins() {
 		return logins;
 	}
-
-
-
 
 	public void setLogins(Login logins) {
 		this.logins = logins;
 	}
 
-
-
-
-
-
-
-
 	public String getFirstname() {
 		return firstname;
 	}
-
-
-
-
-
-
-
 
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
 
-
-
-
-
-
-
-
 	public String getLastname() {
 		return lastname;
 	}
-
-
-
-
-
-
-
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
 
-
-
-
-
-
-
-
 	public String getGender() {
 		return gender;
 	}
-
-
-
-
-
-
-
 
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-
-
-
-
-
-
-
 	public String getPhone() {
 		return phone;
 	}
-
-
-
-
-
-
-
 
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-
-
-
-
-
-
-
 	public Calendar getBirthdate() {
 		return birthdate;
 	}
-
-
-
-
-
-
-
 
 	public void setBirthdate(Calendar birthdate) {
 		this.birthdate = birthdate;
 	}
 
-
-
-
-
-
-
-
 	public int getMember_type() {
 		return member_type;
 	}
-
-
-
-
-
-
-
 
 	public void setMember_type(int member_type) {
 		this.member_type = member_type;
 	}
 
-
-
-
-
-
-
-
 	public String getAddress() {
 		return address;
 	}
-
-
-
-
-
-
-
 
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
-
-
-
-
-
-
-
 	public String getPid() {
 		return pid;
 	}
-
-
-
-
-
-
-
 
 	public void setPid(String pid) {
 		this.pid = pid;
 	}
 
-
-
-
-
-
-
-
 	public String getEmergency_name() {
 		return emergency_name;
 	}
-
-
-
-
-
-
-
 
 	public void setEmergency_name(String emergency_name) {
 		this.emergency_name = emergency_name;
 	}
 
-
-
-
-
-
-
-
 	public String getEmergency_phone() {
 		return emergency_phone;
 	}
-
-
-
-
-
-
-
 
 	public void setEmergency_phone(String emergency_phone) {
 		this.emergency_phone = emergency_phone;
 	}
 
-
-
-
-
-
-
-
 	public String getImage() {
 		return image;
 	}
-
-
-
-
-
-
-
 
 	public void setImage(String image) {
 		this.image = image;
 	}
 
-
-
-
-
-
-
-
 	public String getStuid() {
 		return stuid;
 	}
-
-
-
-
-
-
-
 
 	public void setStuid(String stuid) {
 		this.stuid = stuid;
 	}
 
-
-
-
-
-
-
-
 	public String getFaculty() {
 		return faculty;
 	}
-
-
-
-
-
-
-
 
 	public void setFaculty(String faculty) {
 		this.faculty = faculty;
 	}
 
-
-
-
-
-
-
-
 	public String getStu_card() {
 		return stu_card;
 	}
-
-
-
-
-
-
-
 
 	public void setStu_card(String stu_card) {
 		this.stu_card = stu_card;
 	}
 
-
-
-
-
-
-
-
 	public String getAffiliation() {
 		return affiliation;
 	}
-
-
-
-
-
-
-
 
 	public void setAffiliation(String affiliation) {
 		this.affiliation = affiliation;
 	}
 
-
-
-
-
-
-
-
 	public String getOfficer_card() {
 		return officer_card;
 	}
-
-
-
-
-
-
-
 
 	public void setOfficer_card(String officer_card) {
 		this.officer_card = officer_card;
 	}
 
-
-
-
-
-
-
-
 	public String getMarriage_cer() {
 		return marriage_cer;
 	}
-
-
-
-
-
-
-
 
 	public void setMarriage_cer(String marriage_cer) {
 		this.marriage_cer = marriage_cer;
 	}
 
-
-
-
-
-
-
-
 	public String getPid_card() {
 		return pid_card;
 	}
-
-
-
-
-
-
-
 
 	public void setPid_card(String pid_card) {
 		this.pid_card = pid_card;
 	}
 
-
-
-
-
-
-
-
 	public String getAlumni_card() {
 		return alumni_card;
 	}
-
-
-
-
-
-
-
 
 	public void setAlumni_card(String alumni_card) {
 		this.alumni_card = alumni_card;
 	}
 
-
-
-
-
-
-
-
-	public Members() {
+	public Member() {
 		// TODO Auto-generated constructor stub
 	}
 

@@ -10,7 +10,7 @@
 <%@ include file="common/header.jsp" %>
 
 	<% TrainerManager tn = new TrainerManager();	
-	List<Courses> cou = tn.ViewTeachSchedule();
+	List<Course> cou = tn.ViewTeachSchedule();
 	
 	
 	String couses_type ="";
