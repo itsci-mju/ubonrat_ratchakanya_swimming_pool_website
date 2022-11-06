@@ -1,8 +1,5 @@
 package org.itsci.ubrswimming.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -69,15 +66,11 @@ public class MappingController {
 		return "record_usage";
 	}
 	
-	@RequestMapping(value="/gocourse_register", method=RequestMethod.GET)
-	public String gocourse_register() {
-		return "course_register";
-	}
+	@RequestMapping(value="/show_calendar", method=RequestMethod.GET)
+   	public String getPool_reservationsCalendar() {
+   		return "show_calendar";
+   	}
 	
-	@RequestMapping(value="/getReportStat", method=RequestMethod.GET)
-	public String getReportStat(HttpServletRequest request,HttpSession session) {
-		return "ReportPoolUsageStatistics";
-	}
 	
 	
 

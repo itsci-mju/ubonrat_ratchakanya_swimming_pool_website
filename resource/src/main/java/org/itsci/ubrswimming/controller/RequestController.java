@@ -1,7 +1,5 @@
 package org.itsci.ubrswimming.controller;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -9,11 +7,6 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +22,8 @@ import org.itsci.ubrswimming.util.RequestManager;
 public class RequestController {
 	@Autowired
 	private RequestManager requestm;
+	@Autowired
+	private MemberManager MemberManager;
 
     @RequestMapping(value = "/doRecordUsage", method = RequestMethod.POST)
     public String recordUsageService(HttpServletRequest request, HttpSession session) {
@@ -93,15 +88,14 @@ public class RequestController {
 //        pool_usage_id, coupon_no, time, usage_type, adult, child, amount, price, members_id 
         PoolUsage pus = new PoolUsage();
         if (usage_t == 0) {
-            MemberManager mn = new MemberManager();
             Login l = new Login();
             Member m = new Member();
             for (int i = 0; i < mid.size(); i++) {
                 int status = 0;
                 int mtype = 0;
                 try {
-                    status = mn.getStatusfromLogin(mid.get(i)).getStatus();
-                    mtype = mn.getmtypefromMember(mid.get(i)).getMember_type();
+                    status = MemberManager.getStatusfromLogin(mid.get(i)).getStatus();
+                    mtype = MemberManager.getmtypefromMember(mid.get(i)).getMember_type();
                 } catch (Exception e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
@@ -109,27 +103,27 @@ public class RequestController {
 
                 if (mid.get(i) != null && status == 2) {
                     price = 0;
-                    l.setMembers_id(mid.get(i));
-                    m.setLogins(l);
+                    l.setMember_id(mid.get(i));
+                    m.setLogin(l);
                     pus = new PoolUsage(0, coupon, time, usage_t, 0, 0, 1, price, m);
                     requestm.recordUsageService_mem(pus);
                 } else if (mid.get(i) != null) {
                     if (mtype == 0) { //20
                         price = 20;
-                        l.setMembers_id(mid.get(i));
-                        m.setLogins(l);
+                        l.setMember_id(mid.get(i));
+                        m.setLogin(l);
                         pus = new PoolUsage(0, coupon, time, usage_t, 0, 0, 1, price, m);
                         requestm.recordUsageService_mem(pus);
                     } else if (mtype == 3) { //50
                         price = 50;
-                        l.setMembers_id(mid.get(i));
-                        m.setLogins(l);
+                        l.setMember_id(mid.get(i));
+                        m.setLogin(l);
                         pus = new PoolUsage(0, coupon, time, usage_t, 0, 0, 1, price, m);
                         requestm.recordUsageService_mem(pus);
                     } else { // 30
                         price = 30;
-                        l.setMembers_id(mid.get(i));
-                        m.setLogins(l);
+                        l.setMember_id(mid.get(i));
+                        m.setLogin(l);
                         pus = new PoolUsage(0, coupon, time, usage_t, 0, 0, 1, price, m);
                         requestm.recordUsageService_mem(pus);
                     } //end add

@@ -1,0 +1,7 @@
+/*add authority */
+
+INSERT INTO `it496_ubr`.`authorities` (`id`, `authority`, `description`) VALUES ('1', 'web', 'Website Member');
+INSERT INTO `it496_ubr`.`authorities` (`id`, `authority`, `description`) VALUES ('2', 'pool', 'Pool Member');
+INSERT INTO `it496_ubr`.`authorities` (`id`, `authority`, `description`) VALUES ('3', 'trainer', 'Trainer');
+INSERT INTO `it496_ubr`.`authorities` (`id`, `authority`, `description`) VALUES ('4', 'manager', 'Web manager');
+INSERT INTO `it496_ubr`.`authorities` (`id`, `authority`, `description`) VALUES ('5', 'anonymous', 'Inacctivate');

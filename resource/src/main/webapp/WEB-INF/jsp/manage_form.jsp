@@ -7,6 +7,9 @@
     	RequestManager req = new RequestManager();
     
     	List<PoolReservation> psv = (List<PoolReservation>) req.getListRequestUsePool();
+    	
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
     %>
 <!DOCTYPE html>
 <html>

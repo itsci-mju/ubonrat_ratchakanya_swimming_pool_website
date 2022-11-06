@@ -1,38 +1,43 @@
 package org.itsci.ubrswimming.model;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table (name="logins")
-public class Login {
+public class Login implements UserDetails {
 	@Id
 	@Column(name="email", length=50)
 	private String email;
 	
-	@Column(name="password", nullable=false, length=16)
+	@Column(name="password", nullable=false, length=255)
 	private String password;
 	
 	@Column(name="status", nullable=false)
 	private int status;
 	
-	@Column(name="members_id", length=13,nullable=false, unique = true)
-	private String members_id;
-	/*
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="members_id",nullable=false)
-	private members members_id;
- 	*/
-
+	@Column(name="member_id", length=13,nullable=false, unique = true)
+	private String member_id;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+	@JoinTable(name = "login_authority",
+			joinColumns= { @JoinColumn(name = "login_id")},
+			inverseJoinColumns= { @JoinColumn(name = "authority_id")})
+	private Set<Authority> authorities = new HashSet<>();
+	
 	public Login() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Login(String email, String password, int status, String members_id) {
+	public Login(String email, String password, int status, String member_id) {
 		super();
 		this.email = email;
 		this.password = password;
 		this.status = status;
-		this.members_id = members_id;
+		this.member_id = member_id;
 	}
 	public String getEmail() {
 		return email;
@@ -43,6 +48,32 @@ public class Login {
 	public String getPassword() {
 		return password;
 	}
+
+	@Override
+	public String getUsername() {
+		return email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -52,14 +83,19 @@ public class Login {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public String getMembers_id() {
-		return members_id;
+	public String getMember_id() {
+		return member_id;
 	}
-	public void setMembers_id(String member_id) {
-		this.members_id = member_id;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
-	
-	
 
+	public Set<Authority> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(Set<Authority> authorities) {
+		this.authorities = authorities;
+	}
 }
 

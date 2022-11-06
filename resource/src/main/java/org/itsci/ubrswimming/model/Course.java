@@ -18,13 +18,13 @@ public class Course {
 	@Column(name="description", nullable=true, length=255)
 	private String description;
 	
-	@Column(name="price", nullable=false)
+	@Column(name="price", nullable=true)
 	private int price;
 	
-	@Column(name="max_day", nullable=false)
+	@Column(name="max_day", nullable=true)
 	private int max_day;
 	
-	@Column(name="courses_type", nullable=false, length=45)
+	@Column(name="courses_type", nullable=true, length=45)
 	private String courses_type;
 
 	public Course(int courses_id, String courses_name, String description, int price, int max_day,

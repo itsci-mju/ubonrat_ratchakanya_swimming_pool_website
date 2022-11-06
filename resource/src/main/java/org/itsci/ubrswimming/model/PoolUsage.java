@@ -12,7 +12,7 @@ public class PoolUsage {
 	@Column(name="pool_usage_id")
 	private int pool_usage_id;
 	
-	@Column(name="coupon_no", nullable=false, length=10)
+	@Column(name="coupon_no", nullable=true, length=10)
 	private String coupon_no;
 	
 	@Column(name="time",nullable=false)
@@ -34,7 +34,7 @@ public class PoolUsage {
 	private int price;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="members_id",nullable=true,referencedColumnName="members_id")
+	@JoinColumn(name="member_id",nullable=true,referencedColumnName="member_id")
 	private Member member;
 	
 	

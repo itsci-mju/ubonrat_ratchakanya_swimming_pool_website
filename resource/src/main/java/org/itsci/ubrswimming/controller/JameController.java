@@ -13,17 +13,13 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
-import javax.imageio.ImageIO;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -33,31 +29,13 @@ import org.apache.commons.io.FilenameUtils;
 import org.itsci.ubrswimming.model.Login;
 import org.itsci.ubrswimming.model.Member;
 import org.itsci.ubrswimming.model.PoolReservation;
-import org.itsci.ubrswimming.util.MemberManager;
 import org.itsci.ubrswimming.util.RequestManager;
 
 @Controller
 public class JameController {
 	@Autowired
 	private RequestManager requestm;
-	
-	@Autowired
-	private MemberManager MemberManager;
-	
-	@RequestMapping(value="/view_member_profile", method=RequestMethod.GET)
-	public String memberprofile() {
-		return "view_member_profile";
-	}
-	
-	
-	
-	@RequestMapping(value="/viewrequesttousepool", method=RequestMethod.GET)
-	public String viewrequesttousepool() {
-		return "viewrequesttousepool";
-	}
-	
-	
-	
+
 	
 	@RequestMapping(value="/addMakeEvent", method=RequestMethod.POST)
 	public String getRequestToUse2(HttpServletRequest request,HttpSession session) {
@@ -77,8 +55,6 @@ public class JameController {
 		String startdate = request.getParameter("startdate");
 		String enddate = request.getParameter("enddate");		
 		String detail = request.getParameter("detail");
-		
-
 
 		String sdate[] = startdate.split("-");
 		 		sd.set(Integer.parseInt(sdate[0]), Integer.parseInt(sdate[1])-1, Integer.parseInt(sdate[2]));
@@ -86,55 +62,14 @@ public class JameController {
 				ed.set(Integer.parseInt(edate[0]), Integer.parseInt(edate[1])-1, Integer.parseInt(edate[2]));
 				
 		Login log = new Login();
-			log.setMembers_id(memberid);
+			log.setMember_id(memberid);
 		Member mb = new Member();
-			mb.setLogins(log);
+			mb.setLogin(log);
 		PoolReservation pr = new PoolReservation(0, eventname,sd,ed,detail,0, detail, 1, mb);
 
 		requestm.addRequestToUse(pr);
 		return "index";
 	}
-	
-	
-	@RequestMapping(value="/make_event", method=RequestMethod.GET)
-	public String make_event() {
-		return "make_event";
-	}
-	
-	
-	
-	@RequestMapping(value="/view_request", method=RequestMethod.GET)
-	public String view_request(HttpServletRequest request,HttpSession session) {
-		String pid =request.getParameter("id");
-		session.setAttribute("idrequest", pid);
-		return "view_request";
-	}
-	
-	
-	
-	@RequestMapping(value="/approve_request", method=RequestMethod.GET)
-	public String approve_request(HttpServletRequest request,HttpSession session) {
-		int r = -1;
-	
-		String pid =request.getParameter("id");
-
-        r = requestm.acceptReservation(pid);
-        
-        request.setAttribute("resultApprove", r);
-
-		return "manage_form";
-	}
-	
-	
-    @RequestMapping(value="/deleteReservations",method=RequestMethod.GET)
-    public String deleteReservations (HttpServletRequest request,HttpSession session) {
-        int r = -1;
-        String rpid =request.getParameter("id");
-        r = requestm.deleteReservation(rpid);
-        request.setAttribute("resultCancel", r);
-
-        return "manage_form";
-    }
     
     /*แบบปอร์มขอเข้าใช้สระว่ายน้ำ*/ 
     //อันที่อาจารย์เก่งทำให้
@@ -213,9 +148,9 @@ public class JameController {
             ed.set(Integer.parseInt(edate[0]), Integer.parseInt(edate[1])-1, Integer.parseInt(edate[2]), endhour, endminute);
 
             Login log = new Login();
-            log.setMembers_id(memberid);
+            log.setMember_id(memberid);
             Member mb = new Member();
-            mb.setLogins(log);
+            mb.setLogin(log);
             PoolReservation pr = new PoolReservation(0, eventname, sd, ed, detail, 0, filename, 0, mb);
             requestm.addRequestToUse(pr);
         }
@@ -269,83 +204,15 @@ public class JameController {
 		return convFile;
 	}
 	
-	@RequestMapping(value="/doRecordUsage55", method=RequestMethod.POST)
-	public String recordUsageService(HttpServletRequest request,HttpSession session) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
-		
-		String mid = request.getParameter("mid");
-		
-		Calendar time = Calendar.getInstance();
-		int usage_t = Integer.parseInt(request.getParameter("usetype"));
-		String coupon = "";
-		int adult = Integer.parseInt(request.getParameter("adult"));
-		int child = Integer.parseInt(request.getParameter("child"));
-		int amount = adult+child;
-		int price = 0;
-		// calculate price 
-		if (usage_t==0) {
-			int t = MemberManager.getmember(mid).getMember_type();
-			price=0;
-		}else {
-			price=(child*30)+(adult*50);
-		}
-			
-		return "record_usage";
-	}
-    
-    
-    
-  
-    @RequestMapping(value="/ReportPoolUsageStatistics", method=RequestMethod.GET)
-	public String ReportPoolUsageStatistics(HttpServletRequest request,HttpSession session) {
-		return "ReportPoolUsageStatistics";
-	}
-    
-    
-    @RequestMapping(value="/getSumPrice", method=RequestMethod.GET)
-	public String getSumPrice() {
-		return "ReportPoolUsageStatistics";
-	}
-    
-    
-    
-    
-    @RequestMapping(value="/getSumAmount", method=RequestMethod.GET)
-   	public String getSumAmount() {
-   		return "ReportPoolUsageStatistics";
-   	}
-    
-    
     
     @RequestMapping(value="/barcode", method=RequestMethod.GET)
    	public String getbarcode() {
    		return "barcode";
    	}
     
-    
-    
     @RequestMapping(value="/qrcode", method=RequestMethod.GET)
    	public String getqrcode() {
    		return "qrcode";
    	}
     
-    
-    @RequestMapping(value="/show_calendar", method=RequestMethod.GET)
-   	public String getPool_reservationsCalendar() {
-   		return "show_calendar";
-   	}
-    
-    
-    
-    
-   
-    
-  
 }

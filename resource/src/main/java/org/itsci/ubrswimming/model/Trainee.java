@@ -18,15 +18,6 @@ public class Trainee {
 	@Column(name="trainees_id")
 	private int trainees_id;
 	
-	public Trainee(int trainees_id, String name, int age, String tel, int student_gender) {
-		super();
-		this.trainees_id = trainees_id;
-		this.name = name;
-		this.age = age;
-		this.tel = tel;
-		this.student_gender = student_gender;
-	}
-
 	@Column(name="name", nullable=false, length=65)
 	private String name;
 	
@@ -42,6 +33,15 @@ public class Trainee {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="register_courses_id",nullable=false,referencedColumnName="register_courses_id")
 	private RegisterCourse register_courses;
+	
+	public Trainee(int trainees_id, String name, int age, String tel, int student_gender) {
+		super();
+		this.trainees_id = trainees_id;
+		this.name = name;
+		this.age = age;
+		this.tel = tel;
+		this.student_gender = student_gender;
+	}
 	
 	public Trainee(int trainees_id, String name, int age, String tel, int student_gender,
 			RegisterCourse register_courses) {

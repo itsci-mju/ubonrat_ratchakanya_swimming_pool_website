@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,21 +13,21 @@
 <%@ include file="common/header.jsp" %>
     <div class="login-form" align="center">
         <p style="font-size: 26px; color: #1B5E20;">เข้าสู่ระบบ</p>
-        <form action="isMemberLogin" method="post" name="login">
+        <form:form action="${pageContext.request.contextPath}/authenticate" method="post" name="login">
             <table style="text-align: center;">
                 <tr>
                     <td colspan="2">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control registered" name="email" id="email" placeholder="Email" style="height:35px; ">
-                            <label for="floatingInput" class="placeh" style="padding-top: 3px;">Email</label>
+                            <input type="text" class="form-control registered" name="username" id="email" placeholder="Email" style="height:35px; ">
+                            <label for="email" class="placeh" style="padding-top: 3px;">Email</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
                         <div class="form-floating">
-                            <input type="password" class="form-control registered" name="pwd" id="pwdbox" placeholder="Password"  style="height:35px;">
-                            <label for="floatingPassword" class="placeh" style="padding-top: 3px;">Password</label>
+                            <input type="password" class="form-control registered" name="password" id="pwdbox" placeholder="Password"  style="height:35px;">
+                            <label for="pwdbox" class="placeh" style="padding-top: 3px;">Password</label>
                           </div>
                     </td>
                 </tr>
@@ -52,7 +52,7 @@
                     </td>
                 </tr>
             </table>
-        </form>
+        </form:form>
     </div>
     <%@ include file="common/footer.jsp" %>
 </body>

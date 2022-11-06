@@ -25,6 +25,7 @@
           <label for="usetype_m" class="botton_usetype">สมาชิกเว็บไซต์</label>
           <input type="radio" name="usetype" id="usetype_f" value="1" class="typeselec">
           <label for="usetype_f" class="botton_usetype">บุคคลทั่วไป</label>
+          <input type=hidden name="q" value="1">
         </div>
       </section>
       <!-- แก้ตรงนี้ -->
@@ -43,7 +44,7 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="text" name="mid1" placeholder="รหัสสมาชิก"></td>
+                <td><input type="text" name="mid0" placeholder="รหัสสมาชิก"></td>
                 <td><label class="checkbox"><input type="checkbox"><span class="checkmark"></span></label></td>
               </tr>
             </tbody>
@@ -76,7 +77,7 @@
               <tr>
                 <td>
                   <div class="custom-select">
-                    <select name="mtype1" class="sononmem">
+                    <select name="mtype0" class="sononmem">
                       <option value="1" selected>ผู้ใหญ่</option>
                       <option value="2">เด็ก</option>
                       <option value="3">นักศึกษามหาวิทยาลัยแม่โจ้</option>
@@ -85,7 +86,7 @@
                     </select>
                   </div>
                 </td>
-                <td><input type="number" name="numbers1" min="1" step="1"></td>
+                <td><input type="number" name="numbers0" min="1" step="1"></td>
                 <td><label class="checkbox"><input type="checkbox"><span class="checkmark"></span></label></td>
               </tr>
             </tbody>

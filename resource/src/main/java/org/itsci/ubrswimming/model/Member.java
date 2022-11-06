@@ -11,8 +11,8 @@ public class Member {
 	private int id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="members_id",nullable=false,referencedColumnName="members_id")
-	private Login logins;
+	@JoinColumn(name="member_id",nullable=false,referencedColumnName="member_id")
+	private Login login;
 	
 	@Column(name="firstname",nullable=false,length=30)
 	private String firstname;
@@ -34,6 +34,18 @@ public class Member {
 	
 	@Column(name="address",nullable=false,length=255)
 	private String address;
+	
+	@Column(name="sub_districts",nullable=false,length=255)
+	private String sub_districts;
+	
+	@Column(name="districts",nullable=false,length=255)
+	private String districts;
+	
+	@Column(name="province",nullable=false,length=255)
+	private String province;
+	
+	@Column(name="post_code",nullable=false,length=255)
+	private String post_code;
 	
 	@Column(name="pid",nullable=true,length=13)
 	private String pid;
@@ -71,12 +83,15 @@ public class Member {
 	@Column(name="alumni_card",nullable=true,length=45)
 	private String alumni_card;
 
-	public Member(Login logins, String firstname, String lastname, String gender, String phone,
-                   Calendar birthdate, int member_type, String address, String pid, String emergency_name,
-                   String emergency_phone, String image, String stuid, String faculty, String stu_card, String affiliation,
-                   String officer_card, String marriage_cer, String pid_card, String alumni_card) {
+	
+
+	public Member(Login login, String firstname, String lastname, String gender, String phone,
+			Calendar birthdate, int member_type, String address, String sub_districts, String districts,
+			String province, String post_code, String pid, String emergency_name, String emergency_phone, String image,
+			String stuid, String faculty, String stu_card, String affiliation, String officer_card, String marriage_cer,
+			String pid_card, String alumni_card) {
 		super();
-		this.logins = logins;
+		this.login = login;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.gender = gender;
@@ -84,6 +99,10 @@ public class Member {
 		this.birthdate = birthdate;
 		this.member_type = member_type;
 		this.address = address;
+		this.sub_districts = sub_districts;
+		this.districts = districts;
+		this.province = province;
+		this.post_code = post_code;
 		this.pid = pid;
 		this.emergency_name = emergency_name;
 		this.emergency_phone = emergency_phone;
@@ -106,12 +125,12 @@ public class Member {
 		this.id = id;
 	}
 
-	public Login getLogins() {
-		return logins;
+	public Login getLogin() {
+		return login;
 	}
 
-	public void setLogins(Login logins) {
-		this.logins = logins;
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 
 	public String getFirstname() {
@@ -264,6 +283,40 @@ public class Member {
 
 	public void setAlumni_card(String alumni_card) {
 		this.alumni_card = alumni_card;
+	}
+	
+	
+
+	public String getSub_districts() {
+		return sub_districts;
+	}
+
+	public void setSub_districts(String sub_districts) {
+		this.sub_districts = sub_districts;
+	}
+
+	public String getDistricts() {
+		return districts;
+	}
+
+	public void setDistricts(String districts) {
+		this.districts = districts;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getPost_code() {
+		return post_code;
+	}
+
+	public void setPost_code(String post_code) {
+		this.post_code = post_code;
 	}
 
 	public Member() {

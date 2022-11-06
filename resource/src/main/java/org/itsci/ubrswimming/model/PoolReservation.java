@@ -34,8 +34,8 @@ public class PoolReservation {
 	private int status;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="members_id",nullable=false,referencedColumnName="members_id")
-	private Member members;
+	@JoinColumn(name="member_id",nullable=false,referencedColumnName="member_id")
+	private Member member;
 
 	
 	
@@ -65,7 +65,7 @@ public class PoolReservation {
 		this.price = price;
 		this.document = document;
 		this.status = status;
-		this.members = members;
+		this.member = member;
 	}
 
 	
@@ -134,12 +134,12 @@ public class PoolReservation {
 		this.status = status;
 	}
 
-	public Member getMembers() {
-		return members;
+	public Member getMember() {
+		return member;
 	}
 
-	public void setMembers(Member members) {
-		this.members = members;
+	public void setMember(Member member) {
+		this.member = member;
 	}
 	
 	

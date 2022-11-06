@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -94,10 +95,14 @@ public class RegisterController {
 		 
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "1"+g+"0"+Long.toString(unix);
-		 Login log = new Login(email,pwd,1,mid);
+		 
+		 BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+	        String encrypted = bCryptPasswordEncoder.encode(pwd);
+		 
+		 Login log = new Login(email,"{bcrypt}" + encrypted,1,mid);
 		 Member mb = new Member(log,fname,lname,gender
 				 				,tel,birthdate, mType
-				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
+				 				,address,sub_districts,districts,province,post_code
 				 				,"","",""
 				 				,per_pic,stuid,faculty
 				 				,stu_pic,"","","","","");
@@ -162,7 +167,7 @@ public class RegisterController {
 		 Login log = new Login(email,pwd,1,mid);
 		 Member mb = new Member(log,fname,lname,gender
 				 				,tel,birthdate,mType
-				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
+				 				,address,sub_districts,districts,province,post_code
 				 				,pid,"",""
 				 				,per_pic,"",""
 				 				,"",affiliation,officer_card
@@ -226,7 +231,7 @@ public class RegisterController {
 		 Login log = new Login(email,pwd,1,mid);
 		 Member mb = new Member(log,fname,lname,gender
 				 				,tel,birthdate,mType
-				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
+				 				,address,sub_districts,districts,province,post_code
 				 				,pid,"",""
 				 				,per_pic,"",""
 				 				,"","",""
@@ -295,7 +300,7 @@ public class RegisterController {
 		 Login log = new Login(email,pwd,1,mid);
 		 Member mb = new Member(log,fname,lname,gender
 				 				,tel,birthdate,mType
-				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
+				 				,address,sub_districts,districts,province,post_code
 				 				,pid,emn,emp
 				 				,per_pic,"","","","","",""
 				 				,id_cards,"");
@@ -372,7 +377,7 @@ public class RegisterController {
 		 Login log = new Login(email,pwd,status,mid);
 		 Member mb = new Member(log,fname,lname,gender
 				 				,tel,birthdate,mType
-				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
+				 				,address,sub_districts,districts,province,post_code
 				 				,pid,"",""
 				 				,per_pic,"",""
 				 				,"",affiliation,officer_card
@@ -542,7 +547,6 @@ public class RegisterController {
 		return "index";
 	
 	}
-	
 	public RegisterController() {
 		super();
 		// TODO Auto-generated constructor stub

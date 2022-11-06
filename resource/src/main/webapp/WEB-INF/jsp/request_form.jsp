@@ -27,7 +27,7 @@
             <tr>
               <td colspan="2">
                 <div class="request_input">
-                  <input type="hidden" name="mid" id="mid" readonly value="<%= mb.getLogins().getMembers_id() %>">
+                  <input type="hidden" name="mid" id="mid" readonly value="<security:authentication property="principal.member_id" />">
               </div>
               </td>
             </tr>

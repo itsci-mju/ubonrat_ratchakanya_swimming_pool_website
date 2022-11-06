@@ -42,11 +42,11 @@ public class RegisterCourse {
 	private int learn_count;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="members_id",nullable=false,referencedColumnName="members_id")
+	@JoinColumn(name="member_id",nullable=false,referencedColumnName="member_id")
 	private Member member;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="trainer_id",nullable=true,referencedColumnName="members_id")
+	@JoinColumn(name="trainer_id",nullable=true,referencedColumnName="member_id")
 	private Member trainer;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
