@@ -44,7 +44,7 @@ public class Member {
 	@Column(name="province",nullable=false,length=255)
 	private String province;
 	
-	@Column(name="post_code",nullable=false,length=255)
+	@Column(name="post_code",nullable=false,length=5)
 	private String post_code;
 	
 	@Column(name="pid",nullable=true,length=13)

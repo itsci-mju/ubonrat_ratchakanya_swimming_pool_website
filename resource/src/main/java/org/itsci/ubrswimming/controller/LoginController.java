@@ -20,7 +20,7 @@ public class LoginController {
     @RequestMapping(value = "/isMemberLogin", method = RequestMethod.POST)
     public String isMemberLogin(HttpServletRequest request, HttpSession session) {
         String email = request.getParameter("email");
-        String password = request.getParameter("pwd");
+        String password = request.getParameter("password");
         Login log = memberManager.verifyLoginWEB(email, password);
         session.setAttribute("login", log);
         return "index";
