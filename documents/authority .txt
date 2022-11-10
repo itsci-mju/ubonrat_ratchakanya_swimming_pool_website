@@ -5,3 +5,9 @@ INSERT INTO `it496_ubr`.`authorities` (`id`, `authority`, `description`) VALUES 
 INSERT INTO `it496_ubr`.`authorities` (`id`, `authority`, `description`) VALUES ('3', 'trainer', 'Trainer');
 INSERT INTO `it496_ubr`.`authorities` (`id`, `authority`, `description`) VALUES ('4', 'manager', 'Web manager');
 INSERT INTO `it496_ubr`.`authorities` (`id`, `authority`, `description`) VALUES ('5', 'anonymous', 'Inacctivate');
+
+INSERT INTO login_authority (login_id, authority_id) VALUES ('1', '1');
+INSERT INTO login_authority (login_id, authority_id) VALUES ('2', '2');
+INSERT INTO login_authority (login_id, authority_id) VALUES ('3', '3');
+INSERT INTO login_authority (login_id, authority_id) VALUES ('4', '4');
+INSERT INTO login_authority (login_id, authority_id) VALUES ('5', '5');

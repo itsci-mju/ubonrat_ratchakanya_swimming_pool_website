@@ -14,9 +14,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.itsci.ubrswimming.model.*;
 import org.itsci.ubrswimming.util.*;
 
@@ -48,21 +49,13 @@ public class RegisterController {
 	}
 	
 	@RequestMapping(value="/doRegister_student", method=RequestMethod.POST)
-	public String doRegister_student(HttpServletRequest request,HttpSession session) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	public String doRegister_student_(HttpServletRequest request,HttpSession session, Model model) {
 		Calendar birthdate = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
-        
-        
-		
-		String fname = request.getParameter("fname");
-		String lname = request.getParameter("lname");
+
+		String fname = request.getParameter("firstname");
+		String lname = request.getParameter("lastname");
 		
 		String gender ="";
 		String g ="";
@@ -74,21 +67,21 @@ public class RegisterController {
 			 g="0";
 		 }
 		 
-		 String tel = request.getParameter("tel");
+		 String tel = request.getParameter("phone");
 		 
 		 String bd = request.getParameter("birthdate");
 		 String date[] = bd.split("-");
 		 		birthdate.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date[2]));
 		 		
 		 String email = request.getParameter("email");
-		 String pwd = request.getParameter("pwd");
+		 String pwd = request.getParameter("password");
 		 String address = request.getParameter("address");
 		 String sub_districts = request.getParameter("sub_districts");
 		 String districts = request.getParameter("districts");
 		 String province = request.getParameter("province");
 		 String post_code = request.getParameter("post_code");
-		 String per_pic = request.getParameter("per_pic");
-		 String stu_pic = request.getParameter("stu_pic");
+		 String per_pic = request.getParameter("image");
+		 String stu_pic = request.getParameter("stu_card");
 		 String stuid = request.getParameter("stuid");
 		 String faculty = request.getParameter("faculty");
 		 int mType = 0;
@@ -110,26 +103,18 @@ public class RegisterController {
 		 regism.insertLogins(log);
 		 regism.insertMembers(mb);
 		 
-		 session.setAttribute("message", "สมัคครสมาชิกเสร็จสิ้น รอการอนุมัติ");
+		 model.addAttribute("message", "สมัครสมาชิกสำเร็จ");
 		return "index";
 	}
 	
 	@RequestMapping(value="/doRegister_officer", method=RequestMethod.POST)
-	public String doRegister_officer(HttpServletRequest request,HttpSession session) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	public String doRegister_officer(HttpServletRequest request,HttpSession session, Model model) {
 		Calendar birthdate = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
         
-        
-		
-		String fname = request.getParameter("fname");
-		String lname = request.getParameter("lname");
+		String fname = request.getParameter("firstname");
+		String lname = request.getParameter("lastname");
 		
 		String gender ="";
 		String g ="";
@@ -141,7 +126,7 @@ public class RegisterController {
 			 g="0";
 		 }
 		 
-		 String tel = request.getParameter("tel");
+		 String tel = request.getParameter("phone");
 		 
 		 String bd = request.getParameter("birthdate");
 		 String date[] = bd.split("-");
@@ -154,16 +139,20 @@ public class RegisterController {
 		 String districts = request.getParameter("districts");
 		 String province = request.getParameter("province");
 		 String post_code = request.getParameter("post_code");
-		 String per_pic = request.getParameter("per_pic");
-		 String pid = "identify";
-		 String id_cards = request.getParameter("id_cards");
-		 String marriage = request.getParameter("marriage");
-		 String officer_card = "บัตรข้าราชการ";
+		 String per_pic = request.getParameter("image");
+		 String pid = request.getParameter("pid");
+		 String pid_card = request.getParameter("pid_card");
+		 String marriage = request.getParameter("marriage_cer");
+		 String officer_card = request.getParameter("officer_card");
 		 String affiliation = request.getParameter("affiliation");
 		 int mType = 1 ;
 		 
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "2"+g+"0"+Long.toString(unix);
+
+		 BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+	        String encrypted = bCryptPasswordEncoder.encode(pwd);
+
 		 Login log = new Login(email,pwd,1,mid);
 		 Member mb = new Member(log,fname,lname,gender
 				 				,tel,birthdate,mType
@@ -171,30 +160,22 @@ public class RegisterController {
 				 				,pid,"",""
 				 				,per_pic,"",""
 				 				,"",affiliation,officer_card
-				 				,marriage,id_cards,"");
+				 				,marriage,pid_card,"");
 		 
 		 regism.insertLogins(log);
 		 regism.insertMembers(mb);
-		 session.setAttribute("message", "สมัคครสมาชิกเสร็จสิ้น รอการอนุมัติ");
+		 model.addAttribute("message", "สมัครสมาชิกสำเร็จ");
 		return "index";
 	}
 	
 	@RequestMapping(value="/doRegister_alumni", method=RequestMethod.POST)
-	public String doRegister_alumni(HttpServletRequest request,HttpSession session) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	public String doRegister_alumni(HttpServletRequest request,HttpSession session, Model model) {
 		Calendar birthdate = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
-        
-        
-		
-		String fname = request.getParameter("fname");
-		String lname = request.getParameter("lname");
+    
+		String fname = request.getParameter("firstname");
+		String lname = request.getParameter("lastname");
 		
 		String gender ="";
 		String g ="";
@@ -206,21 +187,21 @@ public class RegisterController {
 			 g="0";
 		 }
 		 
-		 String tel = request.getParameter("tel");
+		 String tel = request.getParameter("phone");
 		 
 		 String bd = request.getParameter("birthdate");
 		 String date[] = bd.split("-");
 		 		birthdate.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date[2]));
 		 		
 		 String email = request.getParameter("email");
-		 String pwd = request.getParameter("pwd");
+		 String pwd = request.getParameter("password");
 		 String address = request.getParameter("address");
 		 String sub_districts = request.getParameter("sub_districts");
 		 String districts = request.getParameter("districts");
 		 String province = request.getParameter("province");
 		 String post_code = request.getParameter("post_code");
-		 String per_pic = request.getParameter("per_pic");
-		 String pid = "identify";
+		 String per_pic = request.getParameter("image");
+		 String pid = request.getParameter("pid");
 		 String alumni_card = request.getParameter("alumni_card");
 		 
 		 int mType = 2;
@@ -228,7 +209,10 @@ public class RegisterController {
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "3"+g+"0"+Long.toString(unix);
 		 
-		 Login log = new Login(email,pwd,1,mid);
+		  BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+	        String encrypted = bCryptPasswordEncoder.encode(pwd);
+
+		 Login log = new Login(email,encrypted,1,mid);
 		 Member mb = new Member(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address,sub_districts,districts,province,post_code
@@ -238,26 +222,20 @@ public class RegisterController {
 				 				,"","",alumni_card);
 		 regism.insertLogins(log);
 		 regism.insertMembers(mb);
-		 session.setAttribute("message", "สมัคครสมาชิกเสร็จสิ้น รอการอนุมัติ");
+		 model.addAttribute("message", "สมัครสมาชิกสำเร็จ");
 		return "index";
 	}
 	
 	@RequestMapping(value="/doRegister_general", method=RequestMethod.POST)
-	public String doRegister_general(HttpServletRequest request,HttpSession session) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	public String doRegister_general(HttpServletRequest request,HttpSession session, Model model) {
 		Calendar birthdate = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
         
         
 		
-		String fname = request.getParameter("fname");
-		String lname = request.getParameter("lname");
+		String fname = request.getParameter("firstname");
+		String lname = request.getParameter("lastname");
 		
 		String gender ="";
 		String g ="";
@@ -269,22 +247,22 @@ public class RegisterController {
 			 g="0";
 		 }
 		 
-		 String tel = request.getParameter("tel");
+		 String tel = request.getParameter("phone");
 		 
 		 String bd = request.getParameter("birthdate");
 		 String date[] = bd.split("-");
 		 		birthdate.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date[2]));
 		 		
 		 String email = request.getParameter("email");
-		 String pwd = request.getParameter("pwd");
+		 String pwd = request.getParameter("password");
 		 String address = request.getParameter("address");
 		 String sub_districts = request.getParameter("sub_districts");
 		 String districts = request.getParameter("districts");
 		 String province = request.getParameter("province");
 		 String post_code = request.getParameter("post_code");
-		 String per_pic = request.getParameter("per_pic");
-		 String pid = "identify";
-		 String id_cards = request.getParameter("id_cards");
+		 String per_pic = request.getParameter("image");
+		 String pid = request.getParameter("pid");;
+		 String pid_card = request.getParameter("pid_card");
 		 String emn = "emn";
 		 String emp = "emp";
 		 int mType = 3;
@@ -296,37 +274,32 @@ public class RegisterController {
 		 }
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "4"+g+"0"+Long.toString(unix);
+
+		 BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+	        String encrypted = bCryptPasswordEncoder.encode(pwd);
 		 
-		 Login log = new Login(email,pwd,1,mid);
+		 Login log = new Login(email,encrypted,1,mid);
 		 Member mb = new Member(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address,sub_districts,districts,province,post_code
 				 				,pid,emn,emp
 				 				,per_pic,"","","","","",""
-				 				,id_cards,"");
+				 				,pid_card,"");
 	
 		 regism.insertLogins(log);
 		 regism.insertMembers(mb);
-		 session.setAttribute("message", "สมัคครสมาชิกเสร็จสิ้น รอการอนุมัติ");
+		 model.addAttribute("message", "สมัครสมาชิกสำเร็จ");
 		return "index";
 	}
 	
 	@RequestMapping(value="/doRegister_staff", method=RequestMethod.POST)
-	public String doRegister_staff(HttpServletRequest request,HttpSession session) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	public String doRegister_staff(HttpServletRequest request,HttpSession session, Model model) {
 		Calendar birthdate = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
-        
-        
 		
-		String fname = request.getParameter("fname");
-		String lname = request.getParameter("lname");
+		String fname = request.getParameter("firstname");
+		String lname = request.getParameter("lastname");
 		
 		String gender ="";
 		String g ="";
@@ -338,7 +311,7 @@ public class RegisterController {
 			 g="0";
 		 }
 		 
-		 String tel = request.getParameter("tel");
+		 String tel = request.getParameter("phone");
 		 
 		 String bd = request.getParameter("birthdate");
 		 String date[] = bd.split("-");
@@ -351,52 +324,50 @@ public class RegisterController {
 		 String districts = request.getParameter("districts");
 		 String province = request.getParameter("province");
 		 String post_code = request.getParameter("post_code");
-		 String per_pic = request.getParameter("per_pic");
-		 String pid = "รหัสบัตรประชาชน";
-		 String id_cards = request.getParameter("id_cards");
-		 String officer_card = "บัตรข้าราชการ";
+		 String per_pic = request.getParameter("image");
+		 String pid = request.getParameter("pid");
+		 String pid_card = request.getParameter("pid_card");
+		 String officer_card = request.getParameter("officer_card");
 		 String affiliation = request.getParameter("affiliation");
 		 int sType = Integer.parseInt(request.getParameter("sType"));
 		 
 		 int status = 0;
 		 int mType = 6;
 		 if(sType==(0)){
+			//manager
 			 mType = 6;
 			 status = 4;
 		 }else if(sType==(1)) {
+			//trainer
 			 mType = 5;
 			 status = 3;
 		 }else {
 			 mType= 6;
 		 }
 		  
-		 
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "2"+g+"0"+Long.toString(unix);
 		 
-		 Login log = new Login(email,pwd,status,mid);
+		 BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+	        String encrypted = bCryptPasswordEncoder.encode(pwd);
+
+		 Login log = new Login(email,encrypted,status,mid);
 		 Member mb = new Member(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address,sub_districts,districts,province,post_code
 				 				,pid,"",""
 				 				,per_pic,"",""
 				 				,"",affiliation,officer_card
-				 				,"",id_cards,"");
+				 				,"",pid_card,"");
 		 
 		 regism.insertLogins(log);
 		 regism.insertMembers(mb);
-		 session.setAttribute("message", "สมัคครสมาชิกเสร็จสิ้น");
+		 model.addAttribute("message", "สมัครสมาชิกสำเร็จ");
 		return "index";
 	}
 	
-	@RequestMapping(value="/getTimeToCourse", method=RequestMethod.POST)
-	public String getTimeToCourse(HttpServletRequest request,HttpSession session) {
-		try {
-			request.setCharacterEncoding("UTF-8"); 
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	@RequestMapping(value="/getTimeToCourse", method=RequestMethod.GET)
+	public String getTimeToCourse(HttpServletRequest request,HttpSession session, Model model) {
 		Calendar now = Calendar.getInstance();
 		LocalDate thisDay =LocalDate.now(); // retue BC
 		int daytype = Integer.parseInt(request.getParameter("daytype"));
@@ -528,9 +499,7 @@ public class RegisterController {
 		 }
 		System.out.println("aft:"+date_for_select);
 
-		session.removeAttribute("datesel");
-		session.setAttribute("datesel", date_for_select);
-		
+		model.addAttribute("datesel", date_for_select);
 		return "course_register";
 	}
 	

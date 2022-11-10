@@ -70,6 +70,11 @@ public class RegisterCourse {
 		this.courses_id = courses_id;
 	}
 
+	public RegisterCourse() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getRegister_courses_id() {
 		return register_courses_id;
 	}
@@ -158,11 +163,5 @@ public class RegisterCourse {
 		this.courses_id = courses_id;
 	}
 
-	public RegisterCourse() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	
 	
 }

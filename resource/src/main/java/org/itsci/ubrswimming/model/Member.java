@@ -1,6 +1,5 @@
 package org.itsci.ubrswimming.model;
 import java.util.Calendar;
-
 import javax.persistence.*;
 
 @Entity
