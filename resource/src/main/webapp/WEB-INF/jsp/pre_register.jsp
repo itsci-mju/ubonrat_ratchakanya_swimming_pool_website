@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" href="css/register.css">
+<link rel="stylesheet" href="css/register_style.css">
 <link rel="stylesheet" href="css/original.css">
 <body>
 <%@ include file="common/header.jsp" %>

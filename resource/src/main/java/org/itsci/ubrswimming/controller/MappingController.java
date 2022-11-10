@@ -1,6 +1,8 @@
 package org.itsci.ubrswimming.controller;
 
+import org.itsci.ubrswimming.model.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
@@ -27,7 +29,8 @@ public class MappingController {
 	}
 	
 	@RequestMapping(value="/reg_stu", method=RequestMethod.GET)
-	public String regstuForm() {
+	public String regstuForm(Model model) {
+		model.addAttribute("student", new Student());
 		return "register_student";
 	}
 	
