@@ -17,8 +17,8 @@
  <%@ include file="common/header.jsp" %>
    
 <div class="re-content">
-    <form:form action="${pageContext.request.contextPath}/doRegister_officer" method="post" name="regis" modelAttribute="officer">
-        <p style="font-size: 26px; margin: auto;" align="center"> สมัครสมาชิก : บุคลากร </p>
+    <form:form action="${pageContext.request.contextPath}/doRegister_staff" method="post" name="regis" modelAttribute="staff">
+        <p style="font-size: 26px; margin: auto;" align="center"> สมัครสมาชิก : บุคลากรสระว่ายน้ำ </p>
         
         <section id="sec_first">
             <!-- First Name -->
@@ -136,14 +136,27 @@
                 <label class="alert-label" id="alertid_cards"><!-- alert_DonotForgetToDelete --></label>
             </div>
             
-          <!--  ทะเบียนสมรส  -->
-          <div class="request_input form__group field">
-            <label for="doc" class="req_file_">ทะเบียนสมรส</label> <br>
-            <form:input type="file" path="marriage" id="marriage" class="req_file form-control" onblur="uploadMarriage(regis)"/> 
-        <br>
-            <label class="alert-label" id="alertmarriage"><!-- alert_DonotForgetToDelete --></label>
-        </div>
+            
+            
+                <!-- รหัสบัตรประชาชน -->
+              <div class="form__group field">
+                    <form:input type="text" class="form__field" placeholder="บัตรประชาชน" path="pid"
+                        id="pid" onblur="checkpid(regis)" />
+                    <label for="pid" class="form__label">รหัสบัตรประชาชน</label>
+                    <label class="alert-label" id="alertPostCode">
+                        <!-- alert_DonotForgetToDelete -->
+                    </label>
+                </div>
+            
+        
 
+     <!-- manager & trainer-->
+            <div class="form__group field">
+                <font class="form__label"> ตำแหน่ง  </font>
+                <form:radiobutton  path="gender" id="manager" value="manager" required="required" /> manager
+                <form:radiobutton  path="gender" id="trainer" value="trainer" /> trainer
+                <label class="alert-label" id="alertManager_Trainer"><!-- alert_DonotForgetToDelete --></label>
+            </div>
 
         <div class="submit_box" style="margin-left: 100px;">
             <input type="reset" value="ยกเลิก" class="reset_btn"> 
