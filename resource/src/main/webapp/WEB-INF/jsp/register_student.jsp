@@ -10,15 +10,11 @@
 <link rel="stylesheet" href="css/main_style.css">
 <link rel="stylesheet" href="css/original.css">
 <link rel="stylesheet" href="css/register_style.css">
-
 <body onload="togglePass()">
     <%@ include file="common/header.jsp" %>
     <div class="content-register">
         <p> สมัครสมาชิก : นักศึกษา </p>
-        <form:form action="${pageContext.request.contextPath}/doRegister_student" method="post" name="regis"
-            modelAttribute="student">
-
-
+        <form:form action="${pageContext.request.contextPath}/doRegister_student" method="post" name="regis" modelAttribute="student">
             <section class="sect-first">
                 <!-- First Name -->
                 <div class="form__group field">
@@ -173,8 +169,6 @@
                         <form:options items="${student.facname}" />
 
                     </form:select>
-
-                    <!--  <label for="faculty" class="form__label">คณะ/วิทยาลัยที่สังกัด</label>-->
                     <label class="alert-label" id="alertFac"> </label>
                 </div>
                 <!-- personal image profile -->
@@ -193,8 +187,7 @@
                     <br>
                     <label class="alert-label" id="alertstupic"></label>
                 </div>
-
-                <div class="submit_box" style="margin-left: 100px;">
+                <div class="submit_box">
                     <input type="reset" value="ยกเลิก" class="reset_btn">
                     <input type="submit" value="สมัครสมาชิก" class="submit_btn">
                 </div>

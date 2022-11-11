@@ -1,23 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page import="org.itsci.ubrswimming.model.*,org.itsci.ubrswimming.util.*,java.util.*"  %>
-<%
-	ArrayList<String> datesel = new ArrayList<String>();
-	if(session.getAttribute("datesel")!=null){
-		for(String s:(List<String>)session.getAttribute("datesel")){
-			datesel.add(s);
-		}
-	}
-	
-	String dt = (String)request.getAttribute("daytype_cookie");
-	String lt = (String)request.getAttribute("learntime_cookie");
-	Cookie[] ck = request.getCookies();
-	for (int i = 0;i<ck.length;i++){
-		System.out.println("name:"+ck[i].getName()+"\n value:"+ck[i].getValue());
-	}
-%>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -35,7 +21,7 @@
     <p style="font-size: 26px; margin: auto;" align="center">แบบฟอร์มสมัครเรียนว่ายน้ำ </p>
     <div class="section_area">
       <!-- ******************************************* DAY SELLECT ********************************************************-->
-      <form action="getTimeToCourse" name="frm2" method="post">
+      <form action="getTimeToCourse" name="frm2" method="get">
         <div id="daysch">
           <div class="daytype-div custom-select">
             <select name="daytype" id="daytype">
@@ -59,10 +45,7 @@
           <div class="date-req-div custom-select">
             <select name="datereq" id="datereq">
               <option value="" selected disabled hidden required>วันที่ต้องการเริ่มเรียน</option>
-             <% if(datesel!=null){
-                for(String d:datesel){ %>
-            <option value="<%= d %>"><%= d %></option>
-            <%}} %> 
+             
             </select>
           </div>
           <div class="button-area">
@@ -75,8 +58,8 @@
       <!-- ******************************************* Form Detail ********************************************************-->
       <form action="doCourse_register" name="frm" method="post">
       	<div class="hidden">
-          <input type="text" name="daytype2" id="daytype2" <% if(dt != null){  %>value="<%= dt %>" <%} %>>
-          <input type="text" name="learntime2" id="learntime2" <% if(lt != null){  %>value="<%= lt %>" <%} %>>
+          <input type="text" name="daytype2" id="daytype2" >
+          <input type="text" name="learntime2" id="learntime2" >
           <input type="text" name="datereq2" id="datereq2" >
         </div>
         <div class="gty-div">

@@ -94,7 +94,7 @@
 							<i class="bi bi-caret-down-fill" style="font-size: 16px;"></i>
 						</button>
 						<ul class="dropdown-menu">
-							<li><a href="gocourse_register">ขอเข้าใช้งานสระน้ำ</a></li>
+							<li><a href="#">ขอเข้าใช้งานสระน้ำ</a></li>
 							<li><a href="#">ประวัติคำร้องขอ</a></li>
 						</ul>
 					</div>
@@ -141,13 +141,20 @@
 		<security:authorize access="!isAuthenticated()">
 			<!-- not login  -->
 			<div class="nav-element">
-				<a href="#">คอร์สเรียน</a>
+				<a href="gocourse_register_test">คอร์สเรียน</a>
 				<a href="#">บุคลากร</a>
 				<a href="#">ติดต่อเรา</a>
 				<a href="loginpage">เข้าสู่ระบบ</a>
 				<a href="pre_reg">สมัครสมาชิก</a>
 			</div>
 		</security:authorize>
+		<security:authorize access="isAuthenticated()">
+			เข้าสู่ระบบแล้ว
+		</security:authorize>
+		<security:authorize access="!isAuthenticated()">
+			ยังไม่ได้เข้าสู่ระบบ
+		</security:authorize>
+			อะไร?
 		<hr><!-- ตัวปิด nav ให้ overflow ไม่ทับตัวสุดท้าย -->
 	</div>
 

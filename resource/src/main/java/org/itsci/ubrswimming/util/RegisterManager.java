@@ -60,9 +60,7 @@ public class RegisterManager {
 	@Transactional
     public List<PoolReservation> getTimeforCourse(String rqdate) {
         Session session = sessionFactory.getCurrentSession();
-        String table = "pool_reservations";
-		String column = "start_time, end_time, status";
-		String hql = "select "+ column +" from "+table+
+		String hql = "from PoolReservation"+
 					" having (start_time > :rqdate or end_time > :rqdate)"+
 					" and status=:status;";
         Query<PoolReservation> query = session.createQuery(hql, PoolReservation.class);

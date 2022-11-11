@@ -35,22 +35,26 @@ public class MappingController {
 	}
 	
 	@RequestMapping(value="/reg_ofc", method=RequestMethod.GET)
-	public String regofcForm() {
+	public String regofcForm(Model model) {
+		model.addAttribute("officer", new Officer());
 		return "register_officer";
 	}
-	
+
 	@RequestMapping(value="/reg_aln", method=RequestMethod.GET)
-	public String regalnForm() {
+	public String regalnForm(Model model) {
+		model.addAttribute("alumni", new Alumni());
 		return "register_alumni";
 	}
 	
 	@RequestMapping(value="/reg_gmb", method=RequestMethod.GET)
-	public String reggmbForm() {
+	public String reggmbForm(Model model) {
+		model.addAttribute("general", new General());
 		return "register_general";
 	}
 	
 	@RequestMapping(value="/reg_stf", method=RequestMethod.GET)
-	public String regstfForm() {
+	public String regstfForm(Model model) {
+		model.addAttribute("staff", new Staff());
 		return "register_staff";
 	}
 	
@@ -74,7 +78,10 @@ public class MappingController {
    		return "show_calendar";
    	}
 	
-	
+	@RequestMapping(value="/gocourse_register_test", method=RequestMethod.GET)
+	public String gocourse_register_test() {
+		return "course_register";
+	}
 	
 
 }

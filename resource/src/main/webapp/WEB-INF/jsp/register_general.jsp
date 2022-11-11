@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <html>
 <head>
     <meta charset="UTF-8">
@@ -15,9 +15,8 @@
     <%@ include file="common/header.jsp" %>
     <div class="content-register">
         <p> สมัครสมาชิก : บุคคลภายนอก </p>
-        <form:form action="${pageContext.request.contextPath}/doRegister_general" method="post" name="regis"  modelAttribute="general">
-
-
+        <form:form action="${pageContext.request.contextPath}/doRegister_general" method="post" name="regis"
+            modelAttribute="general">
             <section class="sect-first">
                 <!-- First Name -->
                 <div class="form__group field">
@@ -72,11 +71,10 @@
                     </label>
                 </div>
             </section>
-
             <section class="sect-third">
                 <!-- Sex-->
                 <div class="form__group radio">
-                    <font class="form__label"> เพศ  </font>
+                    <font class="form__label"> เพศ </font>
                     <label for="gender_m" class="l-radio">
                         <form:radiobutton path="gender" id="gender_m" value="male" required="required" />
                         <span>ชาย</span>
@@ -151,10 +149,25 @@
                     </label>
                 </div>
             </section>
-
-    
-
-             
+            <section class="sect-forth">
+                <!-- ชื่อผู้ติดต่อฉุกเฉิน -->
+                <div class="form__group field">
+                    <form:input type="text" class="form__field" placeholder="ชื่อผู้ติดต่อฉุกเฉิน" path="emergency_name" id="emn"
+                        onblur="checkemn(regis)" />
+                    <label for="emn" class="form__label">ชื่อผู้ติดต่อฉุกเฉิน</label>
+                    <label class="alert-label" id="alertPostCode">
+                        <!-- alert_DonotForgetToDelete -->
+                    </label>
+                </div>
+                <!-- เบอร์โทรผู้ติดต่อฉุกเฉิน -->
+                <div class="form__group field">
+                    <form:input type="tel" class="form__field" placeholder="ชื่อผู้ติดต่อฉุกเฉิน" path="emergency_phone" id='emn'
+                        maxlength="10" onblur="checkTel(regis)" />
+                    <label for="tel" class="form__label">ชื่อผู้ติดต่อฉุกเฉิน</label>
+                    <label class="alert-label" id="alertTelNum">
+                        <!-- alert_DonotForgetToDelete -->
+                    </label>
+                </div>
                 <!-- personal image profile -->
                 <div class="request_input form__group field">
                     <label for="per_pic" class="req_file_">รูปหน้าตรง</label> <br>
@@ -163,57 +176,28 @@
                     <br>
                     <label class="alert-label" id="alertperpic"></label>
                 </div>
-                
-                  <!-- รหัสบัตรประชาชน -->
-              <div class="form__group field">
-                    <form:input type="text" class="form__field" placeholder="บัตรประชาชน" path="pid"
-                        id="pid" onblur="checkpid(regis)" />
+                <!-- รหัสบัตรประชาชน -->
+                <div class="form__group field">
+                    <form:input type="text" class="form__field" placeholder="บัตรประชาชน" path="pid" id="pid"
+                        onblur="checkpid(regis)" />
                     <label for="pid" class="form__label">รหัสบัตรประชาชน</label>
                     <label class="alert-label" id="alertPostCode">
                         <!-- alert_DonotForgetToDelete -->
                     </label>
                 </div>
-                
-                
                 <!-- รูปบัตรประชาชน  -->
                 <div class="request_input form__group field">
                     <label for="idcards" class="req_file_">รูปบัตรประชาชน</label> <br>
-                    <form:input type="file" path="id_cards" id="id_cards" class="req_file form-control"
+                    <form:input type="file" path="pid_card" id="id_cards" class="req_file form-control"
                         onblur="uploadStu_pic(regis)" />
                     <br>
                     <label class="alert-label" id="alertstupic"></label>
                 </div>
-                
-                
-                
-              <!-- ชื่อผู้ติดต่อฉุกเฉิน -->
-              <div class="form__group field">
-                    <form:input type="text" class="form__field" placeholder="ชื่อผู้ติดต่อฉุกเฉิน" path="emn"
-                        id="emn" onblur="checkemn(regis)" />
-                    <label for="emn" class="form__label">ชื่อผู้ติดต่อฉุกเฉิน</label>
-                    <label class="alert-label" id="alertPostCode">
-                        <!-- alert_DonotForgetToDelete -->
-                    </label>
-               </div>
-               
-
-                  <!-- เบอร์โทรผู้ติดต่อฉุกเฉิน -->
-                <div class="form__group field">
-                    <form:input type="tel" class="form__field" placeholder="ชื่อผู้ติดต่อฉุกเฉิน" path="emn" id='emn'
-                        maxlength="10" onblur="checkTel(regis)" />
-                    <label for="tel" class="form__label">ชื่อผู้ติดต่อฉุกเฉิน</label>
-                    <label class="alert-label" id="alertTelNum">
-                        <!-- alert_DonotForgetToDelete -->
-                    </label>
-                </div>
-                
-                
-
-                <div class="submit_box" style="margin-left: 100px;">
+                <div class="submit_box">
                     <input type="reset" value="ยกเลิก" class="reset_btn">
                     <input type="submit" value="สมัครสมาชิก" class="submit_btn">
                 </div>
-        
+            </section>
         </form:form>
     </div>
     <%@ include file="common/footer.jsp" %>

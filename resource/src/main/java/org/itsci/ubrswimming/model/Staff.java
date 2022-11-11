@@ -1,9 +1,12 @@
 package org.itsci.ubrswimming.model;
 
+import java.util.LinkedHashMap;
+
 public class Staff extends Member{
 
 	private Login email;
 	private Login password;
+	private LinkedHashMap<String,String> position;
 	
 	String[] facname={"บริหารธุรกิจ",
 			"วิทยาศาสตร์",
@@ -41,6 +44,13 @@ public class Staff extends Member{
 			"ฝ่ายกฏหมาย",
 			"ฝ่ายขับเคลื่อนยุทธศาสตร์และโครงการพิเศษ"	
 };
+	
+
+	public Staff() {
+		position = new LinkedHashMap<>();
+		position.put("manager","ผู้ดูแลสระว่ายน้ำ");
+		position.put("Trainer","ครูสอนว่ายน้ำ");
+	}
 
 	public Login getEmail() {
 		return email;
@@ -64,6 +74,15 @@ public class Staff extends Member{
 
 	public void setFacname(String[] facname) {
 		this.facname = facname;
-	} 
+	}
+
+	public LinkedHashMap<String, String> getPosition() {
+		return position;
+	}
+
+	public void setPosition(LinkedHashMap<String, String> position) {
+		this.position = position;
+	}
+	
 	
 }

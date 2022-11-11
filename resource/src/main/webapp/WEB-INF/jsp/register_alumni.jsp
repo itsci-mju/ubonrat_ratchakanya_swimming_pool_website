@@ -10,14 +10,12 @@
 <link rel="stylesheet" href="css/main_style.css">
 <link rel="stylesheet" href="css/original.css">
 <link rel="stylesheet" href="css/register_style.css">
-
 <body onload="togglePass()">
     <%@ include file="common/header.jsp" %>
     <div class="content-register">
         <p> สมัครสมาชิก : ศิษย์เก่า </p>
-        <form:form action="${pageContext.request.contextPath}/doRegister_alumni" method="post" name="regis"  modelAttribute="alumni">
-
-
+        <form:form action="${pageContext.request.contextPath}/doRegister_alumni" method="post" name="regis"
+            modelAttribute="alumni">
             <section class="sect-first">
                 <!-- First Name -->
                 <div class="form__group field">
@@ -76,7 +74,7 @@
             <section class="sect-third">
                 <!-- Sex-->
                 <div class="form__group radio">
-                    <font class="form__label"> เพศ  </font>
+                    <font class="form__label"> เพศ </font>
                     <label for="gender_m" class="l-radio">
                         <form:radiobutton path="gender" id="gender_m" value="male" required="required" />
                         <span>ชาย</span>
@@ -151,45 +149,39 @@
                     </label>
                 </div>
             </section>
+            <section class="sect-forth">
+            <!-- personal image profile -->
+            <div class="request_input form__group field">
+                <label for="per_pic" class="req_file_">รูปหน้าตรง</label> <br>
+                <form:input type="file" path="image" id="per_pic" class="req_file form-control"
+                    onblur="uploadPer_pic(regis)" />
+                <br>
+                <label class="alert-label" id="alertperpic"></label>
+            </div>
 
-            
+            <!-- บัตรประชาชน -->
+            <div class="form__group field">
+                <form:input type="text" class="form__field" placeholder="บัตรประชาชน" path="pid" id="pid"
+                    onblur="checkpid(regis)" />
+                <label for="pid" class="form__label">รหัสบัตรประชาชน</label>
+                <label class="alert-label" id="alertPostCode">
+                    <!-- alert_DonotForgetToDelete -->
+                </label>
+            </div>
 
-               
-                <!-- personal image profile -->
-                <div class="request_input form__group field">
-                    <label for="per_pic" class="req_file_">รูปหน้าตรง</label> <br>
-                    <form:input type="file" path="image" id="per_pic" class="req_file form-control"
-                        onblur="uploadPer_pic(regis)" />
-                    <br>
-                    <label class="alert-label" id="alertperpic"></label>
-                </div>
-              
-               <!-- บัตรประชาชน -->
-              <div class="form__group field">
-                    <form:input type="text" class="form__field" placeholder="บัตรประชาชน" path="pid"
-                        id="pid" onblur="checkpid(regis)" />
-                    <label for="pid" class="form__label">รหัสบัตรประชาชน</label>
-                    <label class="alert-label" id="alertPostCode">
-                        <!-- alert_DonotForgetToDelete -->
-                    </label>
-                </div>
-              
-              
-               <!-- บัตรสิทธิ์เก่า -->
-                <div class="request_input form__group field">
-                    <label for="alumni_card" class="req_file_">รูปบัตรสิทธิ์เก่า</label> <br>
-                    <form:input type="file" path="alumni_card" id="alumni_card" class="req_file form-control"
-                        onblur="uploadAlumni_card(regis)" />
-                    <br>
-                    <label class="alert-label" id="alertperpic"></label>
-                </div>
-              
-              
 
-                <div class="submit_box" style="margin-left: 100px;">
-                    <input type="reset" value="ยกเลิก" class="reset_btn">
-                    <input type="submit" value="สมัครสมาชิก" class="submit_btn">
-                </div>
+            <!-- บัตรสิทธิ์เก่า -->
+            <div class="request_input form__group field">
+                <label for="alumni_card" class="req_file_">รูปบัตรสิทธิ์เก่า</label> <br>
+                <form:input type="file" path="alumni_card" id="alumni_card" class="req_file form-control"
+                    onblur="uploadAlumni_card(regis)" />
+                <br>
+                <label class="alert-label" id="alertAlumni_card"></label>
+            </div>
+            <div class="submit_box">
+                <input type="reset" value="ยกเลิก" class="reset_btn">
+                <input type="submit" value="สมัครสมาชิก" class="submit_btn">
+            </div>
             </section>
         </form:form>
     </div>
