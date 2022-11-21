@@ -10,7 +10,7 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="css/original.css">
-<link rel="stylesheet" href="css/register.css">
+<link rel="stylesheet" href="css/register_style.css">
 <body id="nonselect">
  <%@ include file="common/header.jsp" %>
     <div class="content-request">
@@ -27,7 +27,7 @@
             <tr>
               <td colspan="2">
                 <div class="request_input">
-                  <input type="hidden" name="mid" id="mid" readonly value="<security:authentication property="principal.member_id" />">
+                 <input type="hidden" name="mid" id="mid" readonly value="<security:authentication property="principal.member_id" />">
               </div>
               </td>
             </tr>

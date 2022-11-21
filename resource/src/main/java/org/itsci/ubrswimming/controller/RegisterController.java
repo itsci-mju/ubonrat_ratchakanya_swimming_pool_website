@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,64 +50,34 @@ public class RegisterController {
 	}
 	
 	@RequestMapping(value="/doRegister_student", method=RequestMethod.POST)
-	public String doRegister_student_(HttpServletRequest request,HttpSession session, Model model) {
-		Calendar birthdate = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
-
-		String fname = request.getParameter("firstname");
-		String lname = request.getParameter("lastname");
-		
-		String gender ="";
+	public String doRegister_student_(@ModelAttribute("student") Student student, Model model) {
 		String g ="";
-		 if(request.getParameter("gender").equalsIgnoreCase("male")) {
-			 gender = "ชาย";
+		 if(student.getGender().equalsIgnoreCase("ชาย")) {  
 			 g="1";
 		 }else {
-			 gender = "หญิง";
 			 g="0";
 		 }
-		 
-		 String tel = request.getParameter("phone");
-		 
-		 String bd = request.getParameter("birthdate");
-		 String date[] = bd.split("-");
-		 		birthdate.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date[2]));
-		 		
-		 String email = request.getParameter("email");
-		 String pwd = request.getParameter("password");
-		 String address = request.getParameter("address");
-		 String sub_districts = request.getParameter("sub_districts");
-		 String districts = request.getParameter("districts");
-		 String province = request.getParameter("province");
-		 String post_code = request.getParameter("post_code");
-		 String per_pic = request.getParameter("image");
-		 String stu_pic = request.getParameter("stu_card");
-		 String stuid = request.getParameter("stuid");
-		 String faculty = request.getParameter("faculty");
+
+		 String pwd = student.getLogin().getPassword();
 		 int mType = 0;
-		 
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "1"+g+"0"+Long.toString(unix);
 		 
 		 BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 	        String encrypted = bCryptPasswordEncoder.encode(pwd);
 		 
-		 Login log = new Login(email,"{bcrypt}" + encrypted,1,mid);
-		 Member mb = new Member(log,fname,lname,gender
-				 				,tel,birthdate, mType
-				 				,address,sub_districts,districts,province,post_code
-				 				,"","",""
-				 				,per_pic,stuid,faculty
-				 				,stu_pic,"","","","","");
-		 
-		 regism.insertLogins(log);
-		 regism.insertMembers(mb);
+	        student.getLogin().setPassword("{bcrypt}" +encrypted);
+	        student.getLogin().setStatus(1);
+	        student.getLogin().setMember_id(mid);
+	        
+	        student.setMember_type(mType);
+	
+	     regism.saveMember(student);
 		 
 		 model.addAttribute("message", "สมัครสมาชิกสำเร็จ");
 		return "index";
 	}
-	
+	/*
 	@RequestMapping(value="/doRegister_officer", method=RequestMethod.POST)
 	public String doRegister_officer(HttpServletRequest request,HttpSession session, Model model) {
 		Calendar birthdate = Calendar.getInstance();
@@ -365,7 +336,7 @@ public class RegisterController {
 		 model.addAttribute("message", "สมัครสมาชิกสำเร็จ");
 		return "index";
 	}
-	
+	*/
 	@RequestMapping(value="/getTimeToCourse", method=RequestMethod.GET)
 	public String getTimeToCourse(HttpServletRequest request,HttpSession session, Model model) {
 		Calendar now = Calendar.getInstance();

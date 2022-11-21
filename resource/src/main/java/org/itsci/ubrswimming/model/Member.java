@@ -322,5 +322,9 @@ public class Member {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Member(Student student) {
+		// TODO Auto-generated constructor stub
+	}
+
 }
 

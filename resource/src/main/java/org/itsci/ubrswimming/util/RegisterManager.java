@@ -44,14 +44,7 @@ public class RegisterManager {
 //	}
 	
 	@Transactional
-	public int insertLogins(Login log){
-		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(log);
-		return 1;
-	}
-	
-	@Transactional
-	public int insertMembers(Member mb){
+	public int saveMember(Member mb) {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(mb);
 		return 1;
@@ -60,12 +53,12 @@ public class RegisterManager {
 	@Transactional
     public List<PoolReservation> getTimeforCourse(String rqdate) {
         Session session = sessionFactory.getCurrentSession();
-		String hql = "from PoolReservation"+
-					" having (start_time > :rqdate or end_time > :rqdate)"+
-					" and status=:status;";
+		String hql = "from PoolReservation";
+					//" where (start_time > :rqdate or end_time > :rqdate);";
+//					" and status=:status;";
         Query<PoolReservation> query = session.createQuery(hql, PoolReservation.class);
-        query.setParameter("rqdate", rqdate);
-        query.setParameter("status", 1);
+//        query.setParameter("rqdate", rqdate);
+//        query.setParameter("status", 1);
         List<PoolReservation> prs = query.getResultList();
         return prs;
     }

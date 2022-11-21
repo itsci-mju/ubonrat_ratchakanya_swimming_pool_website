@@ -38,7 +38,7 @@
 
                 <!-- Email -->
                 <div class="form__group field">
-                    <form:input type="text" class="form__field" placeholder="อีเมล" path="email" id='email'
+                    <form:input type="text" class="form__field" placeholder="อีเมล" path="login.email" id='email'
                         onblur="checkEmail(regis)" />
                     <label for="email" class="form__label">อีเมล</label>
                     <label class="alert-label" id="alertEmail">
@@ -49,8 +49,8 @@
                 <!-- Password -->
                 <div class="form__group field">
                     <i id="iconeye" class="bi bi-eye-slash" onclick="togglePass()"
-                        style="cursor: pointer; position: absolute; top: 20px; left: 300px;"></i>
-                    <form:input type="password" class="form__field" placeholder="รหัสผ่าน" path="password" id="pwd"
+                        style="cursor: pointer; position: absolute; top: 20px; left: 300px;"></i> <!-- ตรงนี้ -->
+                    <form:input type="password" class="form__field" placeholder="รหัสผ่าน" path="login.password" id="pwd" 
                         required="required" onblur="checkPassword(regis)" />
                     <div id="eye" hidden="true"></div>
                     <label for="pwd" class="form__label">รหัสผ่าน</label>

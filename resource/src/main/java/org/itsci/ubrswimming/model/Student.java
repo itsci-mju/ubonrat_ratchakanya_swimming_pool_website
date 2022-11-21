@@ -1,8 +1,7 @@
 package org.itsci.ubrswimming.model;
 
 public class Student extends Member{
-	private Login email;
-	private Login password;
+	
 	private String[] facname={"บริหารธุรกิจ",
 			"วิทยาศาสตร์",
 			"เทคโนโลยีการประมงและทรัพยากรทางน้ำ",
@@ -23,26 +22,7 @@ public class Student extends Member{
 			"มหาวิทยาลัยแม่โจ้-ชุมพร"}; 
 
 	
-	public Login getEmail() {
-		return email;
-	}
-
-
-	public void setEmail(Login email) {
-		this.email = email;
-	}
-
-
-	public Login getPassword() {
-		return password;
-	}
-
-
-	public void setPassword(Login password) {
-		this.password = password;
-	}
-
-
+	
 	public String[] getFacname() {
 		return facname;
 	}
