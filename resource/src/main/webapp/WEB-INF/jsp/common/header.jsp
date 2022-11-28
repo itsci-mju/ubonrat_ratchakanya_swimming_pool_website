@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,17 +10,12 @@
 </head>
 <link rel="stylesheet" href="css/main_style.css">
 <link rel="stylesheet" href="css/original.css">
-<style>
-	.nav_bar {
-		z-index: 800;
-	}
-
-	.dropdown-menu {
-		z-index: 800;
-	}
-</style>
-
 <body id="nonselect">
+<form:form
+           action="${pageContext.request.contextPath}/logout"
+           method="POST"
+           name="frmLogout">
+</form:form>
 	<div class="content-head">
 		<header class="header_page">
 			<div class="logo_main">
@@ -132,9 +128,7 @@
 				</div>
 					<div class="logout">
 						<!--  Logout here -->
-						<button id="logout">
-							Log out
-						</button>
+						<a href="#" onclick="javascript: frmLogout.submit();">ลงชื่อออกจากระบบ</a>
 					</div>
 			</div>
 		</security:authorize>
@@ -154,7 +148,6 @@
 		<security:authorize access="!isAuthenticated()">
 			ยังไม่ได้เข้าสู่ระบบ
 		</security:authorize>
-			อะไร?
 		<hr><!-- ตัวปิด nav ให้ overflow ไม่ทับตัวสุดท้าย -->
 	</div>
 
@@ -203,15 +196,14 @@
 		}
 	} 
 </script>
-<script>
-	const logout = document.getElementById("logout")
-	const response = "ต้องการออกจากระบบหรือไม่?";
-	logout.addEventListener("click", (click) => {
-		// window.confirm(response)
-		if (window.confirm(response)) {
-			window.open("${pageContext.request.contextPath}/logout", "_self");
-		}
-	});
-</script>
+<style>
+	.nav_bar {
+		z-index: 800;
+	}
+
+	.dropdown-menu {
+		z-index: 800;
+	}
+</style>
 
 </html>

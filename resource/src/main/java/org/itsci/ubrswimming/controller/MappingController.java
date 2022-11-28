@@ -15,7 +15,7 @@ public class MappingController {
 	
 	@RequestMapping(value="/loginpage", method=RequestMethod.GET)
 	public String goto_login() {
-		return "login";
+		return "common/login";
 	}
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)

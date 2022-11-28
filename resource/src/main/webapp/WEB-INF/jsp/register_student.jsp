@@ -75,11 +75,11 @@
                 <div class="form__group radio">
                     <font class="form__label"> เพศ  </font>
                     <label for="gender_m" class="l-radio">
-                        <form:radiobutton path="gender" id="gender_m" value="male" required="required" />
+                        <form:radiobutton path="gender" id="gender_m" value="ชาย" required="required" />
                         <span>ชาย</span>
                     </label>
                     <label for="gender_f" class="l-radio">
-                        <form:radiobutton path="gender" id="gender_f" value="female" />
+                        <form:radiobutton path="gender" id="gender_f" value="หญิง" />
                         <span>หญิง</span>
                     </label>
                     <label class="alert-label" id="alertGender">

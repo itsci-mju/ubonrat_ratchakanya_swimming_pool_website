@@ -32,7 +32,7 @@ public class SecurityConfig {
         });
 
         http.exceptionHandling(configurer -> {
-            configurer.accessDeniedPage("/access-denied");
+        	configurer.accessDeniedPage("/access-denied");
         });
 
         http.formLogin(configurer -> {

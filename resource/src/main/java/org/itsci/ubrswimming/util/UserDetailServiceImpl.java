@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UserDetailServiceImpl  implements UserDetailsService {
+public class UserDetailServiceImpl /* implements UserDetailsService*/ {
 
     @Autowired
     SessionFactory sessionFactory;
 
-    @Override
+  //  @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Session session = sessionFactory.getCurrentSession();
