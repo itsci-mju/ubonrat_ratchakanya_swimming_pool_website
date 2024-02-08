@@ -38,6 +38,17 @@ public class Courses {
 		this.courses_type = courses_type;
 	}
 
+	
+	
+
+
+
+	public Courses(int price, String courses_name2, String description2, int price2, int max_day2, String courses_type2, RegisterCourses rc2) {
+		super();
+		
+	}
+
+
 	public Courses() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -90,6 +101,16 @@ public class Courses {
 	public void setCourses_type(String courses_type) {
 		this.courses_type = courses_type;
 	}
-	
+
+
+
+
+
+	//เพิ่มมา
+	public void setCourses_id(RegisterCourses rc) {
+		// TODO Auto-generated method stub
+		
+	}
+	//เพิ่มมา
 	
 }

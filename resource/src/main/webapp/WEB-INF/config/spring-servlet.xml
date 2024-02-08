@@ -25,11 +25,11 @@
 	<!-- ต้องใช้ -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10000000"/>
-		<property name="maxInMemorySize" value="1048576" />
+		<property name="maxInMemorySize" value="1048576"/>
 	</bean>
 	<!-- เพิ่ม -->
 	
-	
+
 	
 	<mvc:resources location="${pageContext.request.contextPath}/image/" mapping="/image/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/image/" mapping="/img3/**"></mvc:resources>

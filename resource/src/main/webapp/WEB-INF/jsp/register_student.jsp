@@ -33,19 +33,7 @@
 <link rel="stylesheet" href="css/register_style.css">
 <body onload="togglePass()"> 
  <%@ include file="header.jsp" %>
-    <!--
-    <div class="container">
-  <div class="progress">
-    <div class="percent"></div>
-  </div>
-  <div class="steps">
-    <div class="step" id="0"></div>
-    <div class="step" id="1"></div>
-    <div class="step" id="2"></div>
-    <div class="step" id="3"></div>
-  </div>
-</div>
--->
+ 
 <div class="re-content">
     <form action="doRegister_student" method="post" name="regis">
         <p style="font-size: 26px; margin: auto;" align="center"> สมัครสมาชิก : นักศึกษา </p>
@@ -158,13 +146,9 @@
                <!--  <label for="faculty" class="form__label">คณะ/วิทยาลัยที่สังกัด</label>-->
             <label class="alert-label" id="alertFac">  </label> 
         </div>
-        <!-- personal image profile -->
-            <div class="request_input form__group field">
-                <label for="per_pic" class="req_file_">รูปหน้าตรง</label> <br>
-                <input type="file" name="per_pic" id="per_pic" class="req_file form-control" onblur="uploadPer_pic(regis)">
-            <br>
-                <label class="alert-label" id="alertperpic"></label>
-            </div>
+        
+        
+            
             <!-- Student image  -->
             <div class="request_input form__group field">
                 <label for="doc" class="req_file_">รูปบัตรนักศึกษา</label> <br>
@@ -200,11 +184,11 @@ function checkFac(regis){
 function uploadPer_pic(regis) { 
   const  labelAlertper_pic = document.getElementById("alertperpic");
   if(regis.per_pic.value==("")){
-	  labelAlertper_pic.innerText="กรุณาใส่รูปหน้าตรง";
+	  labelAlertper_pic.innerText="กรุณาใส่รูปบัตรนักศึกษา";
 	  labelAlertper_pic.style.color="#ff5252";
     }
     else{
-    	labelAlertper_pic.innerText="สามารถใช้รูปหน้าตรงนี้ได้";
+    	labelAlertper_pic.innerText="สามารถใช้รูปนี้ได้";
     	labelAlertper_pic.style.color= "#4CAF50";
     }
   }   

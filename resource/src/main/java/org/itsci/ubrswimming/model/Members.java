@@ -1,4 +1,5 @@
 package org.itsci.ubrswimming.model;
+
 import java.util.Calendar;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ public class Members {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="members_id",nullable=false,referencedColumnName="members_id")
-	private Login logins;
+	private Login login;
 	
 	@Column(name="firstname",nullable=false,length=30)
 	private String firstname;
@@ -44,7 +45,7 @@ public class Members {
 	@Column(name="emergency_phone",nullable=true,length=10)
 	private String emergency_phone;
 	
-	@Column(name="image",nullable=true,length=50)
+	@Column(name="image",nullable=true,length=255)
 	private String image;
 	
 	@Column(name="stuid",nullable=true,length=10)
@@ -53,30 +54,36 @@ public class Members {
 	@Column(name="faculty",nullable=true,length=45)
 	private String faculty;
 	
-	@Column(name="stu_card",nullable=true,length=15)
+	@Column(name="stu_card",nullable=true,length=255)
 	private String stu_card;
 	
 	@Column(name="affiliation",nullable=true,length=50)
 	private String affiliation;
 	
-	@Column(name="officer_card",nullable=true,length=45)
+	@Column(name="officer_card",nullable=true,length=255)
 	private String officer_card;
 	
-	@Column(name="marriage_cer",nullable=true,length=45)
+	@Column(name="marriage_cer",nullable=true,length=255)
 	private String marriage_cer;
 	
-	@Column(name="pid_card",nullable=true,length=45)
+	@Column(name="pid_card",nullable=true,length=255)
 	private String pid_card;
 	
-	@Column(name="alumni_card",nullable=true,length=45)
+	@Column(name="alumni_card",nullable=true,length=255)
 	private String alumni_card;
 
-	public Members(Login logins, String firstname, String lastname, String gender, String phone,
-                   Calendar birthdate, int member_type, String address, String pid, String emergency_name,
-                   String emergency_phone, String image, String stuid, String faculty, String stu_card, String affiliation,
-                   String officer_card, String marriage_cer, String pid_card, String alumni_card) {
+	@Column(name="startcarddate")
+	private Calendar startcarddate;
+	
+	@Column(name="endcarddate")
+	private Calendar endcarddate;
+	
+	public Members(Login login, String firstname, String lastname, String gender, String phone,
+			Calendar birthdate, int member_type, String address, String pid, String emergency_name,
+			String emergency_phone, String image, String stuid, String faculty, String stu_card, String affiliation,
+			String officer_card, String marriage_cer, String pid_card, String alumni_card , Calendar startcarddate , Calendar endcarddate) {
 		super();
-		this.logins = logins;
+		this.login = login;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.gender = gender;
@@ -96,12 +103,52 @@ public class Members {
 		this.marriage_cer = marriage_cer;
 		this.pid_card = pid_card;
 		this.alumni_card = alumni_card;
+		
+		this.startcarddate = startcarddate;
+		this.endcarddate = endcarddate;
+		
 	}
+
+
+
+
+	public Members(String firstname, String lastname, Calendar startcarddate, Calendar endcarddate) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.startcarddate = startcarddate;
+		this.endcarddate = endcarddate;
+	}
+
+
+
+
+
+
+
+
+	public Members(Calendar startcarddate, Calendar endcarddate) {
+		super();
+		this.startcarddate = startcarddate;
+		this.endcarddate = endcarddate;
+	}
+
+
+
+
+
+
 
 
 	public int getId() {
 		return id;
 	}
+
+
+
+
+
+
 
 
 	public void setId(int id) {
@@ -110,15 +157,24 @@ public class Members {
 
 
 
+
+
+
+
+
 	public Login getLogins() {
-		return logins;
+		return login;
 	}
 
 
 
 
+
+
+
+
 	public void setLogins(Login logins) {
-		this.logins = logins;
+		this.login = logins;
 	}
 
 
@@ -513,6 +569,41 @@ public class Members {
 
 
 
+	public Members(int id, Login login, String firstname, String lastname, String gender, String phone,
+			Calendar birthdate, int member_type, String address, String pid, String emergency_name,
+			String emergency_phone, String image, String stuid, String faculty, String stu_card, String affiliation,
+			String officer_card, String marriage_cer, String pid_card, String alumni_card) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.gender = gender;
+		this.phone = phone;
+		this.birthdate = birthdate;
+		this.member_type = member_type;
+		this.address = address;
+		this.pid = pid;
+		this.emergency_name = emergency_name;
+		this.emergency_phone = emergency_phone;
+		this.image = image;
+		this.stuid = stuid;
+		this.faculty = faculty;
+		this.stu_card = stu_card;
+		this.affiliation = affiliation;
+		this.officer_card = officer_card;
+		this.marriage_cer = marriage_cer;
+		this.pid_card = pid_card;
+		this.alumni_card = alumni_card;
+	}
+
+
+
+
+
+
+
+
 	public void setPid_card(String pid_card) {
 		this.pid_card = pid_card;
 	}
@@ -547,8 +638,84 @@ public class Members {
 
 
 	public Members() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
+
+
+
+
+
+
+
+
+	public Members(Login log, String firstname2, String lastname2, String gender2, String phone2, Calendar bd, int member_type2, String address2, String pid2, String emergency_name2, String emergency_phone2, String image2, String stuid2, String faculty2, String stu_card2, String affliation, String officer_card2, String marriage_cer2, String pid_card2, String alumni_card2, Login l2) {
+		// TODO Auto-generated constructor stub
+		
+	}
+
+
+
+
+
+
+
+
+	public Calendar getStartcarddate() {
+		return startcarddate;
+	}
+
+
+
+
+
+
+
+
+	public void setStartcarddate(Calendar startcarddate) {
+		this.startcarddate = startcarddate;
+	}
+
+
+
+
+
+
+
+
+	public Calendar getEndcarddate() {
+		return endcarddate;
+	}
+
+
+
+
+
+
+
+
+	public void setEndcarddate(Calendar endcarddate) {
+		this.endcarddate = endcarddate;
+	}
+
+
+
+
+
+
+
+
+	public Members(String firstname, String lastname, String phone, String address) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.phone = phone;
+		this.address = address;
+	}
+	
+	
+	
+	
 
 }
 

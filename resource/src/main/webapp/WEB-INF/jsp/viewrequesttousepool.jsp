@@ -31,16 +31,25 @@
 
 <%@ include file="header.jsp" %>
 
-      <% 
-   	RequestManager rqm = new RequestManager();
-    List <PoolReservations>  pr = rqm.getListRequestUsePool_memid(log.getMembers_id());
-    
+   <% 
+   		ViewRequestToUsePoolManager rqm = new ViewRequestToUsePoolManager();
+	    List <PoolReservations>  pr = rqm.getListRequestUsePool_memid(log.getMembers_id());
+	    
+	    
+	    String status = "";
    %>
    
+ 
    
    <% for(int i=0 ; i<pr.size(); i++) { %>
    
    
+     <% if(pr.get(i).getStatus() == 0) {
+    	 	  status = "ยังไม่ผ่านการอนุมัติ";
+		   }else if(pr.get(i).getStatus() == 1) {
+			  status = "ผ่านการอนุมัติ";		   
+		}%>
+		
     <div class="content-request">
         <form action="getRequestToUse" method="post" name="frm" class="fit">
           <table>
@@ -51,6 +60,25 @@
               </div>
               </td>
             </tr>
+            
+            <tr>       
+              <td colspan="2">
+              		 <div class="form__group field" style="float: left;">
+                  		<label for="status" class="form__label" >สถานะ</label><br>
+                  		<input type="text" class="form-control" placeholder="สถานะ" id="status" 
+                  		
+                  		  style="color:  
+                            
+                            <% if(status.equals("ยังไม่ผ่านการอนุมัติ")) { %> red 
+                            <% }else if (status.equals("ผ่านการอนุมัติ")) { %> green
+                            
+                            <% }%>;"
+                  		
+                  		value="<%= status %>"  readonly><br>
+              		</div>   
+              </td>
+            </tr>
+            
             <tr>
             <!-- เหมือนต้อง login เข้ามาก่อนถึงจะเห็นการแสดงผล -->
               <td colspan="2">
@@ -76,7 +104,7 @@
             <tr>
               <td colspan="2">
                 <div class="request_input">   
-                <label  class="form__label">รายละเอียด ไม่เอาไหน ถ้าใจรักเธอ</label> <br>               
+                <label  class="form__label">รายละเอียด</label> <br>               
                   <input type="text" class="form-control" placeholder="รายละเอียด" id="detel" value="<%= pr.get(i).getDetail()%>"  readonly ><br>
               </div>
               </td>           

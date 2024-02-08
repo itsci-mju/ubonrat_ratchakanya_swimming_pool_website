@@ -22,6 +22,7 @@ public class LoginController {
         String email = request.getParameter("email");
         String password = request.getParameter("pwd");
         Login log = memberManager.verifyLoginWEB(email, password);
+        System.out.println(log.getMembers_id());
         session.setAttribute("login", log);
         return "index";
     }

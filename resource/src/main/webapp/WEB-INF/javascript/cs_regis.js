@@ -123,6 +123,9 @@ function checkTel(regis){
         else if(date >=today) {
           alertBirth.innerText="วัน/เดือน/ปี ต้องไม่ใช่ปัจจุบันหรืออนาคต";
             regis.birthdate.value= ""
+        }else{
+       		 labelAlertphone.innerText="สามารถใช้เบอร์โทรศัพท์นี้ได้";
+        	 labelAlertphone.style.color= "#4CAF50";
         }
     }
     

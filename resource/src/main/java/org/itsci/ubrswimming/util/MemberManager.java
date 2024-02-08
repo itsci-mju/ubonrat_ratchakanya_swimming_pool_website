@@ -28,6 +28,7 @@ public class MemberManager {
 		Login l = query.getSingleResult();
 		return l;
 	}
+
 	
 	public Login getStatusfromLogin(String mid){
 		Login l = null;
@@ -108,7 +109,7 @@ public Login getLogin(String members_id){
 		Connection con = condb.getConnection();
 		try {
 			Statement stmt = con.createStatement();
-			String select = "members_id,firstname,lastname,gender,phone,birthdate,member_type,address,pid,emergency_name,emergency_phone,image,stuid,faculty,stu_card,affiliation,officer_card,marriage_cer,pid_card,alumni_card";
+			String select = "members_id,firstname,lastname,gender,phone,birthdate,member_type,address,pid,emergency_name,emergency_phone,image,stuid,faculty,stu_card,affiliation,officer_card,marriage_cer,pid_card,alumni_card,startcarddate,endcarddate";
 			String from = "members";
 			String where = "members_id"+" = '"+ memID + "'";
 			String sql = "select "+select+" from "+from+" where "+where;
@@ -134,18 +135,33 @@ public Login getLogin(String members_id){
 				String marriage_cer = rs.getString(18);
 				String pid_card = rs.getString(19);
 				String alumni_card = rs.getString(20);
+				String startcarddate = rs.getString(21);
+				String endcarddate = rs.getString(22);
 				
 				Calendar birthdate = Calendar.getInstance(); 
 				String date[] = bd.split("-");
 				String date2[] = date[2].split(" ");
 				 		birthdate.set(Integer.parseInt(date[0]), Integer.parseInt(date[1])-1, Integer.parseInt(date2[0]));
 				
+				 		Calendar scd = Calendar.getInstance(); 
+						String datescd[] = startcarddate.split("-");
+						String datescd2[] = datescd[2].split(" ");
+							scd.set(Integer.parseInt(datescd[0]), Integer.parseInt(datescd[1])-1, Integer.parseInt(datescd2[0]));
+								
+						Calendar ecd = Calendar.getInstance(); 
+						String dateecd[] = endcarddate.split("-");
+						String dateecd2[] = datescd[2].split(" ");
+							scd.set(Integer.parseInt(dateecd[0]), Integer.parseInt(dateecd[1])-1, Integer.parseInt(dateecd2[0]));
+						
+				 		
+				 		
 				//// JAMEEEEEEEEEEE 	
 				log = getLogin(member_id);
 				 mb = new Members(log,firstname,lastname,gender,phone,birthdate,
 							member_type,address,pid,emergency_name,emergency_phone,image,
 							stuid,faculty,stu_card,affliation,officer_card,marriage_cer,
-							pid_card,alumni_card);
+							pid_card,alumni_card , scd, ecd);
+				
 			}
 			con.close();
 		} catch (SQLException e) {

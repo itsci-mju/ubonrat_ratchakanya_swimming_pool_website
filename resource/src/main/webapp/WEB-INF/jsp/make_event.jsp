@@ -97,7 +97,7 @@ function checktypeinput(){
 
 // รายละเอียด //
 function checkDetail(regis){
-    const  Detail = /^[ก-์A-Za-z]{2,30}$/;
+    const  Detail = /^[ก-์A-Za-z0-9]{2,30}$/;
     const  labelAlertDetail  = document.getElementById("alertDetail");
     if(regis.detail.value==("")){
         labelAlertDetail.innerText="กรุณากรอกรายละเอียด";

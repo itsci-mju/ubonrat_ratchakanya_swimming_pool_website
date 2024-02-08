@@ -144,5 +144,30 @@ public class RequestController {
         return "record_usage";
     }
 
+    
+
+	
+	@RequestMapping(value="/approve_request", method=RequestMethod.GET)
+	public String approve_request(HttpServletRequest request,HttpSession session) {
+		int r = -1;
+	
+		String pid =request.getParameter("id");
+		RequestManager req = new RequestManager();
+        r = req.acceptReservations(pid);
+        request.setAttribute("resultApprove", r);
+		return "manage_form";
+	}
+	
+	
+    @RequestMapping(value="/deleteReservations",method=RequestMethod.GET)
+    public String deleteReservations (HttpServletRequest request,HttpSession session) {
+        int r = -1;
+        String rpid =request.getParameter("id");
+        RequestManager req = new RequestManager();
+        r = req.deleteReservations(rpid);
+        request.setAttribute("resultCancel", r);
+
+        return "manage_form";
+    }
    
 }

@@ -36,11 +36,9 @@
    
    		<form name="frm" method="post" action="#" class="fit">
             <div align="center" style="padding-top:25px;" >
-            <p style="font-size: 26px; padding-left: 20px; color:#353b48;">ดูข้อมูลเอกสาร
+            <p style="font-size: 26px; padding-left: 20px; margin-top: 30px; color:#353b48;" >ดูข้อมูลเอกสาร
    				<table>
-   				      <img src ="img3/<%=pr.getDocument()%>">
-   				
-					<!-- <img src="image/<%=pr.getDocument() %>" >-->
+   				      <img src ="<%=pr.getDocument()%>" style="width:260px; height:300px; margin-left: 1%; margin-top:40px;"> 				  
  				</table>
  			</div>
  		</form>

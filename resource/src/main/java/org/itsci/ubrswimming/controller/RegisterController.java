@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 import java.time.*;
@@ -126,8 +127,6 @@ public class RegisterController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
         
-        
-		
 		String fname = request.getParameter("fname");
 		String lname = request.getParameter("lname");
 		
@@ -162,13 +161,13 @@ public class RegisterController {
 		 
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "1"+g+"0"+Long.toString(unix);
-		 Login log = new Login(email,pwd,1,mid);
+		 Login log = new Login(email,pwd,0,mid);
 		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate, mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,"","",""
 				 				,per_pic,stuid,faculty
-				 				,stu_pic,"","","","","");
+				 				,stu_pic,"","","","","",null,null);
 		 
 		 RegisterManager mm = new RegisterManager();
 		 mm.insertLogins(log);
@@ -228,14 +227,14 @@ public class RegisterController {
 		 
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "2"+g+"0"+Long.toString(unix);
-		 Login log = new Login(email,pwd,1,mid);
+		 Login log = new Login(email,pwd,0,mid);
 		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,pid,"",""
 				 				,per_pic,"",""
 				 				,"",affiliation,officer_card
-				 				,marriage,id_cards,"");
+				 				,marriage,id_cards,"",null,null);
 		 
 		 RegisterManager mm = new RegisterManager();
 		 mm.insertLogins(log);
@@ -293,14 +292,14 @@ public class RegisterController {
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "3"+g+"0"+Long.toString(unix);
 		 
-		 Login log = new Login(email,pwd,1,mid);
+		 Login log = new Login(email,pwd,0,mid);
 		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,pid,"",""
 				 				,per_pic,"",""
 				 				,"","",""
-				 				,"","",alumni_card);
+				 				,"","",alumni_card,null,null);
 		 
 		 RegisterManager mm = new RegisterManager();
 		 mm.insertLogins(log);
@@ -355,22 +354,17 @@ public class RegisterController {
 		 String emn = "emn";
 		 String emp = "emp";
 		 int mType = 3;
-		 long b = (long) (birthdate.getTimeInMillis()/(86400000*365.25));
-		 long n = (long) ((Calendar.getInstance().getTimeInMillis()-543)/(86400000*365.25));
-		 long a = n - b;
-		 if(a<13) {
-			  mType = 4 ;
-		 }
+		
 		 long unix = System.currentTimeMillis()/1000;
 		 String mid = "4"+g+"0"+Long.toString(unix);
 		 
-		 Login log = new Login(email,pwd,1,mid);
+		 Login log = new Login(email,pwd,0,mid);
 		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,pid,emn,emp
 				 				,per_pic,"","","","","",""
-				 				,id_cards,"");
+				 				,id_cards,"",null,null);
 		 
 		 RegisterManager mm = new RegisterManager();
 		 mm.insertLogins(log);
@@ -424,32 +418,20 @@ public class RegisterController {
 		 String id_cards = request.getParameter("id_cards");
 		 String officer_card = "บัตรข้าราชการ";
 		 String affiliation = request.getParameter("affiliation");
-		 int sType = Integer.parseInt(request.getParameter("sType"));
-		 
-		 int status = 0;
-		 int mType = 6;
-		 if(sType==(0)){
-			 mType = 6;
-			 status = 4;
-		 }else if(sType==(1)) {
-			 mType = 5;
-			 status = 3;
-		 }else {
-			 mType= 6;
-		 }
-		  
-		 
+			
+		 int mType = 4;
+		
 		 long unix = System.currentTimeMillis()/1000;
-		 String mid = "2"+g+"0"+Long.toString(unix);
+		 String mid = "5"+g+"0"+Long.toString(unix);
 		 
-		 Login log = new Login(email,pwd,status,mid);
+		 Login log = new Login(email,pwd,0,mid);
 		 Members mb = new Members(log,fname,lname,gender
 				 				,tel,birthdate,mType
 				 				,address+"_"+sub_districts+"_"+districts+"_"+province+"_"+post_code
 				 				,pid,"",""
 				 				,per_pic,"",""
 				 				,"",affiliation,officer_card
-				 				,"",id_cards,"");
+				 				,"",id_cards,"",null,null);
 		 
 		 RegisterManager mm = new RegisterManager();
 		 mm.insertLogins(log);
@@ -461,7 +443,7 @@ public class RegisterController {
 	@RequestMapping(value="/getTimeToCourse", method=RequestMethod.POST)
 	public String getTimeToCourse(HttpServletRequest request,HttpSession session) {
 		try {
-			request.setCharacterEncoding("UTF-8"); 
+			request.setCharacterEncoding("UTF-8");
 		} catch (UnsupportedEncodingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -601,21 +583,120 @@ public class RegisterController {
 		session.removeAttribute("datesel");
 		session.setAttribute("datesel", date_for_select);
 		
-		return "course_register";
+		return "index";
 	}
 	
-	@RequestMapping(value="/doCourse_register", method=RequestMethod.POST)
-	public String doCourse_register(HttpServletRequest request,HttpSession session) {
+	
+	@RequestMapping(value="/doRegisterCourse", method=RequestMethod.GET)
+	public String doRegisterCourse(HttpServletRequest request,HttpSession session) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (UnsupportedEncodingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
-
-		return "index";
+		return "RegisterCourse";
 	
 	}
 	
+	
+
+	/*----------------------Use Case Register_Course*---------------------------------------/
+	/*Insert UseCase insertRegisterCourse1*/ 
+	@RequestMapping(value="/insertRegisterCourse", method=RequestMethod.POST)
+	public String insertRegisterCourse1(HttpServletRequest request,HttpSession session) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		Calendar stl = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    sdf.setTimeZone(TimeZone.getTimeZone("GMT+7"));
+  
+		String start_learn =  request.getParameter("startdate");
+		String learn_time =  request.getParameter("learn_time");
+		String learn_type =  request.getParameter("learn_type");
+		
+		
+		String priceGrouptype =  request.getParameter("cost");
+		int courses_id = 0;
+		
+		if (priceGrouptype.equals("2500")){
+			courses_id = 1;
+		} else if(priceGrouptype.equals("1500")){
+			courses_id = 2;
+		} else if(priceGrouptype.equals("3000")){
+			courses_id = 3;
+		}else if(priceGrouptype.equals("4500")){
+			courses_id = 4;
+		}else if(priceGrouptype.equals("6000")){
+			courses_id = 5;
+		}else if(priceGrouptype.equals("7500"))
+			courses_id = 6;
+		
+		
+		String mid = request.getParameter("mid");
+		
+		String sdate[] = start_learn.split("-");
+ 		stl.set(Integer.parseInt(sdate[0]), Integer.parseInt(sdate[1])-1, Integer.parseInt(sdate[2]));
+	
+ 		Courses cs = new Courses();
+ 		cs.setCourses_id(courses_id);
+ 		
+		RegisterCourses rqc = new RegisterCourses(stl, learn_time , learn_type , cs);
+		RegisterManager rgt = new RegisterManager();
+		
+		int a = rgt.insertRegisterCourse1(rqc , mid);
+		request.setAttribute("insertRegisterCourse1", a);
+	    session.setAttribute("RegisterCourses", rqc);
+	   
+	    RegisterCourses reg = rgt.SELECT_RegisterCourse2_1();
+	    
+	    
+	    
+	    
+	  
+   
+	    /*-------------------------------Insert UseCase insertRegisterCourse2------------------------------------------*/
+	    String name =  request.getParameter("fullName0");
+		int age = Integer.parseInt(request.getParameter("age0"));
+		String tel =  request.getParameter("tel0");
+		int student_gender = Integer.parseInt(request.getParameter("gender0"));
+		
+		Trainees tr = new Trainees(name ,age ,tel ,student_gender,reg);
+
+		int b = rgt.insertRegisterCourse2(tr);
+		request.setAttribute("insertRegisterCourse2", b);
+	    session.setAttribute("Trainees", tr);
+	    
+
+		
+		
+		
+		
+		/*-------------------------------Insert UseCase insertRegisterCourse2------------------------------------------*/
+		
+	/*
+		int price = Integer.parseInt(request.getParameter("cost"));
+		
+		Courses cou = new Courses(price);
+		
+		int c = rgt.insertRegisterCourse3(cou);
+		request.setAttribute("insertRegisterCourse3", c);
+	    session.setAttribute("Courses", cou);*/
+	    
+	    
+	    
+	    return "index";
+	}
+
+	/*------------------------------------------------------------*/
+	
+	
 }
+
+	
+

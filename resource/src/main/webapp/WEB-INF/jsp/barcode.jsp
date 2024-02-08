@@ -18,6 +18,7 @@
 
 
 <div align="center" style="padding-top:25px;">
+
     <input class="form-control" type="text" name="txt_input" id="txt_input" placeholder="BarCodeNumber">
     <button id="btn_generate" class="button">Generator Button</button>
     <br><br><br>

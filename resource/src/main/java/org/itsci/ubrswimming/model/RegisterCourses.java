@@ -29,7 +29,7 @@ public class RegisterCourses {
 	@Column(name="learn_type",nullable=false,length=45)
 	private String learn_type;
 	
-	@Column(name="payment_document",nullable=true,length=45)
+	@Column(name="payment_document",nullable=true,length=255)
 	private String payment_document;
 	
 	@Column(name="status", nullable=false)
@@ -38,8 +38,14 @@ public class RegisterCourses {
 	@Column(name="reason",nullable=true,length=255)
 	private String reason;
 	
+	
+	
 	@Column(name="learn_count", nullable=false)
 	private int learn_count;
+	
+	
+	@Column(name="miss_class",nullable=false)
+	private int miss_class;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="members_id",nullable=false,referencedColumnName="members_id")
@@ -49,9 +55,26 @@ public class RegisterCourses {
 	@JoinColumn(name="courses_id",nullable=false)
 	private Courses courses_id;
 
+	
+	
+	
+	
+	
+
+
+	public RegisterCourses() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+
+
 	public RegisterCourses(int register_courses_id, Calendar start_learn, String learn_time, String learn_type,
-						   String payment_document, int status, String reason, int learn_count, Members members,
-						   Courses courses_id) {
+			String payment_document, int status, String reason, int learn_count, int miss_class, Members members,
+			Courses courses_id) {
 		super();
 		this.register_courses_id = register_courses_id;
 		this.start_learn = start_learn;
@@ -61,9 +84,75 @@ public class RegisterCourses {
 		this.status = status;
 		this.reason = reason;
 		this.learn_count = learn_count;
+		this.miss_class = miss_class;
 		this.members = members;
 		this.courses_id = courses_id;
 	}
+
+
+
+
+
+
+	public RegisterCourses(int register_courses_id2, int learn_count2, String learn_time2, String learn_type2, String payment_document2, String reason2, Calendar sl, int status2, int courses_id2, String members_id, String trainer_id, String member_id) {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+
+
+
+
+	public RegisterCourses(int register_courses_id2, int learn_count2, String learn_time2, String learn_type2, String payment_document2, String reason2, Calendar start_learn, int status2, String learn_time, String learn_type, Courses c2) {
+		super();
+		this.start_learn = start_learn;
+		this.learn_time = learn_time;
+		this.learn_type = learn_type;
+	}
+
+
+	public RegisterCourses(Calendar start_learn, String learn_time, String learn_type ,  Courses courses_id) {
+		super();
+		this.start_learn = start_learn;
+		this.learn_time = learn_time;
+		this.learn_type = learn_type;
+		this.courses_id = courses_id;
+		
+	}
+
+
+	public RegisterCourses(int register_courses_id2, int learn_count2, String learn_time2, String learn_type2,
+			String payment_document2, String reason2, String start_learn2, int status2, int courses_id2,
+			String members_id) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+
+
+	public RegisterCourses(int register_courses_id2, int learn_count2, String learn_time2, String learn_type2,
+			String payment_document2, String reason2, Calendar sl, int status2,  String members_id) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+
+
+	public RegisterCourses(int register_courses_id2, int learn_count2, String learn_time2, String learn_type2,
+			String payment_document2, String reason2, Calendar sl, int status2, String members_id,
+			String trainer_id, String member_id) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+
 
 	public int getRegister_courses_id() {
 		return register_courses_id;
@@ -141,9 +230,39 @@ public class RegisterCourses {
 		return courses_id;
 	}
 
+
+
+
+
+public int getMiss_class() {
+		return miss_class;
+	}
+
+
+
+
+
+
+	public void setMiss_class(int miss_class) {
+		this.miss_class = miss_class;
+	}
+
+
+
+
+
+
+	//เพิ่มมา
 	public void setCourses_id(Courses courses_id) {
 		this.courses_id = courses_id;
 	}
+
+
+	public void setCourses_id(int courses_id2) {
+		// TODO Auto-generated method stub
+		
+	}
+	//เพิ่มมา
 
 	
 

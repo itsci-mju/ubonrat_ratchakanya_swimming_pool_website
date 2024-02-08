@@ -157,13 +157,17 @@
                 <label for="faculty" class="form__label">คณะ/วิทยาลัยที่สังกัด</label> -->
             <label class="alert-label" id="alertFac"><!-- alert_DonotForgetToDelete --></label>
             </div>
-            <!-- personal image profile -->
+            
+            <!-- personal image profile 
             <div class="request_input form__group field">
                 <label for="per_pic" class="req_file_">รูปหน้าตรง</label> <br>
                 <input type="file" name="per_pic" id="per_pic" class="req_file form-control" onblur="uploadPer_pic(regis)">
             <br>
-                <label class="alert-label" id="alertperpic"><!-- alert_DonotForgetToDelete --></label>
+                <label class="alert-label" id="alertperpic"><!-- alert_DonotForgetToDelete </label>
             </div>
+            -->
+            
+            
             <!--  image  -->
             <div class="request_input form__group field">
                 <label for="doc" class="req_file_">รูปบัตรประชาชน/ข้าราชการ</label> <br>

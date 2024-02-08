@@ -7,9 +7,7 @@
     
    
     
-      <% SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
-     		SimpleDateFormat sdf3 = new SimpleDateFormat("hh:mm");
-     sdf2.setTimeZone(TimeZone.getTimeZone("GMT+7")); %>
+    
      
      
 <!DOCTYPE html>
@@ -27,19 +25,31 @@
  <%@ include file="header.jsp" %>
  
  <% 
-	JameManager jm = new JameManager();
-	List<PoolUsage> listpu = jm.getListRequestUsePool_memid();
+ 	ReportPoolUsageStatisticsManager rp = new ReportPoolUsageStatisticsManager();
+	List<PoolUsage> pu = rp.getReportPoolUsageStatistics();
 	
-	/*ราคารวมมาแสดง*/
-	String sumPrice = jm.getSumPrice();
+	//จำนวนสมาชิกสระว่ายน้ำมาแสดง
+	String sumMembers_id = rp.getMembers_id();
+	System.out.println(sumMembers_id);
+	
+	
+	//จำนวนบุคคลทั่วไปสระว่ายน้ำมาแสดง
+	String sumGeneral = rp.getGeneral();
+	System.out.println(sumGeneral);
+	
+	//ราคารวมมาแสดง
+	String sumPrice = rp.getSumPrice();
 	System.out.println(sumPrice);
 	
 	
+	//จำนวนผู้ชายที่ใช้บริการ
+	String SumGender_men = rp.getSumGender_men();
+	System.out.println(SumGender_men);
 	
-	/*รวมจำนวนผู้ใช้*/
-	String sumAmount = jm.getSumAmount();
-	System.out.println(sumAmount);
 	
+	//จำนวนผู้หญิงที่ใช้บริการ
+	String SumGender_gel = rp.getGender_gel();
+	System.out.println(SumGender_gel);
 	
     %>
     	
@@ -50,39 +60,64 @@
   <table class="table table-striped"  border="1px">
     <thead >
         <tr>
-          <th>วันที่</th>
-          <th>ประเภท</th>
-          <th>จำนวนคน</th>
-          <th>ค่าบริการ</th>
+          <th>รหัสสมาชิกที่เข้าใช้สระ</th>
+          <th>จำนวนบุคคลทั่วไปที่เข้าใช้สระ</th>
+          <th>ชาย</th>
+          <th>หญิง</th>
+          <th>เด็ก</th>
+          <th>ผู้ใหญ่</th>
           <th>จำนวนเงิน</th>
-          <th>เวลา</th>
+        
         </tr>
       </thead>
       <tbody>
-      <% for(int i=0 ; i < listpu.size(); i++) { %>
+      <% for(int i=0 ; i < pu.size(); i++) { %>
         <tr >
-          <td><%= sdf2.format(listpu.get(i).getTime().getTime()) %></td>
-   		       <td><%= listpu.get(i).getUsage_type() %></td>
-          <td><%= listpu.get(i).getAmount() %></td>
-          <td><%= listpu.get(i).getPrice() %></td>
-          <td><%= listpu.get(i).getPrice() %></td>
-          <td><%= sdf3.format(listpu.get(i).getTime().getTime()) %></td>
+   		  <td><%= pu.get(i).getMembers().getLogins().getMembers_id() %></td>
+          <td><%= pu.get(i).getGender_men() + pu.get(i).getGender_gel()  %></td>
+          <td><%= pu.get(i).getGender_men() %></td>
+          <td><%= pu.get(i).getGender_gel() %></td>
+          <td><%= pu.get(i).getChild() %></td>
+          <td><%= pu.get(i).getAdult() %></td>
+     	  <td><%= pu.get(i).getPrice() %></td>
         </tr>  
            <% }%>
             
        </tbody>
   </table>
   <div class="under"align="right">
-        <div> รายได้รวม : 
+  
+  
+  
+        <div>
+          จำนวนสมาชิกที่เข้าใช้สระทั้งหมด :  
+          <input type="text" value="<%= sumMembers_id.toString() %>" readonly> 
+          คน           
+      </div>
+      
+       <div>
+          จำนวนบุคคลทั่วไปที่เข้าใช้สระทั้งหมด :  
+          <input type="text" value="<%= sumGeneral.toString() %>" readonly> 
+          คน           
+      </div>
+      
+       <div>
+          จำนวนผู้ชายที่เข้าใช้บริการสระทั้งหมด :  
+          <input type="text" value="<%= SumGender_men.toString() %>" readonly> 
+          คน           
+      </div>
+       <div>
+          จำนวนผู้หญิงที่เข้าใช้บริการสระทั้งหมด :  
+          <input type="text" value="<%= SumGender_gel.toString() %>" readonly> 
+          คน           
+      </div>
+       <div> 
+       	   จำนวนเงินทั้งหมดรวมทั้งหมด : 
           <input type="text" value="<%= sumPrice.toString() %>"readonly>
           บาท
        </div>
-       <div>
-          จำนวนผู้ใช้บริการ : 
-          <input type="text" value="<%= sumAmount.toString() %>" readonly> 
-          คน
-          
-      </div>
+       
+       
   </div>
 </div>
 </body>

@@ -23,7 +23,13 @@
         </form>
         
 
-        <button onclick="genQR()" class="button" >Generate</button>
+        <button onclick="genQR()" class="button" >Generate</button><br>
+        <input type="file" name="slip" id="slip" value="ส่งสลิปเงิน"   onblur=""> 
+        
+        <!-- ไฟล์ส่งสลิปเงิน -->
+                     
+                
+    	
     </div>
     <div align="center">
     	<img  id="imgqr" src="" style="width: 500px; object-fit: contain;" >    

@@ -4,8 +4,7 @@
     <%@ page import="org.itsci.ubrswimming.model.*,org.itsci.ubrswimming.util.*,java.util.*"  %>
     <%@ page import="java.text.SimpleDateFormat,java.util.Calendar,java.util.TimeZone" %>
     <%
-    	RequestManager req = new RequestManager();
-    
+    	RequestManager req = new RequestManager();    
     	List<PoolReservations> psv = (List<PoolReservations>) req.getListRequestUsePool();
     %>
 <!DOCTYPE html>
@@ -18,12 +17,18 @@
 <link rel="stylesheet" href="css/staff_content.css">
 <body id="nonselect">
 <%@ include file="header.jsp" %>
+
+
     <div class="content-manage">
         <table class="manage_table">
             <thead class="column-table">
                 <tr>
+                	<th style="width: 50px;">
+                        รหัสการขอเข้าใช้สระว่ายน้ำ
+                    </th>
+                    
                     <th style="width: 300px;">
-                        ชื่อ
+                        ชื่อกิจกรรม
                     </th>
                     <th style="width: 150px;">
                         วันที่ขอใช้
@@ -45,6 +50,13 @@
             <tbody class="column-table">
             <% for(PoolReservations p:psv) { %>
                 <tr align="center">
+                
+                <td align="left">
+                        <div class="nametd">
+                            <%= p.getPool_reservations_id() %>
+                        </div>
+                    </td>
+                
                     <td align="left">
                         <div class="nametd">
                             <%= p.getEvent_name() %>
@@ -68,13 +80,7 @@
                 </tr>
               <% } %>
             </tbody>
-            <tfoot class="column-table"> 
-                <tr>
-                    <td colspan="6" style="background-color: rgb(230, 230, 230,0.8);">
-                        &nbsp;
-                    </td>
-                </tr>
-            </tfoot>
+          
         </table>
     </div>
     <%@ include file="footer.jsp" %>

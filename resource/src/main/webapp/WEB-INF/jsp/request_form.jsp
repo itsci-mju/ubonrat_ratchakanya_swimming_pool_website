@@ -82,15 +82,19 @@
               </div>
               </td>
             </tr>
-            <tr>
+            
+            
+              <tr>
               <td colspan="2">
                 <div class="request_input">
                   <label for="doc" style="color: #4CAF50;">อัปโหลดเอกสาร (ถ้ามี)</label> <br>
-                  <input type="file" name="doc" id="doc" class="req_file form-control" onblur="uploadFile(frm)">
-                  <label class="alert-label" id="alertfile"></label>
+                  <input type="file" class="form-control" name="photo" id="photo" value="" onchange="return OnUploadCheck()" accept=".jpg, .jpeg, .png, .gif" />		
+				  <input type="text" value="" id="registerphoto" name="registerphoto">
                 </div>
               </td>
             </tr>
+            
+            
             <tr>
               <td colspan="2" align="center">
                 <div class="request_input">
@@ -100,15 +104,104 @@
               </td>
             </tr>
           </table>
-        </form>
+        </form>         
     </div>
+    
+    <div class="bt1">				
+		<button  onclick="Checkinput()">อัปโหลด</button>
+	</div>
+		
     <%@ include file="footer.jsp" %>
 </body>
 <script src="javascript/cs_requestform.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>
+
+   //paste here your copied configuration code
+   const firebaseConfig = {
+		   apiKey: "AIzaSyB2pF_-EDCtyh4idqoh_8kbMgYhbVe7kTg",
+		   authDomain: "projectfinal-a13e5.firebaseapp.com",
+		   projectId: "projectfinal-a13e5",
+		   storageBucket: "projectfinal-a13e5.appspot.com",
+		   messagingSenderId: "695099707523",
+		   appId: "1:695099707523:web:b8a1f019b12c29735bcbb6",
+		   measurementId: "G-XR562S2KW8"
+   };
+
+   // Initialize Firebase
+   firebase.initializeApp(firebaseConfig);
+   console.log(firebase);
+      function uploadImage() {
+	      const ref = firebase.storage().ref();
+	      const file = document.querySelector("#photo").files[0];
+	      const name = +new Date() + "-" + file.name;
+	      const metadata = {
+	         contentType: file.type
+	      };
+	      const task = ref.child(name).put(file, metadata);task
+	      .then(snapshot => snapshot.ref.getDownloadURL())
+	      .then(url => {
+	      console.log(url);
+	      alert('image uploaded successfully');
+	      document.getElementById("registerphoto").value = url;
+	      
+	      
+	   })
+	   .catch(console.error);
+	   }
+
+   
+function OnUploadCheck() {
+	var extall = "jpg,jpeg,gif,png";
+	file = $('input[name="photo"]').val();
+	ext = file.split('.').pop().toLowerCase();
+	if (parseInt(extall.indexOf(ext)) < 0) {
+		alert('กรุณาเลือกไฟล์ประเภทรูปภาพ ที่เป็นนามสกุล : ' + extall);
+		$('input[name="photo"]').val("");
+		return false;
+
+	}
+	return true;
+}
+
+	
+function Checkinput(){
+	var urlfinal
+    const ref = firebase.storage().ref();
+    const file = document.querySelector("#photo").files[0];
+    const name = +new Date() + "-" + file.name;
+    const metadata = {
+       contentType: file.type
+    };
+    const task = ref.child(name).put(file, metadata);task
+    .then(snapshot => snapshot.ref.getDownloadURL())
+    .then(url => {
+    console.log(url);
+    urlfinal = url
+    alert('image uploaded successfully');
+    document.getElementById("registerphoto").value = url;
+    
+ })
+ .catch(console.error);
+
+   // Thread.sleep(5000);
+	// console.log(document.getElementById("photo").value);
+	 files = $('input[name="photo"]').val();
+		if(files == "" || files === null){
+			alert("กรูณาอัปโหลดรูปภาพ");
+			return false;
+		}
+
+}
+
+
 //ชื่อกิจกรรม //
 function checkEventname(frm){
-    const  Eventname = /^[ก-์A-Za-z]{2,30}$/;
+    const  Eventname = /^[ก-์A-Za-z0-9]{2,30}$/;
     const  labelAlertEventname  = document.getElementById("alertEventname");
     if(frm.eventname.value==("")){
        labelAlertEventname.innerText="กรุณากรอกชื่อกิจกรรม";
@@ -280,7 +373,7 @@ function checktypeinput(){
 
 // รายละเอียด //
 function checkDetail(regis){
-    const  Detail = /^[ก-์A-Za-z]{2,30}$/;
+    const  Detail = /^[ก-์A-Za-z0-9]{2,30}$/;
     const  labelAlertDetail  = document.getElementById("alertDetail");
     if(regis.detail.value==("")){
         labelAlertDetail.innerText="กรุณากรอกรายละเอียด";
@@ -312,4 +405,10 @@ function checkDetail(regis){
       }
     }   
 </script>
+<style>
+.bt1{
+         margin-left: 720px;
+         margin-right: 500px;
+    }
+</style>
 </html>
